@@ -1,0 +1,1 @@
+export const nameOfDays = ["ND","PN","WT","ŚR","CZ","PT","SB"];
