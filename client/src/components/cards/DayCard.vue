@@ -3,8 +3,8 @@
     @click="emitClickEvent()"
     class="w-16 h-16 font-medium flex justify-center items-center flex-col cursor-pointer relative"
     :class="setClasses">
-    <h2 class="text-xl text-black"><slot name="day"></slot></h2>
-    <h3 class="text-sm text-decorator"><slot name="date"></slot></h3>
+    <h2 class="text-xl text-black">{{ props.name }}</h2>
+    <h3 class="text-sm text-decorator">{{ props.showingDate }}</h3>
   </div>
 </template>
 
@@ -12,6 +12,18 @@
 import { computed } from 'vue';
 
 const props = defineProps({
+  dayId: {
+    type: String,
+    required: true
+  },
+  name: {
+    type: String,
+    required: true
+  },
+  showingDate: {
+    type: String,
+    required: true
+  },
   isSelected: {
     type: Boolean,
     default: false
@@ -30,9 +42,9 @@ const setClasses = computed<string>(() => {
 
 const emit = defineEmits<{
   /** Emit event after click button */
-  (e: 'clickAction'): void;
+  (e: 'clickAction', value: string): void;
 }>();
 
 /** Emit click action event */
-const emitClickEvent = () => emit('clickAction');
+const emitClickEvent = () => emit('clickAction', props.dayId);
 </script>
