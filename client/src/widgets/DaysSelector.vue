@@ -1,5 +1,8 @@
 <template>
   <section class="w-full h-16 bg-white shadow flex justify-center items-center xl:h-24">
+    <div class="w-16 h-16 flex justify-center items-center">
+      <ArrowButton @clickAction="store.loadPreviewDays" :isRight="false"></ArrowButton>
+    </div>
     <div v-for="day in store.loadedDays" :key="day.id">
       <DayCard 
         @clickAction="setSelectedDay" 
@@ -8,13 +11,17 @@
         :showingDate="day.showDate">
       </DayCard>
     </div>
+    <div class="w-16 h-16 flex justify-center items-center">
+      <ArrowButton @clickAction="store.loadNextDays"></ArrowButton>
+    </div>
   </section>
 </template>
 
 <script setup lang="ts">
-import DayCard from '@/components/cards/DayCard.vue';
 import { useEventsStore } from '@/stores/eventsStore';
 import { onBeforeMount } from 'vue';
+import DayCard from '@/components/cards/DayCard.vue';
+import ArrowButton from '@/components/buttons/ArrowButton.vue';
 
 const store = useEventsStore();
 
