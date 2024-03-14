@@ -5,33 +5,36 @@ import Day from '@/models/Day';
 export const useEventsStore = defineStore('eventsStore', () => {
   const loadedDays: Ref<Day[]> = ref([]);
   const selectedDay: Ref<String> = ref('');
+  const daysToDisplay: Ref<number> = ref(4);
 
-  const getDays = computed<Day[]>(() => {
-    return loadedDays.value;
-  });
 
   const loadMoreDays = (): void => {
-    if(loadedDays.value.length === 0) return;
-
-    const lastIndex = (loadedDays.value.length-1);
+    const lastIndex = (loadedDays.value.length - 1);
     const lastDay = loadedDays.value[lastIndex].fullDate;
-    for (let i = 1; i <= 7; i++) {
-      const newDay = new Date(lastDay);
-      newDay.setDate(lastDay.getDate() + i);
-      loadedDays.value.push(new Day(newDay));
+    loadedDays.value = [];
+
+    for (let i = 1; i <= daysToDisplay.value; i++) {
+      loadDays(lastDay, i)
     }
+    selectedDay.value = loadedDays.value[0].id;
+
   };
 
   const loadInitDays = (): void => {
-    if(loadedDays.value.length !== 0) return;
     const today = new Date();
-    for (let i = 0; i < 4; i++) {
-      const newDay = new Date(today);
-      newDay.setDate(today.getDate() + i);
-      loadedDays.value.push(new Day(newDay));
+
+    for (let i = 0; i < daysToDisplay.value; i++) {
+      loadDays(today, i);
     }
     selectedDay.value = loadedDays.value[0].id;
+  };
+
+  const loadDays = (today: Date, i: number): void => {
+    const newDay = new Date(today);
+    newDay.setDate(today.getDate() + i);
+    loadedDays.value.push(new Day(newDay));
   }
 
-  return { loadedDays, selectedDay, getDays, loadMoreDays, loadInitDays }
-})
+
+  return { loadedDays, selectedDay, daysToDisplay, loadMoreDays, loadInitDays };
+});
