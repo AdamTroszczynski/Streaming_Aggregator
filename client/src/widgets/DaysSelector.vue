@@ -1,9 +1,13 @@
 <template>
   <section class="w-full h-16 bg-white shadow flex justify-center items-center">
-    <DayCard :isSelected="true">
-      <template v-slot:day>PN</template>
-      <template v-slot:date>28.06</template>
+    <div v-for="day in store.loadedDays" :key="day.id">
+    <DayCard 
+      :dayId="day.id"
+      :isSelected="day.id === store.selectedDay"
+      :name="day.name"
+      :showingDate="day.showDate">
     </DayCard>
+    </div>
   </section>
 </template>
 
@@ -13,5 +17,8 @@ import {useEventsStore} from '@/stores/eventsStore';
 
 const store = useEventsStore();
 store.loadInitDays();
+console.log(store.loadedDays)
+
+
 
 </script>
