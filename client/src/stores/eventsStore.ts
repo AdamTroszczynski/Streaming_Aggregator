@@ -1,5 +1,6 @@
-import { ref, computed, type Ref } from 'vue'
+import { ref, type Ref } from 'vue'
 import { defineStore } from 'pinia'
+import DateUtil from '@/utils/DateUtil';
 import Day from '@/models/Day';
 
 export const useEventsStore = defineStore('eventsStore', () => {
@@ -7,17 +8,16 @@ export const useEventsStore = defineStore('eventsStore', () => {
   const selectedDay: Ref<String> = ref('');
   const daysToDisplay: Ref<number> = ref(4);
 
-
-  const loadMoreDays = (): void => {
-    const lastIndex = (loadedDays.value.length - 1);
+  const loadNextDays = (): void => {
+    const length = loadedDays.value.length;
+    const lastIndex = (length - 1);
     const lastDay = loadedDays.value[lastIndex].fullDate;
     loadedDays.value = [];
 
     for (let i = 1; i <= daysToDisplay.value; i++) {
-      loadNextDay(lastDay, i)
+      loadedDays.value.push(DateUtil.getNextDay(lastDay, i));
     }
     selectedDay.value = loadedDays.value[0].id;
-
   };
 
   const loadPreviewDays = (): void => {
@@ -25,33 +25,20 @@ export const useEventsStore = defineStore('eventsStore', () => {
     loadedDays.value = [];
 
     for (let i = 1; i <= daysToDisplay.value; i++) {
-      loadPrevDay(lastDay, i)
+      loadedDays.value.unshift(DateUtil.getPrevDay(lastDay, i));
     }
     selectedDay.value = loadedDays.value[0].id;
-
   };
 
   const loadInitDays = (): void => {
+    if (loadedDays.value.length !== 0) return;
     const today = new Date();
 
     for (let i = 0; i < daysToDisplay.value; i++) {
-      loadNextDay(today, i);
+      loadedDays.value.push(DateUtil.getNextDay(today, i));
     }
     selectedDay.value = loadedDays.value[0].id;
   };
 
-  const loadNextDay = (today: Date, i: number): void => {
-    const newDay = new Date(today);
-    newDay.setDate(today.getDate() + i);
-    loadedDays.value.push(new Day(newDay));
-  }
-
-  const loadPrevDay = (today: Date, i: number): void => {
-    const newDay = new Date(today);
-    newDay.setDate(today.getDate() - i);
-    loadedDays.value.unshift(new Day(newDay));
-  }
-
-
-  return { loadedDays, selectedDay, daysToDisplay, loadMoreDays, loadInitDays, loadPreviewDays };
+  return { loadedDays, selectedDay, daysToDisplay, loadNextDays, loadInitDays, loadPreviewDays };
 });
