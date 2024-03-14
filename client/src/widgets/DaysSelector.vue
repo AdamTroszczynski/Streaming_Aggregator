@@ -17,6 +17,7 @@ import DayCard from '@/components/cards/DayCard.vue';
 import {useEventsStore} from '@/stores/eventsStore';
 import { onBeforeMount } from 'vue';
 
+
 const store = useEventsStore();
 
 
@@ -25,8 +26,9 @@ const setSelectedDay = (dayId: string): void => {
 };
 
 
-
 onBeforeMount(() => {
   store.loadInitDays();
+
 })
+
 </script>
