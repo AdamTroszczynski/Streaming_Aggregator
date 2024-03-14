@@ -1,8 +1,9 @@
 <template>
   <button
-    @click="emitClickEvent()">
-      <RightArrowIcon v-if="isRight"></RightArrowIcon>
-      <LeftArrowIcon v-else></LeftArrowIcon>
+    @click="emitClickEvent()"
+    class=" bg-white active:scale-[0.955] duration-75">
+      <RightArrowIcon v-if="isRight" class="2xl:w-[23px] 2xl:h-[38px]"></RightArrowIcon>
+      <LeftArrowIcon v-else class="2xl:w-[23px] 2xl:h-[38px]"></LeftArrowIcon>
     </button>
 </template>
 
