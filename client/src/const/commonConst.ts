@@ -1,1 +1,1 @@
-export const nameOfDays = ["ND","PN","WT","ŚR","CZ","PT","SB"];
+export const nameOfDays = ["sun","mon","tue","wed","thu","fri","sat"];
