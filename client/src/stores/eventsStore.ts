@@ -14,7 +14,18 @@ export const useEventsStore = defineStore('eventsStore', () => {
     loadedDays.value = [];
 
     for (let i = 1; i <= daysToDisplay.value; i++) {
-      loadDays(lastDay, i)
+      loadNextDay(lastDay, i)
+    }
+    selectedDay.value = loadedDays.value[0].id;
+
+  };
+
+  const loadPreviewDays = (): void => {
+    const lastDay = loadedDays.value[0].fullDate;
+    loadedDays.value = [];
+
+    for (let i = 1; i <= daysToDisplay.value; i++) {
+      loadPrevDay(lastDay, i)
     }
     selectedDay.value = loadedDays.value[0].id;
 
@@ -24,17 +35,23 @@ export const useEventsStore = defineStore('eventsStore', () => {
     const today = new Date();
 
     for (let i = 0; i < daysToDisplay.value; i++) {
-      loadDays(today, i);
+      loadNextDay(today, i);
     }
     selectedDay.value = loadedDays.value[0].id;
   };
 
-  const loadDays = (today: Date, i: number): void => {
+  const loadNextDay = (today: Date, i: number): void => {
     const newDay = new Date(today);
     newDay.setDate(today.getDate() + i);
     loadedDays.value.push(new Day(newDay));
   }
 
+  const loadPrevDay = (today: Date, i: number): void => {
+    const newDay = new Date(today);
+    newDay.setDate(today.getDate() - i);
+    loadedDays.value.unshift(new Day(newDay));
+  }
 
-  return { loadedDays, selectedDay, daysToDisplay, loadMoreDays, loadInitDays };
+
+  return { loadedDays, selectedDay, daysToDisplay, loadMoreDays, loadInitDays, loadPreviewDays };
 });
