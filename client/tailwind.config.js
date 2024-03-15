@@ -7,6 +7,7 @@ module.exports = {
   darkMode: 'class',
   theme: {
     colors: {
+      aliceBlue: '#EFF5FF',
       primary: '#0D45BB',
       decorator: '#762B89',
       success: '#1DC25F',
