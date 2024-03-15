@@ -19,7 +19,13 @@ module.exports = {
       dark: '#06113F',
       darkblue: '#2B2D89',
       black: '#000000',
-      white: '#ffffff'
+      white: '#ffffff',
+      gradients: {
+        'blue-from': '#9DB9FF',
+        'blue-to': '#9DB9FF',
+        'pink-from': '#DB86DD',
+        'pink-to': '#B38FFF'
+      }
     },
     screens: {
       sm: '640px',
