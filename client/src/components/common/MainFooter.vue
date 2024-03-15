@@ -1,11 +1,9 @@
 <template>
   <footer class="w-full flex justify-end items-center flex-col gap-10 relative text-white">
-    <div class="bg-[url('/public/Tło.jpg')] absolute w-screen h-full top-0 z-[-1]"></div>
     <div class="w-full flex gap-3 flex-col items-center">
-
       <div
-        class="h-20 w-80 gap-1 bg-gradient-to-br from-[#AC9EFF] to-[#9DB9FF] flex flex-col justify-center items-center drop-shadow-lg backdrop-blur-sm rounded-xl">
-        <h3 class="text-lg font-bold ">Dołącz do nas:</h3>
+        class="h-20 w-80 gap-1 bg-gradient-to-br from-gradients-blue-from to-gradients-blue-to flex flex-col justify-center items-center drop-shadow-lg backdrop-blur-sm rounded-xl">
+        <h3 class="text-lg font-bold select-none">Dołącz do nas:</h3>
         <div class="flex gap-6 justify-center items-center">
           <LinkButton :goTo="`/`" :isLink="true">
             <FacebookIcon></FacebookIcon>
@@ -19,16 +17,16 @@
         </div>
       </div>
       <div
-        class="h-24 w-80 gap-1 bg-gradient-to-br from-[#DB86DD] to-[#B38FFF] flex flex-col justify-center items-center drop-shadow-md backdrop-blur-sm rounded-xl">
-        <h3 class="text-lg font-bold ">Newsletter Stream 'N Go</h3>
-        <LinkButton :goTo="`/`" :isLink="true" class="h-10 w-48 border-4 flex justify-center items-center">
-          <h3 class="text-xl font-extrabold">Zapisz się ></h3>
+        class="h-24 w-80 gap-1 bg-gradient-to-br from-gradients-pink-from to-gradients-pink-to flex flex-col justify-center items-center drop-shadow-md backdrop-blur-sm rounded-xl">
+        <h3 class="text-lg font-bold select-none">Newsletter Stream 'N Go</h3>
+        <LinkButton :goTo="`/`" :isLink="true" class="h-10 w-48 border-4 flex justify-center items-center select-none">
+          <h3 class="text-xl font-extrabold select-none">Zapisz się ></h3>
         </LinkButton>
       </div>
     </div>
 
     <div class="w-full flex flex-col gap-5">
-      <h3 class="text-2xl font-bold">STREAM 'N GO</h3>
+      <h3 class="text-2xl font-bold select-none">STREAM 'N GO</h3>
       <div class="w-full flex flex-col gap-2">
         <h4 class="flex text-sm font-medium gap-5 items-center">
           <MapMarkerIcon></MapMarkerIcon> ul. Ekspresowa 22, 52-130 Wrocław
