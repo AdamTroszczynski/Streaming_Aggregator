@@ -1,9 +1,10 @@
 <template>
-  <footer class="w-full flex justify-end items-center flex-col gap-10">
+  <footer class="w-full flex justify-end items-center flex-col gap-10 relative text-white">
+    <div class="bg-[url('/public/Tło.jpg')] absolute w-screen h-full top-0 z-[-1]"></div>
     <div class="w-full flex gap-3 flex-col items-center">
 
       <div
-        class="h-20 w-80 gap-1 bg-gradient-to-br from-[#AC9EFF] to-[#9DB9FF] flex flex-col justify-center items-center drop-shadow-md backdrop-blur-sm rounded-xl">
+        class="h-20 w-80 gap-1 bg-gradient-to-br from-[#AC9EFF] to-[#9DB9FF] flex flex-col justify-center items-center drop-shadow-lg backdrop-blur-sm rounded-xl">
         <h3 class="text-lg font-bold ">Dołącz do nas:</h3>
         <div class="flex gap-6 justify-center items-center">
           <LinkButton :goTo="`/`" :isLink="true">
@@ -55,8 +56,8 @@
         <li><LinkButton :goTo="`/`" :isLink="true">Kontakt</LinkButton></li>
       </ul>
     </div>
-    <div class="w-full font-medium">© 2024 | Stream N' Go Sp. z o. o.</div>
-    <div class="w-full h-[1px] absolute bg-white opacity-60 shadow top-[93.5%]"></div>
+    <div class="w-full font-medium pb-5">© 2024 | Stream N' Go Sp. z o. o.</div>
+    <div class="w-full h-[1px] absolute bg-white opacity-60 shadow top-[90%]"></div>
   </footer>
 </template>
 <script setup lang="ts">
