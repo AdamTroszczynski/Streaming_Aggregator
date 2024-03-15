@@ -36,7 +36,7 @@ const props = defineProps({
  */
 const setClasses = computed<string>(() => {
   return props.isSelected 
-  ? `bg-[#EFF5FF] after:content-[''] after:absolute after:top-[96%] after:block after:w-full after:h-[6%] after:bg-dark` 
+  ? `bg-aliceBlue after:content-[''] after:absolute after:top-[96%] after:block after:w-full after:h-[6%] after:bg-dark` 
   : 'bg-white'
 })
 
