@@ -1,9 +1,10 @@
 <template>
   <footer class="w-full flex justify-end items-center flex-col gap-10 relative text-white">
-    <div class="w-full flex gap-3 flex-col items-center">
+    <div class="w-full flex gap-3 flex-col items-center lg:flex-row lg:justify-center">
       <div
-        class="h-20 w-80 gap-1 bg-gradient-to-br from-gradients-blue-from to-gradients-blue-to flex flex-col justify-center items-center drop-shadow-lg backdrop-blur-sm rounded-xl">
-        <h3 class="text-lg font-bold select-none">Dołącz do nas:</h3>
+        class="h-20 w-80 gap-1 bg-gradient-to-br from-gradients-peranoPurple to-gradients-peranoBlue flex flex-col justify-center items-center drop-shadow-lg backdrop-blur-sm rounded-xl
+          lg:h-52 lg:w-96 lg:rounded-[3.125rem]">
+        <h3 class="text-lg font-bold select-none lg:text-2xl">Dołącz do nas:</h3>
         <div class="flex gap-6 justify-center items-center">
           <LinkButton :goTo="`/`" :isLink="true">
             <FacebookIcon></FacebookIcon>
@@ -17,7 +18,7 @@
         </div>
       </div>
       <div
-        class="h-24 w-80 gap-1 bg-gradient-to-br from-gradients-pink-from to-gradients-pink-to flex flex-col justify-center items-center drop-shadow-md backdrop-blur-sm rounded-xl">
+        class="h-24 w-80 gap-1 bg-gradient-to-br from-gradients-orchid to-gradients-bilobaFlower flex flex-col justify-center items-center drop-shadow-md backdrop-blur-sm rounded-xl">
         <h3 class="text-lg font-bold select-none">Newsletter Stream 'N Go</h3>
         <LinkButton :goTo="`/`" :isLink="true" class="h-10 w-48 border-4 flex justify-center items-center select-none">
           <h3 class="text-xl font-extrabold select-none">Zapisz się ></h3>
