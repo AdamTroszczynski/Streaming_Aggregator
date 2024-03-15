@@ -21,10 +21,10 @@ module.exports = {
       black: '#000000',
       white: '#ffffff',
       gradients: {
-        peranoPurple: '#AC9EFF',
-        peranoBlue: '#9DB9FF',
-        orchid: '#DB86DD',
-        bilobaFlower: '#B38FFF'
+        peranoPurple: 'rgb(172, 158, 255, 0.75)',
+        peranoBlue: 'rgb(157, 185, 255, 1)',
+        orchid: 'rgb(219, 134, 221, 0.75)',
+        bilobaFlower: 'rgb(179, 143, 255, 1)'
       }
     },
     screens: {
