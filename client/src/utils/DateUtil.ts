@@ -14,10 +14,6 @@ export default class DateUtil{
     return new Day(newDay);
   }
 
-  public static generateDateId(date: Date): string {
-    return `${date.getDate()}.${date.getMonth()}.${date.getFullYear()}`;
-  }
-
   public static getShowingDate(date: Date): string {
     return `${("0" + date.getDate()).slice(-2)}.${("0" + (date.getMonth()+1)).slice(-2)}.`;
   }

@@ -13,7 +13,7 @@ import { computed } from 'vue';
 
 const props = defineProps({
   dayId: {
-    type: String,
+    type: Number,
     required: true
   },
   name: {
@@ -42,7 +42,7 @@ const setClasses = computed<string>(() => {
 
 const emit = defineEmits<{
   /** Emit event after click button */
-  (e: 'clickAction', value: string): void;
+  (e: 'clickAction', value: number): void;
 }>();
 
 /** Emit click action event */
