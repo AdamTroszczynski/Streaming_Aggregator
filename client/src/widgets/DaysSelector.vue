@@ -7,7 +7,7 @@
       <DayCard @clickAction="setSelectedDay" 
       :dayId="day.id" 
       :isSelected="day.id === store.selectedDay"
-      :name="$t(`days.${day.name}`)" :showingDate="day.showDate">
+      :name="t(`days.${day.name}`)" :showingDate="day.showDate">
       </DayCard>
     </div>
     <div class="w-16 h-16 flex justify-center items-center">
@@ -23,9 +23,11 @@ import DayCard from '@/components/cards/DayCard.vue';
 import ArrowButton from '@/components/buttons/ArrowButton.vue';
 import type Day from '@/models/Day';
 import DateUtil from '@/utils/DateUtil';
+import { useI18n } from 'vue-i18n';
 
 const store = useEventsStore();
 const loadedDays: Ref<Day[]> = ref([]);
+const { t } = useI18n();
 
 /** How many days should  */
 let daysToDisplay: Ref<number> = ref(0);
