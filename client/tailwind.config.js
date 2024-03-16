@@ -33,7 +33,7 @@ module.exports = {
       lg: '1024px',
       xl: '1280px',
       '2xl': '1420px',
-      '3xl': '1600px',
+      '3xl': '1550px',
       '4xl': '1800px',
     },
     fontFamily: {
