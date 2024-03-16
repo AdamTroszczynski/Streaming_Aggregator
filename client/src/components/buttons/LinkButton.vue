@@ -6,14 +6,14 @@
   </a>
 
   <button v-else-if="isButton" 
-    class="btn btn-xs 2xl:btn-sm rounded bg-information text-white border-none font-semibold 2xl:text-lg 2xl:px-2
+    class="btn btn-xs lg:btn-sm rounded bg-information text-white border-none font-semibold 2xl:text-lg lg:px-2
       hover:bg-information hover:text-white">
     <slot></slot>
   </button>
 
   <RouterLink v-else 
-    class="text-white 2xl:text-lg"
-    :class="isSelect ? 'font-bold underline' : 'font-normal no-underline'"
+    class="text-white 2xl:text-lg "
+    :class="isSelect ? 'font-bold underline' : 'font-normal no-underline' "
     :to="goTo">
     <slot></slot>
   </RouterLink>
