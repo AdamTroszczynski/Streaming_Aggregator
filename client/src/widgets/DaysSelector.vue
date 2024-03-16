@@ -7,7 +7,7 @@
       <DayCard @clickAction="setSelectedDay" 
       :dayId="day.id" 
       :isSelected="day.id === store.selectedDay"
-      :name="$t(day.name)" :showingDate="day.showDate">
+      :name="$t(`days.${day.name}`)" :showingDate="day.showDate">
       </DayCard>
     </div>
     <div class="w-16 h-16 flex justify-center items-center">

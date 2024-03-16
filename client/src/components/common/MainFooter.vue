@@ -1,11 +1,11 @@
 <template>
   <div
-    class="w-full h-[595px] relative flex items-end bg-[url(/public/footerBgMobile.png)] z-[1] sm:bg-[url(/public/footerBgPc.png)] sm:h-[565px]">
+    class="w-full h-[595px] relative flex items-end bg-[url(/footerBgMobile.png)] z-[1] sm:bg-[url(/footerBgPc.png)] bg-no-repeat bg-cover">
     <footer class="w-full h-max flex justify-end items-center flex-col gap-10 relative text-white">
       <div class="w-full flex gap-3 flex-col items-center lg:flex-row lg:justify-center lg:gap-14 relative z-[2]">
         <div class="h-20 w-80 gap-1 bg-gradient-to-br to-gradients-peranoPurple from-gradients-peranoBlue flex flex-col justify-center items-center drop-shadow-lg rounded-xl backdrop-blur-sm
           lg:h-52 lg:w-[26.875rem] lg:rounded-[3.125rem] lg:gap-8">
-          <h3 class="text-lg font-bold select-none lg:text-2xl">Dołącz do nas:</h3>
+          <h3 class="text-lg font-bold select-none lg:text-2xl">{{$t(`footer.joinUs`)}}</h3>
           <div class="flex gap-6 justify-center items-center lg:gap-10">
             <LinkButton :goTo="`/`" :isLink="true">
               <FacebookIcon class="lg:w-[50px] lg:h-[50px]"></FacebookIcon>
@@ -20,10 +20,10 @@
         </div>
         <div class="h-24 w-80 gap-1 bg-gradient-to-br from-gradients-orchid to-gradients-bilobaFlower flex flex-col justify-center items-center drop-shadow-md rounded-xl backdrop-blur-sm
           lg:h-52 lg:w-[26.875rem] lg:rounded-[3.125rem] lg:gap-8">
-          <h3 class="text-lg font-bold select-none lg:text-2xl">Newsletter Stream 'N Go</h3>
+          <h3 class="text-lg font-bold select-none lg:text-2xl">{{ $t(`footer.newsletter`) }}</h3>
           <LinkButton :goTo="`/`" :isLink="true"
             class="h-10 w-48 border-4 flex justify-center items-center select-none lg:h-14 lg:w-64">
-            <h3 class="text-xl font-extrabold select-none lg:text-3xl">Zapisz się ></h3>
+            <h3 class="text-xl font-extrabold select-none lg:text-3xl">{{ $t(`footer.signUp`) }}</h3>
           </LinkButton>
         </div>
       </div>
@@ -48,30 +48,30 @@
         <div class="w-full flex gap-8 lg:w-max lg:gap-36">
           <ul class="flex w-1/2 flex-col lg:gap-1 lg:w-max">
             <li>
-              <LinkButton :goTo="`/`" :isLink="true">Szkolenia</LinkButton>
+              <LinkButton :goTo="`/`" :isLink="true">{{ $t(`footer.trainings`) }}</LinkButton>
             </li>
             <li>
-              <LinkButton :goTo="`/`" :isLink="true">Prezentacje</LinkButton>
+              <LinkButton :goTo="`/`" :isLink="true">{{ $t(`footer.presentations`) }}</LinkButton>
             </li>
             <li>
-              <LinkButton :goTo="`/`" :isLink="true">Konferencje</LinkButton>
+              <LinkButton :goTo="`/`" :isLink="true">{{ $t(`footer.conferences`) }}</LinkButton>
             </li>
             <li>
-              <LinkButton :goTo="`/`" :isLink="true">Seminaria</LinkButton>
+              <LinkButton :goTo="`/`" :isLink="true">{{ $t(`footer.seminars`) }}</LinkButton>
             </li>
           </ul>
           <ul class="flex w-1/2 flex-col lg:gap-1 lg:w-max">
             <li>
-              <LinkButton :goTo="`/`" :isLink="true">Strona główna</LinkButton>
+              <LinkButton :goTo="`/`" :isLink="true">{{ $t(`footer.homePage`) }}</LinkButton>
             </li>
             <li>
-              <LinkButton :goTo="`/`" :isLink="true">Dodaj streaming</LinkButton>
+              <LinkButton :goTo="`/`" :isLink="true">{{ $t(`footer.addStream`) }}</LinkButton>
             </li>
             <li>
-              <LinkButton :goTo="`/`" :isLink="true">Organizacje</LinkButton>
+              <LinkButton :goTo="`/`" :isLink="true">{{ $t(`footer.organizations`) }}</LinkButton>
             </li>
             <li>
-              <LinkButton :goTo="`/`" :isLink="true">Kontakt</LinkButton>
+              <LinkButton :goTo="`/`" :isLink="true">{{ $t(`footer.contact`) }}</LinkButton>
             </li>
           </ul>
         </div>
