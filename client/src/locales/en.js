@@ -20,6 +20,14 @@ const en = {
     addStream: 'Add streaming',
     organizations: 'Organizations',
     contact: 'Contact'
+  },
+  navbar: {
+    homePage: 'Home page',
+    organizations: 'Organizations',
+    contact: 'Contact',
+    login: 'Login',
+    registration: 'Registration',
+    lang: 'EN'
   }
 };
 

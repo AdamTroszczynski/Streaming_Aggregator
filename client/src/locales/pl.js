@@ -20,6 +20,14 @@ const pl = {
     addStream: 'Dodaj streaming',
     organizations: 'Organizacje',
     contact: 'Kontakt'
+  },
+  navbar: {
+    homePage: 'Strona główna',
+    organizations: 'Organizacje',
+    contact: 'Kontakt',
+    login: 'Logowanie',
+    registration: 'Rejestracja',
+    lang: 'PL'
   }
 };
 
