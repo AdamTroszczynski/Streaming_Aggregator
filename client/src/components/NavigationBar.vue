@@ -4,7 +4,7 @@
     <nav class="w-full p-5 flex justify-between items-center lg:py-3.5 lg:px-14 relative">
       <h2 class="text-2xl font-bold text-black">STREAM 'N GO</h2>
       <ActionButton @clickAction="toggleMenu" :isNavibar="true" class="lg:hidden">
-        <MenuIcon></MenuIcon>
+        <MenuIcon/>
       </ActionButton>
       <div class="hidden lg:flex lg:gap-5 3xl:ml-[300px] 4xl:ml-[500px]">
         <LinkButton :isSelect="true">{{ t(`navbar.homePage`) }}</LinkButton>
@@ -22,7 +22,7 @@
             <img src="/avatar.png">
           </button>
         </template>
-        <LangButton class="lg:ml-5"></LangButton>
+        <LangButton class="lg:ml-5"/>
       </div>
       <div v-if="isMenuActive"
         class="absolute w-1/2 bg-decorator shadow-lg flex flex-col gap-2 p-4 items-center top-[95%] left-[25%] rounded-2xl lg:hidden">
@@ -39,19 +39,19 @@
             <img src="/avatar.png">
           </button>
         </template>
-        <LangButton class="lg:ml-5"></LangButton>
+        <LangButton class="lg:ml-5"/>
       </div>
     </nav>
   </div>
 </template>
 
 <script setup lang="ts">
-import ActionButton from './buttons/ActionButton.vue';
-import MenuIcon from './icons/navbar/MenuIcon.vue';
-import LinkButton from './buttons/LinkButton.vue';
-import LangButton from './buttons/LangButton.vue';
+import ActionButton from '@/components/buttons/ActionButton.vue';
+import MenuIcon from '@/components/icons/navbar/MenuIcon.vue';
+import LinkButton from '@/components/buttons/LinkButton.vue';
+import LangButton from '@/components/buttons/LangButton.vue';
 import { useI18n } from 'vue-i18n';
-import { computed, ref, type Ref } from 'vue';
+import { ref, type Ref } from 'vue';
 
 const { t } = useI18n();
 const isLogin = ref(true);

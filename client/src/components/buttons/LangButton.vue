@@ -1,12 +1,12 @@
 <template>
   <button @click="toggleLanguage" class="bg-none border-none flex gap-2 items-center justify-center">
     <p class="text-white font-normal lg:text-sm 2xl:text-base">{{ t(`navbar.lang`) }}</p>
-    <LanguageIcon></LanguageIcon>
+    <LanguageIcon/>
   </button>
 </template>
 
 <script setup lang="ts">
-import LanguageIcon from '../icons/navbar/LanguageIcon.vue';
+import LanguageIcon from '@/components//icons/navbar/LanguageIcon.vue';
 import { useI18n } from 'vue-i18n'
 
 const { t, locale } = useI18n({ useScope: 'global'});
