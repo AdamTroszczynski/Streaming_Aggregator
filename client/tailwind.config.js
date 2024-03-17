@@ -16,8 +16,11 @@ module.exports = {
       information: '#9972E1',
       light: '#F2F2F2',
       grey: '#C4C4C4',
+      lightGrey: '#828282',
       dark: '#06113F',
       darkblue: '#2B2D89',
+      semiBlack: '#2E2E2E',
+      borderGrey: '#E3E3E3',
       black: '#000000',
       white: '#ffffff',
       gradients: {
