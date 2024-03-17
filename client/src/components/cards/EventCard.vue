@@ -1,20 +1,22 @@
 <template>
   <div class="w-full bg-white flex flex-col py-2.5 pl-1 border-b border-borderGrey">
-    <h2 class="font-bold uppercase text-semiBlack text-sm lg:text-base ">
+    <h2 class="font-bold uppercase text-sm lg:text-base"
+      :class="props.isFinished ? 'text-lightGrey' : 'text-semiBlack'">
       {{ props.title }}
     </h2>
     <div class="flex flex-col gap-2 lg:flex-row lg:justify-between">
-      <div class="flex text-lightGrey text-xs gap-4 lg:text-sm">
+      <div class="flex text-xs gap-4 lg:text-sm"
+        :class="props.isFinished ? 'text-lighterGrey' : 'text-lightGrey'">
         <div class="flex items-center gap-1">
-          <ClockIcon class="lg:w-[16px] lg:h-[16px]" />
+          <ClockIcon class="w-[13px] h-[13px] lg:w-[17px] lg:h-[17px]" />
           {{ props.duration }} min
         </div>
         <div class="flex items-center gap-1">
-          <TagIcon class="lg:w-[16px] lg:h-[16px]" />
+          <TagIcon class=" w-[13px] h-[13px] lg:w-[17px] lg:h-[17px]" />
           {{ t(`eventCard.${props.tag}`) }}
         </div>
         <div class="flex items-center gap-1">
-          <EventLanguageIcon class="lg:w-[16px] lg:h-[16px]" />
+          <EventLanguageIcon class="w-[13px] h-[13px] lg:w-[17px] lg:h-[17px]" />
           {{ t(`eventCard.${props.lang}`) }}
         </div>
       </div>
