@@ -38,8 +38,8 @@ const en = {
     other: 'Other',
     en: 'English',
     pl: 'Polish',
-    watch: 'Watch',
-    details: 'Details'
+    watch: 'Watch >',
+    details: 'Details >'
   },
   eventGroupCard: {
     now: 'NOW',

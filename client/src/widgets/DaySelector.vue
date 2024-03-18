@@ -1,13 +1,18 @@
 <template>
   <section class="w-full h-16 bg-white shadow flex justify-center items-center lg:h-24">
     <div class="w-16 h-16 flex justify-center items-center">
-      <ArrowButton @clickAction="loadPreviewDays" :isRight="false"></ArrowButton>
+      <ArrowButton 
+        @clickAction="loadPreviewDays" 
+        :isRight="false">
+      </ArrowButton>
     </div>
     <div v-for="day in loadedDays" :key="day.id">
-      <DayCard @clickAction="setSelectedDay" 
-      :dayId="day.id" 
-      :isSelected="day.id === store.selectedDay"
-      :name="t(`days.${day.name}`)" :showingDate="day.showDate">
+      <DayCard 
+        @clickAction="setSelectedDay" 
+        :dayId="day.id" 
+        :isSelected="day.id === store.selectedDay"
+        :name="t(`days.${day.name}`)" 
+        :showingDate="day.showDate">
       </DayCard>
     </div>
     <div class="w-16 h-16 flex justify-center items-center">
@@ -18,6 +23,7 @@
 
 <script setup lang="ts">
 import { useEventsStore } from '@/stores/eventsStore';
+import { onBeforeMount, ref, watch, type Ref } from 'vue';
 import { onBeforeMount, ref, watch, type Ref } from 'vue';
 import DayCard from '@/components/cards/DayCard.vue';
 import ArrowButton from '@/components/buttons/ArrowButton.vue';
@@ -43,6 +49,7 @@ const loadNextDays = (): void => {
     loadedDays.value.push(DateUtil.getNextDay(lastDay, i));
   }
   store.selectedDay = loadedDays.value[0].id;
+  store.lastShowDay = loadedDays.value[loadedDays.value.length -1].id;
 };
 
 /** Load daysToDisplay preview days based on first showed day*/
@@ -65,6 +72,7 @@ const loadInitDays = (): void => {
     loadedDays.value.push(DateUtil.getNextDay(today, i));
   }
   store.selectedDay = loadedDays.value[0].id;
+  store.lastShowDay = loadedDays.value[loadedDays.value.length -1].id;
 };
 
 /** Set clicked day */
@@ -87,6 +95,13 @@ const resizeLogic = (): void => {
   loadedDays.value = [];
   loadInitDays();
 };
+
+watch(
+  () => store.reload,
+  () => {
+    loadNextDays();
+  }
+)
 
 /** Load init days */
 onBeforeMount(() => {
