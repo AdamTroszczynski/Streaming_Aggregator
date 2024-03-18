@@ -38,8 +38,8 @@ const pl = {
     other: 'Inne',
     en: 'Angielski',
     pl: 'Polski',
-    watch: 'Oglądaj',
-    details: 'Szczegóły'
+    watch: 'Oglądaj >',
+    details: 'Szczegóły >'
   },
   eventGroupCard: {
     now: 'TERAZ',
