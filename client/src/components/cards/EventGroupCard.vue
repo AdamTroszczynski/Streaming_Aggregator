@@ -1,8 +1,8 @@
 <template>
-  <div class="w-full px-4 pt-3.5 flex justify-between gap-3 relative lg:px-11
+  <div class="w-full px-4 pt-3.5 flex justify-between gap-3 relative lg:pl-11
     before:content-[''] before:absolute before:bg-decorator before:w-[10px] before:h-full before:top-0 before:left-[-5px]"
     :class="props.isNow ? 'bg-whiteBlue before:block' : 'bg-white before:hidden'">
-    <h2 class="font-bold text-sm min-w-[61px] lg:min-w-[80px] lg:text-base" 
+    <h2 class="font-bold text-sm min-w-[55px] lg:min-w-[80px] lg:text-base" 
       :class="props.isFinished ? 'text-lightGrey' : 'text-semiBlack'">
       {{ showTime }}
       <h4 v-if="props.isNow" class="text-[0.5rem] font-bold text-textDecorator mt-[-5px] lg:text-[0.625rem]">{{ t('eventGroupCard.now') }}</h4>

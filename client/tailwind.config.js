@@ -23,7 +23,9 @@ module.exports = {
       dark: '#06113F',
       darkblue: '#2B2D89',
       semiBlack: '#2E2E2E',
+      purple: '#BD89CA',
       borderGrey: '#E3E3E3',
+      semiGrey: '#ADADAD',
       black: '#000000',
       white: '#ffffff',
       gradients: {
