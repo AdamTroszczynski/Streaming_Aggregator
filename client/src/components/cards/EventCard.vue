@@ -1,22 +1,22 @@
 <template>
-  <div class="w-full bg-white flex flex-col py-2.5 pl-1 border-b border-borderGrey">
+  <div class="w-full flex flex-col pb-2.5 pl-1 border-b border-borderGrey lg:pb-3">
     <h2 class="font-bold uppercase text-sm lg:text-base"
       :class="props.isFinished ? 'text-lightGrey' : 'text-semiBlack'">
       {{ props.title }}
     </h2>
-    <div class="flex flex-col gap-2 lg:flex-row lg:justify-between">
-      <div class="flex text-xs gap-4 lg:text-sm"
+    <div class="flex flex-col gap-2 lg:flex-row lg:justify-between lg:mt-[-5px]">
+      <div class="flex text-xs gap-4 mt-[2px] lg:text-sm lg:gap-8"
         :class="props.isFinished ? 'text-lighterGrey' : 'text-lightGrey'">
-        <div class="flex items-center gap-1">
-          <ClockIcon class="w-[13px] h-[13px] lg:w-[17px] lg:h-[17px]" />
+        <div class="flex items-center gap-1 lg:gap-2">
+          <ClockIcon class="w-[15px] h-[13px] lg:w-[17px] lg:h-[17px]" />
           {{ props.duration }} min
         </div>
-        <div class="flex items-center gap-1">
-          <TagIcon class=" w-[13px] h-[13px] lg:w-[17px] lg:h-[17px]" />
+        <div class="flex items-center gap-1 lg:gap-2">
+          <TagIcon class=" w-[13px] h-[12px] lg:w-[17px] lg:h-[17px]" />
           {{ t(`eventCard.${props.tag}`) }}
         </div>
-        <div class="flex items-center gap-1">
-          <EventLanguageIcon class="w-[13px] h-[13px] lg:w-[17px] lg:h-[17px]" />
+        <div class="flex items-center gap-1 lg:gap-2">
+          <EventLanguageIcon class="w-[14px] h-[13px] lg:w-[17px] lg:h-[17px]" />
           {{ t(`eventCard.${props.lang}`) }}
         </div>
       </div>
