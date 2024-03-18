@@ -21,6 +21,7 @@ const en = {
     organizations: 'Organizations',
     contact: 'Contact'
   },
+<<<<<<< HEAD
   navbar: {
     homePage: 'Home page',
     organizations: 'Organizations',
@@ -28,6 +29,22 @@ const en = {
     login: 'Login',
     registration: 'Registration',
     lang: 'EN'
+=======
+  eventCard: {
+    presentation: 'Presentation',
+    conference: 'Conference',
+    training: 'Training',
+    seminar: 'Seminar',
+    other: 'Other',
+    en: 'English',
+    pl: 'Polish',
+    watch: 'Watch',
+    details: 'Details'
+  },
+  eventGroupCard: {
+    now: 'NOW',
+    in: 'In'
+>>>>>>> e120bf6 (EventGroupCard added)
   }
 };
 

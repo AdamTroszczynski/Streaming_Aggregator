@@ -21,6 +21,7 @@ const pl = {
     organizations: 'Organizacje',
     contact: 'Kontakt'
   },
+<<<<<<< HEAD
   navbar: {
     homePage: 'Strona główna',
     organizations: 'Organizacje',
@@ -28,6 +29,22 @@ const pl = {
     login: 'Logowanie',
     registration: 'Rejestracja',
     lang: 'PL'
+=======
+  eventCard: {
+    presentation: 'Prezentacja',
+    conference: 'Konferencja',
+    training: 'Szkolenie',
+    seminar: 'Seminarium',
+    other: 'Inne',
+    en: 'Angielski',
+    pl: 'Polski',
+    watch: 'Oglądaj',
+    details: 'Szczegóły'
+  },
+  eventGroupCard: {
+    now: 'TERAZ',
+    in: 'Za'
+>>>>>>> e120bf6 (EventGroupCard added)
   }
 };
 
