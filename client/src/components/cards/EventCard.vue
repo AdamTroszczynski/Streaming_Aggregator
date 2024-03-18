@@ -7,11 +7,11 @@
     <div class="flex flex-col gap-2 lg:flex-row lg:justify-between lg:mt-[-5px]">
       <div class="flex text-[0.7rem] gap-2 mt-[2px] lg:text-sm lg:gap-8"
         :class="props.isFinished ? 'text-lighterGrey' : 'text-lightGrey'">
-        <div class="flex items-center gap-1 lg:gap-2">
+        <div class="flex items-center gap-1 min-w-[66px] lg:gap-2 lg:min-w-[84px]" >
           <ClockIcon class="w-[15px] h-[13px] lg:w-[17px] lg:h-[17px]" />
           {{ props.duration }} min
         </div>
-        <div class="flex items-center gap-1 lg:gap-2">
+        <div class="flex items-center gap-1 min-w-[85px] lg:gap-2 lg:min-w-[110px]">
           <TagIcon class=" w-[13px] h-[12px] lg:w-[17px] lg:h-[17px]" />
           {{ t(`eventCard.${props.tag}`) }}
         </div>

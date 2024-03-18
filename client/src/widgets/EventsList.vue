@@ -1,28 +1,62 @@
 <template>
   <section class="w-full pl-5 pr-3.5 max-w-[792px]">
-    <EventGroupCard :startTime="dziewionta.getTime()" :isFinished="true">
-      <EventCard :title="'PREZENTACJE PROJEKTÓW'" :duration="120" :tag="'presentation'" :lang="'en'" :isFinished="true"></EventCard>
-    </EventGroupCard>
-    <EventGroupCard :startTime="dziesiaca.getTime()" :isNow="true">
-      <EventCard :title="'PREZENTACJE PROJEKTÓW'" :duration="120" :tag="'presentation'" :lang="'en'"></EventCard>
-      <EventCard :title="'PREZENTACJE PROJEKTÓW'" :duration="250" :tag="'presentation'" :lang="'pl'"></EventCard>
-    </EventGroupCard>
-    <EventGroupCard :startTime="dwunasta.getTime()">
-      <EventCard :title="'PREZENTACJE projektów'" :duration="999" :tag="'other'" :lang="'pl'"></EventCard>
-    </EventGroupCard>
-    <div class="w-full bg-white flex flex-col justify-center items-center py-6 gap-1 lg:items-end lg:pr-4">
-      <h3 class="text-semiGrey font-medium text-xs lg:text-sm">To już wszystkie wydarzenia w dniu 
-        <span class="font-semibold">{{ `${today.getDate()}.${today.getMonth()+1}.${today.getFullYear()}` }}</span> 
+
+
+
+    <div v-if="!isLoaded"
+      class="w-full bg-white flex flex-col justify-center items-center py-6 gap-1 lg:items-end lg:pr-4">
+      
+      <EventGroupCard v-for="eventGroup in data" :key="eventGroup" :startTime="eventGroup[0].startDate" :isFinished="new Date().getTime() > eventGroup[0].endDate" :isNow="(new Date().getTime() > eventGroup[0].startDate) && (new Date().getTime() < eventGroup[0].endDate)">
+        <EventCard v-for="item in eventGroup" :key="item" :title="item.eventName" :duration="(item.endDate - item.startDate) / 60000" :tag="item.tag" :lang="item.language" :isFinished="new Date().getTime() > item.endDate"></EventCard>
+      </EventGroupCard>
+      <h3 class="text-semiGrey font-medium text-xs lg:text-sm">To już wszystkie wydarzenia w dniu
+        <span class="font-semibold">{{ `${today.getDate()}.${today.getMonth() + 1}.${today.getFullYear()}` }}</span>
       </h3>
-      <button class="text-purple font-semibold text-xs underline lg:text-sm">Kliknij tutaj, aby przejść do kolejnego dnia ></button>
+      <button @click="goToNextDay" class="text-purple font-semibold text-xs underline lg:text-sm">Kliknij tutaj, aby
+        przejść do kolejnego dnia ></button>
+    </div>
+    <div v-else class="w-full flex justify-center items-center mt-12">
+      <span class="loading loading-spinner loading-lg text-secondary"></span>
     </div>
   </section>
 </template>
 <script setup lang="ts">
 import EventCard from '@/components/cards/EventCard.vue';
 import EventGroupCard from '@/components/cards/EventGroupCard.vue';
-const today = new Date();
-const dziewionta = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 9,0,0)
-const dziesiaca = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 10,30,0)
-const dwunasta = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 12,0,0)
+import sendData from '@/TestData';
+import DateUtil from '@/utils/DateUtil';
+import { useEventsStore } from '@/stores/eventsStore';
+import { computed, ref, watch, type Ref, onMounted } from 'vue';
+
+const store = useEventsStore();
+const today: Ref<Date> = ref(new Date);
+const data: Ref<{} | undefined> = ref({});
+const isLoaded: Ref<boolean> = ref(true);
+
+  //TODO JAKO ISNOW IS ISFINISHED NIE BRAĆ [0] tylko znaleźć najdłużej trwający element i na jego podstawie obliczyć!!
+
+const setNewDay = () => {
+  today.value = new Date(store.selectedDay);
+  isLoaded.value = true;
+  setTimeout(() => {
+    data.value = sendData(store.selectedDay);
+    isLoaded.value = false;
+  }, 1000)
+}
+
+const goToNextDay = (): void => {
+  store.selectedDay = DateUtil.getNextDay(today.value, 1).fullDate.getTime();
+  // TODO ...
+}
+
+watch(
+  () => store.selectedDay,
+  setNewDay
+);
+
+
+onMounted(() => {
+  setNewDay()
+})
+
 </script>
