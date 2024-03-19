@@ -21,7 +21,6 @@ const pl = {
     organizations: 'Organizacje',
     contact: 'Kontakt'
   },
-<<<<<<< HEAD
   navbar: {
     homePage: 'Strona główna',
     organizations: 'Organizacje',
@@ -29,7 +28,7 @@ const pl = {
     login: 'Logowanie',
     registration: 'Rejestracja',
     lang: 'PL'
-=======
+  },
   eventCard: {
     presentation: 'Prezentacja',
     conference: 'Konferencja',
@@ -44,15 +43,11 @@ const pl = {
   eventGroupCard: {
     now: 'TERAZ',
     in: 'Za'
-<<<<<<< HEAD
->>>>>>> e120bf6 (EventGroupCard added)
-=======
   },
   eventsList: {
     allEvents: 'To już wszystkie wydarzenia w dniu',
     noOneEvent: 'W tym dniu nie zaplanowano żadnych streamingów.',
     goToNextDay: 'Kliknij tutaj, aby przejść do kolejnego dnia >'
->>>>>>> b6e4ab4 (i18n added, favorite button logic and styles added, response design added, styles fix, restructured code)
   }
 };
 

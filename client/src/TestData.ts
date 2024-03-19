@@ -6,12 +6,14 @@ const tomorrow = DateUtil.getNextDay(today,1).fullDate;
 
 const event1 = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 9, 0, 0)
 const event1end = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 9, 30, 0)
-const event2 = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 17, 0, 0)
-const event2end = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 22, 0, 0)
+
+const event2 = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 10, 30, 0)
+const event2end = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 12, 0, 0)
 const event3 = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 10, 30, 0)
 const event3end = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 12, 0, 0)
 const event4 = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 10, 30, 0)
-const event4end = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 11, 30, 0)
+const event4end = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 22, 0, 0)
+
 const event5 = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 22, 0, 0)
 const event5end = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 23, 0, 0)
 const event6 = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 22, 0, 0)
