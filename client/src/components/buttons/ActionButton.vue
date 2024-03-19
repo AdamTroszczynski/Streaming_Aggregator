@@ -7,9 +7,11 @@
   </button>
 
   <button v-else @click="emitClickEvent()" 
-    class="btn btn-xs bg-white font-normal  text-darkblue rounded-md border
-      hover:text-darkblue hover:bg-white 2xl:btn-sm" 
-    :class="isGrey ? 'border-grey hover:border-grey' : 'border-darkblue hover:border-darkblue'">
+    class="btn btn-xs min-w-[31px] font-normal text-darkblue rounded-md border
+      hover:text-darkblue hover:bg-white lg:min-w-[42px] 2xl:btn-sm" 
+    :class="[
+      isGrey ? 'border-grey hover:border-grey' : 'border-darkblue hover:border-darkblue',
+      isPink ? 'bg-textDecorator border-none hover:bg-textDecorator' : 'bg-white']">
     <slot></slot>
   </button>
 </template>
@@ -21,6 +23,10 @@ defineProps({
     default: false,
   },
   isNavibar: {
+    type: Boolean,
+    default: false
+  },
+  isPink: {
     type: Boolean,
     default: false
   },

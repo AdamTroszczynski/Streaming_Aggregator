@@ -1,53 +1,71 @@
 <template>
-  <section class="w-full pl-5 pr-3.5 max-w-[792px]">
-    <div v-if="!isLoaded"
-      class="w-full bg-white flex flex-col justify-center items-center py-6 gap-1 lg:items-end lg:pr-4">
-      <EventGroupCard v-for="eventGroup in events" 
-        :key="eventGroup.toString" 
-        :startTime="eventGroup[0].startDate" 
-        :isFinished="setIsFinished(eventGroup)" 
-        :isNow="setIsNow(eventGroup)">
+  <section class="w-full pl-5 pr-3.5 max-w-[792px] lg:min-h-[1187px] lg:p-0">
+    <div
+      class="w-full bg-white flex flex-col justify-start items-center py-6 gap-1 lg:items-end lg:pr-4 lg:min-h-[1187px] shadow">
+      <template v-if="isLoaded">
+        <EventGroupCard v-for="eventGroup in events" 
+          :key="eventGroup.toString" 
+          :startTime="eventGroup[0].startDate" 
+          :isFinished="setIsFinished(eventGroup)" 
+          :isNow="setIsNow(eventGroup)">
 
-        <EventCard v-for="eventCard in eventGroup" 
-          :key="eventCard.eventId" 
-          :title="eventCard.eventName" 
-          :duration="setDuration(eventCard)" 
-          :tag="eventCard.tag" 
-          :lang="eventCard.language" 
-          :isFinished="new Date().getTime() > eventCard.endDate">
-        </EventCard>
+          <EventCard v-for="eventCard in eventGroup" 
+            :key="eventCard.eventId" 
+            :title="eventCard.eventName" 
+            :duration="setDuration(eventCard)" 
+            :tag="eventCard.tag" 
+            :lang="eventCard.language" 
+            :isFinished="new Date().getTime() > eventCard.endDate">
+          </EventCard>
 
-      </EventGroupCard>
+        </EventGroupCard>
 
-      <h3 class="text-semiGrey font-medium text-xs mt-6 lg:text-sm">To już wszystkie wydarzenia w dniu
-        <!--TODO MOVE TO COMPUTED-->
-        <span class="font-semibold">{{ `${selectDate.getDate()}.${selectDate.getMonth() + 1}.${selectDate.getFullYear()}` }}</span>
-      </h3>
-      <button @click="goToNextDay" class="text-purple font-semibold text-xs underline lg:text-sm">Kliknij tutaj, aby
-        przejść do kolejnego dnia ></button>
-    </div>
-
-    <div v-else class="w-full flex justify-center items-center mt-12">
-      <span class="loading loading-spinner loading-lg text-textDecorator"></span>
+        <h3 class="text-semiGrey font-medium text-xs mt-3 px-2 lg:text-sm"
+          :class="events.length === 0 ? 'lg:w-full lg:text-center' : 'text-end'"> 
+          {{ events.length === 0 ? t('eventsList.noOneEvent') : t('eventsList.allEvents') }}
+          <span v-if="events.length !== 0" class="font-semibold">{{ setFullDate }}</span>
+        </h3>
+        <button @click="goToNextDay" class="text-purple font-semibold text-xs underline lg:text-sm"
+          :class="events.length === 0 ? 'lg:w-full lg:text-center' : 'text-end'">
+          {{ t('eventsList.goToNextDay') }}
+        </button>
+      </template>
+      <template v-else>
+        <div class="w-full flex justify-center items-center mt-12">
+          <span class="loading loading-spinner loading-lg text-textDecorator"></span>
+        </div>
+      </template>
     </div>
   </section>
 </template>
 <script setup lang="ts">
-/**
- * SET MIN-W
- */
 import EventCard from '@/components/cards/EventCard.vue';
 import EventGroupCard from '@/components/cards/EventGroupCard.vue';
 import sendData from '@/TestData';
 import DateUtil from '@/utils/DateUtil';
 import Event from '@/models/Event';
 import { useEventsStore } from '@/stores/eventsStore';
-import { ref, watch, type Ref, onMounted } from 'vue';
+import { ref, watch, type Ref, onMounted, computed } from 'vue';
+import { useI18n } from 'vue-i18n';
 
 const store = useEventsStore();
+const { t } = useI18n();
 const selectDate: Ref<Date> = ref(new Date);
 const events: Ref<Array<Event[]>> = ref([]);
-const isLoaded: Ref<boolean> = ref(true);
+const isLoaded: Ref<boolean> = ref(false);
+
+
+/** Show full date 
+ * @returns {string} 
+*/
+const setFullDate = computed<string>(() => {
+  const date = selectDate.value;
+  const day = date.getDate();
+  const month = (date.getMonth() + 1).toString().length === 1 ? '0'+(date.getMonth() + 1).toString() : (date.getMonth()+1);
+  const year = date.getFullYear();
+  return `${day}.${month}.${year}`;
+});
+
 
 /** Find longestEvent and check if is finished
  * @param {Array<Event>} eventGroup - Array of events
@@ -78,10 +96,10 @@ const setDuration = (eventCard: Event): number => {
 /** Load events from selected day */
 const setNewDay = () => {
   selectDate.value = new Date(store.selectedDay);
-  isLoaded.value = true;
+  isLoaded.value = false;
   setTimeout(() => {
     events.value = sendData(store.selectedDay);
-    isLoaded.value = false;
+    isLoaded.value = true;
   }, 1000)
 }
 
