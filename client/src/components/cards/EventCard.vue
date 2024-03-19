@@ -11,7 +11,7 @@
           <ClockIcon class="w-[15px] h-[13px] lg:w-[17px] lg:h-[17px]" />
           {{ props.duration }} min
         </div>
-        <div class="flex items-center gap-1 min-w-[85px] min-w-[89px] lg:gap-2 lg:min-w-[110px] lg:min-w-[115px]">
+        <div class="flex items-center gap-1 min-w-[89px] lg:gap-2 lg:min-w-[115px]">
           <TagIcon class=" w-[13px] h-[12px] lg:w-[17px] lg:h-[17px]" />
           {{ t(`eventCard.${props.tag}`) }}
         </div>
@@ -41,12 +41,10 @@ import TagIcon from '@/components/icons/details/TagIcon.vue';
 import FavoriteIcon from '@/components/icons/details/FavoriteIcon.vue';
 import EventLanguageIcon from '@/components/icons/details/EventLanguageIcon.vue';
 import ActionButton from '@/components/buttons/ActionButton.vue';
-import { useRouter } from 'vue-router';
 import { useI18n } from 'vue-i18n';
 import { ref, type Ref } from 'vue';
 
 const { t } = useI18n();
-const router = useRouter();
 const isFavorite: Ref<boolean> = ref(false);
 
 const props = defineProps({
@@ -82,10 +80,12 @@ const props = defineProps({
   }
 });
 
+/** TODO */
 const toggleFavorite = ():void => {
   isFavorite.value = !isFavorite.value;
 };
 
+/** TODO */
 const goToStream = (): void => {
   console.log(`GO to path: ${props.streamingLink}`);
 };

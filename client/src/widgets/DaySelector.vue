@@ -24,7 +24,6 @@
 <script setup lang="ts">
 import { useEventsStore } from '@/stores/eventsStore';
 import { onBeforeMount, ref, watch, type Ref } from 'vue';
-import { onBeforeMount, ref, watch, type Ref } from 'vue';
 import DayCard from '@/components/cards/DayCard.vue';
 import ArrowButton from '@/components/buttons/ArrowButton.vue';
 import type Day from '@/models/Day';
