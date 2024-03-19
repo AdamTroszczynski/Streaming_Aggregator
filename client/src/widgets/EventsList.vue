@@ -15,6 +15,7 @@
             :duration="setDuration(eventCard)" 
             :tag="eventCard.tag" 
             :lang="eventCard.language" 
+            :streamingLink="eventCard.streamingLink"
             :isFinished="new Date().getTime() > eventCard.endDate">
           </EventCard>
 

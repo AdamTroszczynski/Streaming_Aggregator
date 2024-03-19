@@ -20,9 +20,10 @@
           {{ t(`eventCard.${props.lang}`) }}
         </div>
       </div>
-      <div class="flex items-center justify-end gap-3">
-        <ActionButton class="lg:btn-sm">
-          {{ props.isFinished ? t('eventCard.watch') : t('eventCard.details') }}
+      <div v-if="!isFinished" class="flex items-center justify-end gap-3">
+        <ActionButton class="lg:btn-sm"
+          @clickAction="goToStream">
+            {{ t('eventCard.watch') }}
         </ActionButton>
         <ActionButton class="lg:btn-sm"
           @click="toggleFavorite"
@@ -40,10 +41,12 @@ import TagIcon from '@/components/icons/details/TagIcon.vue';
 import FavoriteIcon from '@/components/icons/details/FavoriteIcon.vue';
 import EventLanguageIcon from '@/components/icons/details/EventLanguageIcon.vue';
 import ActionButton from '@/components/buttons/ActionButton.vue';
+import { useRouter } from 'vue-router';
 import { useI18n } from 'vue-i18n';
 import { ref, type Ref } from 'vue';
 
 const { t } = useI18n();
+const router = useRouter();
 const isFavorite: Ref<boolean> = ref(false);
 
 const props = defineProps({
@@ -69,6 +72,10 @@ const props = defineProps({
       return ['pl', 'en'].includes(value);
     }
   },
+  streamingLink: {
+    type: String,
+    required: true
+  },
   isFinished: {
     type: Boolean,
     default: false
@@ -77,6 +84,10 @@ const props = defineProps({
 
 const toggleFavorite = ():void => {
   isFavorite.value = !isFavorite.value;
+};
+
+const goToStream = (): void => {
+  console.log(`GO to path: ${props.streamingLink}`);
 };
 
 

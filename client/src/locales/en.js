@@ -12,7 +12,7 @@ const en = {
     joinUs: 'Join us:',
     newsletter: `Newsletter Stream 'N Go`,
     signUp: 'Sign up >',
-    trainings : 'Trainings',
+    trainings: 'Trainings',
     presentations: 'Presentations',
     conferences: 'Conferences',
     seminars: 'Seminars',
@@ -21,7 +21,6 @@ const en = {
     organizations: 'Organizations',
     contact: 'Contact'
   },
-<<<<<<< HEAD
   navbar: {
     homePage: 'Home page',
     organizations: 'Organizations',
@@ -29,7 +28,7 @@ const en = {
     login: 'Login',
     registration: 'Registration',
     lang: 'EN'
-=======
+  },
   eventCard: {
     presentation: 'Presentation',
     conference: 'Conference',
@@ -44,15 +43,11 @@ const en = {
   eventGroupCard: {
     now: 'NOW',
     in: 'In'
-<<<<<<< HEAD
->>>>>>> e120bf6 (EventGroupCard added)
-=======
   },
   eventsList: {
     allEvents: 'These are all the events of the day',
     noOneEvent: 'No streaming is scheduled for this day.',
     goToNextDay: 'Click here to go to the next day >'
->>>>>>> b6e4ab4 (i18n added, favorite button logic and styles added, response design added, styles fix, restructured code)
   }
 };
 
