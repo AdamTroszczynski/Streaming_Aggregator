@@ -1,5 +1,5 @@
 <template>
-  <section class="w-full h-16 bg-white shadow flex justify-center items-center xl:h-24">
+  <section class="w-full h-16 bg-white shadow flex justify-center items-center lg:h-24">
     <div class="w-16 h-16 flex justify-center items-center">
       <ArrowButton @clickAction="loadPreviewDays" :isRight="false"></ArrowButton>
     </div>
@@ -18,7 +18,7 @@
 
 <script setup lang="ts">
 import { useEventsStore } from '@/stores/eventsStore';
-import { onBeforeMount, ref, type Ref } from 'vue';
+import { onBeforeMount, ref, watch, type Ref } from 'vue';
 import DayCard from '@/components/cards/DayCard.vue';
 import ArrowButton from '@/components/buttons/ArrowButton.vue';
 import type Day from '@/models/Day';
@@ -32,9 +32,14 @@ const { t } = useI18n();
 /** How many days should  */
 let daysToDisplay: Ref<number> = ref(0);
 
+//** TODO PRZENIEŚC DO INNEJ FUNKCJI */
+
+
+
+
 /** Set number of days to display based on screen width */
 daysToDisplay.value = window.innerWidth >= 1420 ? 7
-  : window.innerWidth >= 1000 ? 6
+  : window.innerWidth >= 1024 ? 6
     : window.innerWidth >= 500 ? 5 : 4;
 
 /** Load daysToDisplay next days based on last showed day */
@@ -78,8 +83,20 @@ const setSelectedDay = (dayId: number): void => {
   store.selectedDay = dayId;
 };
 
+
+
+//** TODO PRZENIEŚC DO INNEJ FUNKCJI */
+
+
 /** Load init days */
 onBeforeMount(() => {
+  window.addEventListener('resize', () => {
+    daysToDisplay.value = window.innerWidth >= 1420 ? 7
+  : window.innerWidth >= 1024 ? 6
+    : window.innerWidth >= 500 ? 5 : 4;
+    loadedDays.value = []
+    loadInitDays();
+  })
   loadInitDays();
 });
 </script>
