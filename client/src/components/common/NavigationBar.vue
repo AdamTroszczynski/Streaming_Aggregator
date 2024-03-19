@@ -1,10 +1,7 @@
 <template>
-  <div
-    class="h-[140px] bg-[url('/NavbarBgMobile.png')] bg-right-top bg-no-repeat lg:bg-[url('/NavbarBgPc.png')] lg:h-[419px]"
-  >
-    <nav
-      class="w-full p-5 flex justify-between items-center lg:py-3.5 lg:px-14 relative"
-    >
+  <nav
+    class="h-[607px] bg-[url('/NavbarBgMobile.png')] bg-right-top bg-no-repeat bg-white lg:bg-[url('/NavbarBgPc.png')] lg:h-[419px]">
+    <div class="w-full p-5 flex justify-between items-center relative lg:py-3.5 lg:px-14">
       <h2 class="text-2xl font-bold text-black">STREAM 'N GO</h2>
       <ActionButton
         :is-navibar="true"
@@ -50,10 +47,13 @@
             <img src="/avatar.png" />
           </button>
         </template>
-        <LangButton class="lg:ml-5" />
+        <LangButton class="lg:ml-5"/>
       </div>
-    </nav>
-  </div>
+    </div>
+    <div class="w-full h-[496px] px-5 flex justify-center items-center lg:h-[300px] lg:mt-5">
+      <slot></slot>
+    </div>
+  </nav>
 </template>
 
 <script setup lang="ts">
