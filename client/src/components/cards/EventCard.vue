@@ -11,7 +11,7 @@
           <ClockIcon class="w-[15px] h-[13px] lg:w-[17px] lg:h-[17px]" />
           {{ props.duration }} min
         </div>
-        <div class="flex items-center gap-1 min-w-[85px] lg:gap-2 lg:min-w-[110px]">
+        <div class="flex items-center gap-1 min-w-[85px] min-w-[89px] lg:gap-2 lg:min-w-[110px] lg:min-w-[115px]">
           <TagIcon class=" w-[13px] h-[12px] lg:w-[17px] lg:h-[17px]" />
           {{ t(`eventCard.${props.tag}`) }}
         </div>

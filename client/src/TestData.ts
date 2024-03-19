@@ -21,7 +21,7 @@ const event6end = new Date(today.getFullYear(), today.getMonth(), today.getDate(
 
 const data = [
  [new Event(1, 'Otwarcie konferencji', 'presentation', 'pl', 'xxx', event1.getTime(), event1end.getTime())],
-[new Event(2, 'PREZENTACJE PROJEKTÓW', 'conference', 'en', 'xxx', event2.getTime(), event2end.getTime()), new Event(3, 'WYSTAWA ORGANIZACJI', 'presentation', 'en', 'xxx', event3.getTime(), event3end.getTime()), new Event(4, 'ROZMOWY Z REKRUTERAMI', 'conference', 'pl', 'xxx', event4.getTime(), event4end.getTime())],
+[new Event(2, 'PREZENTACJE PROJEKTÓW', 'conference', 'en', 'xxx', event2.getTime(), event2end.getTime()), new Event(3, 'WYSTAWA ORGANIZACJI', 'presentation', 'en', 'xxx', event3.getTime(), event3end.getTime()), new Event(4, 'ROZMOWY Z REKRUTERAMI', 'presentation', 'pl', 'xxx', event4.getTime(), event4end.getTime())],
 [new Event(5, 'OGŁOSZENIE WYNIKOW', 'training', 'en', 'xxx', event5.getTime(),event5end.getTime()), new Event(6, 'UROCZYSTE PODSUMOWANIE KONFERENCJI', 'conference', 'en', 'xxx', event6.getTime(),event6end.getTime())]
 ]
 
