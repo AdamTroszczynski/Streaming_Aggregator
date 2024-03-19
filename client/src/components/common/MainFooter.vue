@@ -1,6 +1,6 @@
 <template>
   <footer
-    class="w-full h-[595px] relative flex items-end bg-[url(/footerBgMobile.png)] z-[1] sm:bg-[url(/footerBgPc.png)] bg-no-repeat bg-cover">
+    class="w-full h-[595px] relative flex items-end bg-[url(/FooterBgMobile.png)] z-[1] sm:bg-[url(/FooterBgPc.png)] bg-no-repeat bg-cover">
     <div class="w-full h-max flex justify-end items-center flex-col gap-10 relative text-white">
       <div class="w-full flex gap-3 flex-col items-center lg:flex-row lg:justify-center lg:gap-14 relative z-[2]">
         <div class="h-20 w-80 gap-1 bg-gradient-to-br to-gradients-peranoPurple from-gradients-peranoBlue flex flex-col justify-center items-center drop-shadow-lg rounded-xl backdrop-blur-sm

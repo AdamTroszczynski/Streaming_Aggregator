@@ -25,7 +25,7 @@
         <LangButton class="lg:ml-5"/>
       </div>
       <div v-if="isMenuActive"
-        class="absolute w-1/2 bg-decorator shadow-lg flex flex-col gap-2 p-4 items-center top-[95%] left-[25%] rounded-2xl lg:hidden">
+        class="absolute z-10 w-1/2 bg-decorator shadow-lg flex flex-col gap-2 p-4 items-center top-[95%] left-[25%] rounded-2xl  lg:hidden">
         <LinkButton :isSelect="true">{{ t(`navbar.homePage`) }}</LinkButton>
         <LinkButton>{{ t(`navbar.organizations`) }}</LinkButton>
         <LinkButton>{{ t(`navbar.contact`) }}</LinkButton>

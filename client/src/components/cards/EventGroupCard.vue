@@ -34,8 +34,9 @@ const props = defineProps({
   }
 });
 
-
-/** Calculate starting time */
+/** Calculate starting time
+ * @returns {String}
+ */
 const showTime = computed<String>(() => {
   const date = new Date(props.startTime);
   const hours = date.getHours().toString().length === 1 ? `0${date.getHours()}` : `${date.getHours()}`;
@@ -43,8 +44,9 @@ const showTime = computed<String>(() => {
   return `${hours}:${minutes}`
 })
 
-
-/** Calculate how long before the meeting starts */
+/** Calculate how long before the meeting starts
+ * @returns {String}
+ */
 const calcTime = computed<String>(() => {
   const today = new Date();
   const startDate = new Date(props.startTime);
