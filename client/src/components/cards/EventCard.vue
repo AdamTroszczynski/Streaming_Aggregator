@@ -24,8 +24,11 @@
         <ActionButton class="lg:btn-sm">
           {{ props.isFinished ? t('eventCard.watch') : t('eventCard.details') }}
         </ActionButton>
-        <ActionButton :isGrey="true" class="lg:btn-sm">
-          <FavoriteIcon class="lg:w-[16px] lg:h-[16px]"/>
+        <ActionButton class="lg:btn-sm"
+          @click="toggleFavorite"
+          :isGrey="!isFavorite"
+          :isPink="isFavorite">
+            <FavoriteIcon class="w-[13px] h-[13px] lg:w-[16px] lg:h-[16px]" :isWhite="!isFavorite"/>
         </ActionButton>
       </div>
     </div>
@@ -34,12 +37,14 @@
 <script setup lang="ts">
 import ClockIcon from '@/components/icons/details/ClockIcon.vue';
 import TagIcon from '@/components/icons/details/TagIcon.vue';
-import FavoriteIcon from '../icons/details/FavoriteIcon.vue';
+import FavoriteIcon from '@/components/icons/details/FavoriteIcon.vue';
 import EventLanguageIcon from '@/components/icons/details/EventLanguageIcon.vue';
 import ActionButton from '@/components/buttons/ActionButton.vue';
 import { useI18n } from 'vue-i18n';
+import { ref, type Ref } from 'vue';
 
 const { t } = useI18n();
+const isFavorite: Ref<boolean> = ref(false);
 
 const props = defineProps({
   title: {
@@ -69,6 +74,10 @@ const props = defineProps({
     default: false
   }
 });
+
+const toggleFavorite = ():void => {
+  isFavorite.value = !isFavorite.value;
+};
 
 
 
