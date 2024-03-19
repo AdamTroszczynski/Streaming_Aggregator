@@ -32,16 +32,6 @@ const { t } = useI18n();
 /** How many days should  */
 let daysToDisplay: Ref<number> = ref(0);
 
-//** TODO PRZENIEŚC DO INNEJ FUNKCJI */
-
-
-
-
-/** Set number of days to display based on screen width */
-daysToDisplay.value = window.innerWidth >= 1420 ? 7
-  : window.innerWidth >= 1024 ? 6
-    : window.innerWidth >= 500 ? 5 : 4;
-
 /** Load daysToDisplay next days based on last showed day */
 const loadNextDays = (): void => {
   const length = loadedDays.value.length;
@@ -77,26 +67,34 @@ const loadInitDays = (): void => {
   store.selectedDay = loadedDays.value[0].id;
 };
 
-
 /** Set clicked day */
 const setSelectedDay = (dayId: number): void => {
   store.selectedDay = dayId;
 };
 
+/** Calculate how much days should be showed
+ * @returns {number}
+*/
+const calcDaysToDisplay = (): number => {
+  return window.innerWidth >= 1420 ? 7
+    : window.innerWidth >= 1024 ? 6
+    : window.innerWidth >= 500 ? 5 : 4;
+};
 
-
-//** TODO PRZENIEŚC DO INNEJ FUNKCJI */
-
+/** Set new daysToDisplay and reload component */
+const resizeLogic = (): void => {
+  daysToDisplay.value = calcDaysToDisplay();
+  loadedDays.value = [];
+  loadInitDays();
+};
 
 /** Load init days */
 onBeforeMount(() => {
   window.addEventListener('resize', () => {
-    daysToDisplay.value = window.innerWidth >= 1420 ? 7
-  : window.innerWidth >= 1024 ? 6
-    : window.innerWidth >= 500 ? 5 : 4;
-    loadedDays.value = []
-    loadInitDays();
-  })
+    resizeLogic()
+  });
+
+  daysToDisplay.value = calcDaysToDisplay();
   loadInitDays();
 });
 </script>
