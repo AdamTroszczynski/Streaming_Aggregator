@@ -1,7 +1,5 @@
 <template>
-  <section
-    class="w-full h-16 bg-white shadow flex justify-center items-center lg:h-24"
-  >
+  <section class="w-full h-16 bg-white shadow flex justify-center items-center lg:h-24 lg:gap-2">
     <div class="w-16 h-16 flex justify-center items-center">
       <ArrowButton :is-right="false" @click-action="loadPreviewDays">
       </ArrowButton>
@@ -95,6 +93,7 @@ const calcDaysToDisplay = (): number => {
 
 /** Set new daysToDisplay and reload component */
 const resizeLogic = (): void => {
+  if(calcDaysToDisplay() === daysToDisplay.value) return;
   daysToDisplay.value = calcDaysToDisplay();
   loadedDays.value = [];
   loadInitDays();

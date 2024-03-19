@@ -1,8 +1,7 @@
 <template>
-  <section class="w-full pl-5 pr-3.5 max-w-[792px] lg:min-h-[1187px] lg:p-0">
+  <section class="w-full pl-5 pr-3.5 max-w-[792px] lg:p-0">
     <div
-      class="w-full bg-white flex flex-col justify-start items-center py-6 gap-1 lg:items-end lg:pr-4 lg:min-h-[1187px] shadow"
-    >
+      class="w-full bg-white flex flex-col min-h-[400px] shadow justify-start items-center py-3 gap-1 lg:items-end lg:pr-4 lg:min-h-[1000px] lg:pb-[100px]">
       <template v-if="isLoaded">
         <EventGroupCard
           v-for="eventGroup in events"
@@ -24,18 +23,10 @@
           </EventCard>
         </EventGroupCard>
 
-        <h3
-          class="text-semiGrey font-medium text-xs mt-3 px-2 lg:text-sm"
-          :class="events.length === 0 ? 'lg:w-full lg:text-center' : 'text-end'"
-        >
-          {{
-            events.length === 0
-              ? t('eventsList.noOneEvent')
-              : t('eventsList.allEvents')
-          }}
-          <span v-if="events.length !== 0" class="font-semibold">{{
-            setFullDate
-          }}</span>
+        <h3 class="text-semiGrey font-medium text-xs mt-3 px-2 lg:text-sm lg:mt-8"
+          :class="events.length === 0 ? 'lg:w-full lg:text-center' : 'text-end'">
+          {{ events.length === 0 ? t('eventsList.noOneEvent') : t('eventsList.allEvents') }}
+          <span v-if="events.length !== 0" class="font-semibold">{{ setFullDate }}</span>
         </h3>
         <button
           class="text-purple font-semibold text-xs underline lg:text-sm"
@@ -46,10 +37,8 @@
         </button>
       </template>
       <template v-else>
-        <div class="w-full flex justify-center items-center mt-12">
-          <span
-            class="loading loading-spinner loading-lg text-textDecorator"
-          ></span>
+        <div class="w-full flex justify-center items-center mt-5">
+          <span class="loading loading-spinner loading-lg text-textDecorator"></span>
         </div>
       </template>
     </div>
