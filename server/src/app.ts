@@ -1,23 +1,23 @@
 import express, { Express } from 'express';
-import dotenv from 'dotenv';
 import helmet from 'helmet';
 import cors from 'cors';
 import { json } from 'body-parser';
-import { BASE_URL } from '@/const/commonConst';
-import { BASE_CLIENT_URL } from '@/const/commonConst';
+import { BASE_CLIENT_URL, PREVIEW_CLIENT_URL, EVENT_API_PATH } from '@/const/commonConst';
 import eventRouter from '@/router/eventRouter';
-dotenv.config();
 
-const app: Express = express();
+/** Create and prepare app object */
+export const createApp = (): Express => {
+  const app: Express = express();
 
-app.use(json());
+  // Modules setup
+  app.use(json());
+  app.use(helmet());
+  app.use(cors({ origin: [BASE_CLIENT_URL, PREVIEW_CLIENT_URL] }));
 
-app.use(helmet());
-app.use(cors({ origin: BASE_CLIENT_URL }));
-app.use('/api/events', eventRouter);
+  // Routes setup
+  app.use(EVENT_API_PATH, eventRouter);
 
-const port = process.env.PORT || 3000;
+  return app;
+};
 
-app.listen(port, () => {
-  console.log(`Server is running at ${BASE_URL}:${port}`);
-});
+export default createApp();

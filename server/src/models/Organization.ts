@@ -1,4 +1,4 @@
-export default class Organizer {
+export default class Organization {
   organizationId: number;
   formalName: string;
   displayName: string;

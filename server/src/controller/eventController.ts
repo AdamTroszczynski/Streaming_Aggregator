@@ -2,12 +2,12 @@ import type { Request, Response } from 'express';
 import { StatusCodesEnum } from '@/enums/StatusCodesEnum';
 
 /**
- * Create event action
+ * Get all events action
  * @param {Request} req Request
  * @param {Response} res Response
  */
-export const createEventAction = async (req: Request, res: Response): Promise<void> => {
-  res.status(StatusCodesEnum.OK);
+export const getAllEventsAction = async (req: Request, res: Response): Promise<void> => {
+  res.status(StatusCodesEnum.OK).json({ msg: 'Get all events' });
 };
 
 /**
@@ -16,16 +16,17 @@ export const createEventAction = async (req: Request, res: Response): Promise<vo
  * @param {Response} res Response
  */
 export const getEventByIdAction = async (req: Request, res: Response): Promise<void> => {
-  res.status(StatusCodesEnum.OK);
+  const { id } = req.params;
+  res.status(StatusCodesEnum.OK).json({ msg: `Get single event with id: ${Number(id)}` });
 };
 
 /**
- * Get all events action
+ * Create event action
  * @param {Request} req Request
  * @param {Response} res Response
  */
-export const getAllEventsAction = async (req: Request, res: Response): Promise<void> => {
-  res.status(StatusCodesEnum.OK);
+export const createEventAction = async (req: Request, res: Response): Promise<void> => {
+  res.status(StatusCodesEnum.OK).json({ msg: 'Create event' });
 };
 
 /**
@@ -34,7 +35,8 @@ export const getAllEventsAction = async (req: Request, res: Response): Promise<v
  * @param {Response} res Response
  */
 export const updateEventAction = async (req: Request, res: Response): Promise<void> => {
-  res.status(StatusCodesEnum.OK);
+  const { id } = req.params;
+  res.status(StatusCodesEnum.OK).json({ msg: `Update event with id: ${Number(id)}` });
 };
 
 /**
@@ -43,5 +45,6 @@ export const updateEventAction = async (req: Request, res: Response): Promise<vo
  * @param {Response} res Response
  */
 export const deleteEventAction = async (req: Request, res: Response): Promise<void> => {
-  res.status(StatusCodesEnum.OK);
+  const { id } = req.params;
+  res.status(StatusCodesEnum.OK).json({ msg: `Delete event with id: ${Number(id)}` });
 };
