@@ -47,7 +47,8 @@
       </div>
     </div>
     <div class="w-full h-[496px] px-5 flex justify-center items-center lg:h-[300px] lg:mt-5">
-      <slot></slot>
+      <div class="w-[339px] h-full bg-[#FCF6F6] shadow-lg rounded-lg flex justify-center items-center lg:w-[1113px]">
+      </div>
     </div>
   </nav>
 </template>

@@ -105,10 +105,8 @@ const setIsFinished = (eventGroup: Array<Event>): boolean => {
  * @returns {boolean}
  */
 const setIsNow = (eventGroup: Array<Event>): boolean => {
-  return (
-    new Date().getTime() > eventGroup[0].startDate &&
-    new Date().getTime() < eventGroup[0].endDate
-  );
+  const lastIndex = (eventGroup.length-1);
+  return (new Date().getTime() > eventGroup[lastIndex].startDate) && (new Date().getTime() < eventGroup[lastIndex].endDate);
 };
 
 /** Calculate event duration time
