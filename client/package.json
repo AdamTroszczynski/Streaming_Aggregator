@@ -1,8 +1,13 @@
 {
   "name": "streaming-aggregator",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "private": true,
-  "type": "module",
+  "authors": [
+    "Mikołaj Szymczuk",
+    "Adam Troszczyński",
+    "Gracjan Janiszewski",
+    "Kamil Pawelski"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "run-p type-check build-only",
