@@ -6,7 +6,7 @@ const en = {
     wed: 'WED',
     thu: 'THU',
     fri: 'FRI',
-    sat: 'SAT'
+    sat: 'SAT',
   },
   footer: {
     joinUs: 'Join us:',
@@ -19,7 +19,7 @@ const en = {
     homePage: 'Home page',
     addStream: 'Add streaming',
     organizations: 'Organizations',
-    contact: 'Contact'
+    contact: 'Contact',
   },
   navbar: {
     homePage: 'Home page',
@@ -27,7 +27,7 @@ const en = {
     contact: 'Contact',
     login: 'Login',
     registration: 'Registration',
-    lang: 'EN'
+    lang: 'EN',
   },
   eventCard: {
     presentation: 'Presentation',
@@ -38,17 +38,17 @@ const en = {
     en: 'English',
     pl: 'Polish',
     watch: 'Watch >',
-    details: 'Details >'
+    details: 'Details >',
   },
   eventGroupCard: {
     now: 'NOW',
-    in: 'In'
+    in: 'In',
   },
   eventsList: {
     allEvents: 'These are all the events of the day',
     noOneEvent: 'No streaming is scheduled for this day.',
-    goToNextDay: 'Click here to go to the next day >'
-  }
+    goToNextDay: 'Click here to go to the next day >',
+  },
 };
 
 export default en;

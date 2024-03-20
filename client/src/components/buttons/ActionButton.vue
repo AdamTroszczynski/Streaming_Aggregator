@@ -1,17 +1,25 @@
 <template>
-  <button v-if="isNavibar" 
-    @click="emitClickEvent()" 
-    class="btn min-h-0 h-[38px] border-none bg-information font-normal text-white rounded border px-3
-      hover:text-white hover:bg-information">
+  <button
+    v-if="isNavibar"
+    class="btn min-h-0 h-[38px] border-none bg-information font-normal text-white rounded border px-3 hover:text-white hover:bg-information"
+    @click="emitClickEvent()"
+  >
     <slot></slot>
   </button>
 
-  <button v-else @click="emitClickEvent()" 
-    class="btn btn-xs min-w-[31px] font-normal text-darkblue rounded-md border
-      hover:text-darkblue lg:min-w-[42px] 2xl:btn-sm" 
+  <button
+    v-else
+    class="btn btn-xs min-w-[31px] font-normal text-darkblue rounded-md border hover:text-darkblue lg:min-w-[42px] 2xl:btn-sm"
     :class="[
-      isGrey ? 'border-grey hover:border-grey' : 'border-darkblue hover:border-darkblue',
-      isPink ? 'bg-textDecorator border-none hover:bg-textDecorator' : 'bg-white hover:bg-white']">
+      isGrey
+        ? 'border-grey hover:border-grey'
+        : 'border-darkblue hover:border-darkblue',
+      isPink
+        ? 'bg-textDecorator border-none hover:bg-textDecorator'
+        : 'bg-white hover:bg-white',
+    ]"
+    @click="emitClickEvent()"
+  >
     <slot></slot>
   </button>
 </template>
@@ -24,11 +32,11 @@ defineProps({
   },
   isNavibar: {
     type: Boolean,
-    default: false
+    default: false,
   },
   isPink: {
     type: Boolean,
-    default: false
+    default: false,
   },
 });
 

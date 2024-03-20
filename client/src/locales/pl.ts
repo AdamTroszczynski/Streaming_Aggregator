@@ -6,7 +6,7 @@ const pl = {
     wed: 'ŚR',
     thu: 'CZ',
     fri: 'PT',
-    sat: 'SB'
+    sat: 'SB',
   },
   footer: {
     joinUs: 'Dołącz do nas:',
@@ -19,7 +19,7 @@ const pl = {
     homePage: 'Strona główna',
     addStream: 'Dodaj streaming',
     organizations: 'Organizacje',
-    contact: 'Kontakt'
+    contact: 'Kontakt',
   },
   navbar: {
     homePage: 'Strona główna',
@@ -27,7 +27,7 @@ const pl = {
     contact: 'Kontakt',
     login: 'Logowanie',
     registration: 'Rejestracja',
-    lang: 'PL'
+    lang: 'PL',
   },
   eventCard: {
     presentation: 'Prezentacja',
@@ -38,17 +38,17 @@ const pl = {
     en: 'Angielski',
     pl: 'Polski',
     watch: 'Oglądaj >',
-    details: 'Szczegóły >'
+    details: 'Szczegóły >',
   },
   eventGroupCard: {
     now: 'TERAZ',
-    in: 'Za'
+    in: 'Za',
   },
   eventsList: {
     allEvents: 'To już wszystkie wydarzenia w dniu',
     noOneEvent: 'W tym dniu nie zaplanowano żadnych streamingów.',
-    goToNextDay: 'Kliknij tutaj, aby przejść do kolejnego dnia >'
-  }
+    goToNextDay: 'Kliknij tutaj, aby przejść do kolejnego dnia >',
+  },
 };
 
 export default pl;
