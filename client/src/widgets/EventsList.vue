@@ -1,7 +1,15 @@
 <template>
-  <section class="w-full pl-5 pr-3.5 max-w-[792px] lg:p-0">
+  <section class="w-full pl-5 pr-3.5 max-w-[792px] lg:p-0 lg:relative">
+    <div class="hidden 2xl:block 2xl:absolute 2xl:w-[235px] 2xl:h-[185px] 2xl:rounded-xl 2xl:bg-[#001737] 2xl:top-[20px] 2xl:left-[104%] 2xl:shadow-lg">
+      <slot name="shortAdv"></slot>
+    </div>
+
+    <div class="hidden 2xl:block 2xl:absolute 2xl:w-[235px] 2xl:h-[591px] 2xl:rounded-xl 2xl:bg-white 2xl:top-[220px] 2xl:left-[104%] 2xl:shadow-xl">
+      <slot name="longAdv"></slot>
+    </div>
+
     <div
-      class="w-full bg-white flex flex-col min-h-[400px] shadow justify-start items-center py-3 gap-1 lg:items-end lg:pr-4 lg:min-h-[1000px] lg:pb-[100px]">
+      class="w-full bg-white flex flex-col min-h-[400px] shadow justify-start items-center py-3 gap-1 lg:pr-4 lg:min-h-[1100px] lg:pb-[150px]">
       <template v-if="isLoaded">
         <EventGroupCard
           v-for="eventGroup in events"
@@ -23,24 +31,28 @@
           </EventCard>
         </EventGroupCard>
 
-        <h3 class="text-semiGrey font-medium text-xs mt-3 px-2 lg:text-sm lg:mt-8"
-          :class="events.length === 0 ? 'lg:w-full lg:text-center' : 'text-end'">
-          {{ events.length === 0 ? t('eventsList.noOneEvent') : t('eventsList.allEvents') }}
-          <span v-if="events.length !== 0" class="font-semibold">{{ setFullDate }}</span>
-        </h3>
-        <button
-          class="text-purple font-semibold text-xs underline lg:text-sm"
-          :class="events.length === 0 ? 'lg:w-full lg:text-center' : 'text-end'"
-          @click="goToNextDay"
-        >
-          {{ t('eventsList.goToNextDay') }}
-        </button>
+        <div class="w-full flex flex-col justify-center lg:relative">
+          <h3 class="text-semiGrey text-center font-medium text-xs mt-3 px-2
+            lg:text-sm lg:mt-8"
+            :class="events.length === 0 ? 'lg:text-center' : 'lg:text-end'">
+              {{ events.length === 0 ? t('eventsList.noOneEvent') : t('eventsList.allEvents') }}
+            <span v-if="events.length !== 0" class="font-semibold">{{ setFullDate }}</span>
+          </h3>
+          <button @click="goToNextDay" class="text-purple w-auto px-2 font-semibold text-xs underline
+            lg:text-sm lg:absolute lg:z-[20] lg:top-[100%]"
+            :class="(events.length === 0) && (locale === 'pl') ? 'lg:left-[29.1%]'
+                    :(events.length === 0) && (locale === 'en') ? 'lg:left-[34%]'
+                    :locale === 'pl' ? 'lg:left-[57%]' : 'lg:left-[67%]'">
+              {{ t('eventsList.goToNextDay') }}
+          </button>
+        </div>
       </template>
       <template v-else>
         <div class="w-full flex justify-center items-center mt-5">
           <span class="loading loading-spinner loading-lg text-textDecorator"></span>
         </div>
       </template>
+
     </div>
   </section>
 </template>
@@ -55,10 +67,13 @@ import { ref, watch, type Ref, onMounted, computed } from 'vue';
 import { useI18n } from 'vue-i18n';
 
 const store = useEventsStore();
-const { t } = useI18n();
-const selectDate: Ref<Date> = ref(new Date());
+const { t, locale } = useI18n();
+const selectDate: Ref<Date> = ref(new Date);
 const events: Ref<Array<Event[]>> = ref([]);
 const isLoaded: Ref<boolean> = ref(false);
+
+
+
 
 /** Show full date
  * @returns {string}
