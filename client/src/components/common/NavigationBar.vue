@@ -1,6 +1,6 @@
 <template>
   <nav
-    class="h-[607px] bg-[url('/NavbarBgMobile.png')] bg-right-top bg-no-repeat bg-white lg:bg-[url('/NavbarBgPc.png')] lg:h-[419px]">
+    class="h-[607px] bg-[url('/NavbarBgMb.png')] bg-right-top bg-no-repeat bg-white lg:bg-[url('/NavbarBgPc.png')] lg:h-[419px]">
     <div class="w-full p-5 flex justify-between items-center relative lg:py-3.5 lg:px-5 l:px-14">
       <h2 class="text-2xl font-bold text-black lg:min-w-[191px]">STREAM 'N GO</h2>
 
