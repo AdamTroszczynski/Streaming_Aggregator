@@ -1,6 +1,7 @@
-import { nameOfDays } from "@/const/commonConst";
-import DateUtil from "@/utils/DateUtil";
-export default class Day{
+import { nameOfDays } from '@/const/commonConst';
+import DateUtil from '@/utils/DateUtil';
+
+export default class Day {
   id: number;
   name: string;
   showDate: string;
