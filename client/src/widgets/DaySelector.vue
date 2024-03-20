@@ -1,22 +1,23 @@
 <template>
-  <section class="w-full h-16 bg-white shadow flex justify-center items-center lg:h-24">
+  <section
+    class="w-full h-16 bg-white shadow flex justify-center items-center lg:h-24"
+  >
     <div class="w-16 h-16 flex justify-center items-center">
-      <ArrowButton 
-        @clickAction="loadPreviewDays" 
-        :isRight="false">
+      <ArrowButton :is-right="false" @click-action="loadPreviewDays">
       </ArrowButton>
     </div>
     <div v-for="day in loadedDays" :key="day.id">
-      <DayCard 
-        @clickAction="setSelectedDay" 
-        :dayId="day.id" 
-        :isSelected="day.id === store.selectedDay"
-        :name="t(`days.${day.name}`)" 
-        :showingDate="day.showDate">
+      <DayCard
+        :day-id="day.id"
+        :is-selected="day.id === store.selectedDay"
+        :name="t(`days.${day.name}`)"
+        :showing-date="day.showDate"
+        @click-action="setSelectedDay"
+      >
       </DayCard>
     </div>
     <div class="w-16 h-16 flex justify-center items-center">
-      <ArrowButton @clickAction="loadNextDays"></ArrowButton>
+      <ArrowButton @click-action="loadNextDays"></ArrowButton>
     </div>
   </section>
 </template>
@@ -40,7 +41,7 @@ let daysToDisplay: Ref<number> = ref(0);
 /** Load daysToDisplay next days based on last showed day */
 const loadNextDays = (): void => {
   const length = loadedDays.value.length;
-  const lastIndex = (length - 1);
+  const lastIndex = length - 1;
   const lastDay = loadedDays.value[lastIndex].fullDate;
   loadedDays.value = [];
 
@@ -48,7 +49,7 @@ const loadNextDays = (): void => {
     loadedDays.value.push(DateUtil.getNextDay(lastDay, i));
   }
   store.selectedDay = loadedDays.value[0].id;
-  store.lastShowDay = loadedDays.value[loadedDays.value.length -1].id;
+  store.lastShowDay = loadedDays.value[loadedDays.value.length - 1].id;
 };
 
 /** Load daysToDisplay preview days based on first showed day*/
@@ -71,7 +72,7 @@ const loadInitDays = (): void => {
     loadedDays.value.push(DateUtil.getNextDay(today, i));
   }
   store.selectedDay = loadedDays.value[0].id;
-  store.lastShowDay = loadedDays.value[loadedDays.value.length -1].id;
+  store.lastShowDay = loadedDays.value[loadedDays.value.length - 1].id;
 };
 
 /** Set clicked day */
@@ -81,11 +82,15 @@ const setSelectedDay = (dayId: number): void => {
 
 /** Calculate how much days should be showed
  * @returns {number}
-*/
+ */
 const calcDaysToDisplay = (): number => {
-  return window.innerWidth >= 1420 ? 7
-    : window.innerWidth >= 1024 ? 6
-    : window.innerWidth >= 500 ? 5 : 4;
+  return window.innerWidth >= 1420
+    ? 7
+    : window.innerWidth >= 1024
+      ? 6
+      : window.innerWidth >= 500
+        ? 5
+        : 4;
 };
 
 /** Set new daysToDisplay and reload component */
@@ -99,13 +104,13 @@ watch(
   () => store.reload,
   () => {
     loadNextDays();
-  }
-)
+  },
+);
 
 /** Load init days */
 onBeforeMount(() => {
   window.addEventListener('resize', () => {
-    resizeLogic()
+    resizeLogic();
   });
 
   daysToDisplay.value = calcDaysToDisplay();

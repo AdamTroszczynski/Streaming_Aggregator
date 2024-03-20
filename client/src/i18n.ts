@@ -7,6 +7,6 @@ export default createI18n({
   locale: 'pl',
   messages: {
     en,
-    pl
-  }
+    pl,
+  },
 });
