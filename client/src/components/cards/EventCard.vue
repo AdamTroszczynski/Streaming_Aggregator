@@ -1,35 +1,35 @@
 <template>
   <div
-    class="w-full flex flex-col pb-2.5 pl-1 border-b border-borderGrey lg:pb-3"
+    class="flex w-full flex-col border-b border-borderGrey pb-2.5 pl-1 lg:pb-3"
   >
     <h2
-      class="font-bold uppercase text-sm max-w-[244px] lg:text-base lg:max-w-full"
+      class="max-w-[244px] text-sm font-bold uppercase lg:max-w-full lg:text-base"
       :class="props.isFinished ? 'text-lightGrey' : 'text-semiBlack'"
     >
       {{ props.title }}
     </h2>
     <div
-      class="flex flex-col gap-2 lg:flex-row lg:justify-between lg:mt-[-5px]"
+      class="flex flex-col gap-2 lg:mt-[-5px] lg:flex-row lg:justify-between"
     >
       <div
-        class="flex text-[0.7rem] gap-2 mt-[2px] lg:text-sm lg:gap-8"
+        class="mt-[2px] flex gap-2 text-[0.7rem] lg:gap-8 lg:text-sm"
         :class="props.isFinished ? 'text-lighterGrey' : 'text-lightGrey'"
       >
         <div
-          class="flex items-center gap-1 min-w-[66px] lg:gap-2 lg:min-w-[84px]"
+          class="flex min-w-[66px] items-center gap-1 lg:min-w-[84px] lg:gap-2"
         >
-          <ClockIcon class="w-[15px] h-[13px] lg:w-[17px] lg:h-[17px]" />
+          <ClockIcon class="h-[13px] w-[15px] lg:h-[17px] lg:w-[17px]" />
           {{ props.duration }} min
         </div>
         <div
-          class="flex items-center gap-1 min-w-[89px] lg:gap-2 lg:min-w-[115px]"
+          class="flex min-w-[89px] items-center gap-1 lg:min-w-[115px] lg:gap-2"
         >
-          <TagIcon class="w-[13px] h-[12px] lg:w-[17px] lg:h-[17px]" />
+          <TagIcon class="h-[12px] w-[13px] lg:h-[17px] lg:w-[17px]" />
           {{ t(`eventCard.${props.tag}`) }}
         </div>
         <div class="flex items-center gap-1 lg:gap-2">
           <EventLanguageIcon
-            class="w-[14px] h-[13px] lg:w-[17px] lg:h-[17px]"
+            class="h-[13px] w-[14px] lg:h-[17px] lg:w-[17px]"
           />
           {{ t(`eventCard.${props.lang}`) }}
         </div>
@@ -45,7 +45,7 @@
           @click="toggleFavorite"
         >
           <FavoriteIcon
-            class="w-[13px] h-[13px] lg:w-[16px] lg:h-[16px]"
+            class="h-[13px] w-[13px] lg:h-[16px] lg:w-[16px]"
             :is-white="!isFavorite"
           />
         </ActionButton>

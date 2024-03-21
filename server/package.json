@@ -10,7 +10,7 @@
     "build:prod": "webpack build --progress --color",
     "dev:build": "webpack --watch",
     "dev:server": "webpack && nodemon \"./dist/server.js\" --watch \"./dist\"",
-    "format": "prettier --write \"src/**/*.+(js|ts|html|vue)\"",
+    "format": "prettier --write \"src/**/*.+(js|ts)\"",
     "prepare": "cd ../ && husky ./server/.husky",
     "lint-staged": "lint-staged"
   },

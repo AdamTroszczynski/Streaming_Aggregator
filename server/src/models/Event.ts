@@ -14,7 +14,7 @@ export default class Event {
     language: string,
     streamingLink: string,
     startDate: number,
-    endDate: number
+    endDate: number,
   ) {
     this.eventId = eventId;
     this.eventName = eventName;

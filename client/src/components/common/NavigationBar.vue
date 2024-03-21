@@ -1,9 +1,9 @@
 <template>
   <nav
-    class="h-[607px] bg-[url('/NavbarBgMb.png')] bg-right-top bg-no-repeat bg-white lg:bg-[url('/NavbarBgPc.png')] lg:h-[419px]"
+    class="h-[607px] bg-white bg-[url('/NavbarBgMb.png')] bg-right-top bg-no-repeat lg:h-[419px] lg:bg-[url('/NavbarBgPc.png')]"
   >
     <div
-      class="w-full p-5 flex justify-between items-center relative lg:py-3.5 lg:px-5 l:px-14"
+      class="relative flex w-full items-center justify-between p-5 lg:px-5 lg:py-3.5 l:px-14"
     >
       <h2 class="text-2xl font-bold text-black lg:min-w-[191px]">
         STREAM 'N GO
@@ -17,7 +17,7 @@
         <MenuIcon />
       </ActionButton>
       <div
-        class="hidden lg:flex lg:gap-5 lg:w-full lg:justify-end lg:pr-8 2xl:pr-14"
+        class="hidden lg:flex lg:w-full lg:justify-end lg:gap-5 lg:pr-8 2xl:pr-14"
       >
         <LinkButton :is-select="true">{{ t('navbar.homePage') }}</LinkButton>
         <LinkButton v-if="isLogin">{{ t('navbar.addStream') }}</LinkButton>
@@ -42,7 +42,7 @@
 
       <div
         v-if="isMenuActive"
-        class="absolute z-10 w-1/2 bg-decorator shadow-lg flex flex-col gap-2 p-4 items-center top-[95%] left-[25%] rounded-2xl lg:hidden"
+        class="absolute left-[25%] top-[95%] z-10 flex w-1/2 flex-col items-center gap-2 rounded-2xl bg-decorator p-4 shadow-lg lg:hidden"
       >
         <LinkButton :is-select="true">{{ t('navbar.homePage') }}</LinkButton>
         <LinkButton v-if="isLogin">{{ t('navbar.addStream') }}</LinkButton>
@@ -64,10 +64,10 @@
       </div>
     </div>
     <div
-      class="w-full h-[496px] px-5 flex justify-center items-center lg:h-[300px] lg:mt-5"
+      class="flex h-[496px] w-full items-center justify-center px-5 lg:mt-5 lg:h-[300px]"
     >
       <div
-        class="w-[339px] h-full bg-[#FCF6F6] shadow-lg rounded-lg flex justify-center items-center lg:w-[1113px]"
+        class="flex h-full w-[339px] items-center justify-center rounded-lg bg-[#FCF6F6] shadow-lg lg:w-[1113px]"
       ></div>
     </div>
   </nav>

@@ -22,7 +22,7 @@ export default class Organization {
     phoneNumber: string,
     email: string,
     websiteLink: string,
-    photo: Blob
+    photo: Blob,
   ) {
     this.organizationId = organizationId;
     this.formalName = formalName;

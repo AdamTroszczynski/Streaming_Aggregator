@@ -1,7 +1,7 @@
 <template>
   <a
     v-if="isLink"
-    class="text-white font-medium text-sm 2xl:text-base"
+    class="text-sm font-medium text-white 2xl:text-base"
     :href="goTo"
   >
     <slot></slot>
@@ -9,7 +9,7 @@
 
   <button
     v-else-if="isButton"
-    class="btn btn-xs lg:btn-sm rounded bg-information text-white border-none font-semibold 2xl:text-lg lg:px-2 hover:bg-information hover:text-white"
+    class="btn btn-xs rounded border-none bg-information font-semibold text-white lg:btn-sm hover:bg-information hover:text-white lg:px-2 2xl:text-lg"
   >
     <slot></slot>
   </button>

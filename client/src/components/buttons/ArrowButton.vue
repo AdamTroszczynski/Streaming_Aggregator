@@ -1,13 +1,13 @@
 <template>
   <button
-    class="bg-white active:scale-[0.955] duration-75"
+    class="bg-white duration-75 active:scale-[0.955]"
     @click="emitClickEvent()"
   >
     <RightArrowIcon
       v-if="isRight"
-      class="lg:w-[23px] lg:h-[38px]"
+      class="lg:h-[38px] lg:w-[23px]"
     ></RightArrowIcon>
-    <LeftArrowIcon v-else class="lg:w-[23px] lg:h-[38px]"></LeftArrowIcon>
+    <LeftArrowIcon v-else class="lg:h-[38px] lg:w-[23px]"></LeftArrowIcon>
   </button>
 </template>
 

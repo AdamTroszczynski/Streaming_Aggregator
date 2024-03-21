@@ -3,4 +3,4 @@ export enum ErrorMessagesEnum {
   ServerError = 'Internal server error',
   ValidationError = 'Validation error',
   ResourceError = 'Resource error',
-};
+}

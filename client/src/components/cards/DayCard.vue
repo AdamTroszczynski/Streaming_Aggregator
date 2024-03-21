@@ -1,6 +1,6 @@
 <template>
   <div
-    class="w-16 h-16 font-medium flex justify-center items-center flex-col cursor-pointer relative select-none active:scale-[0.955] duration-100 lg:w-24 lg:h-24"
+    class="relative flex h-16 w-16 cursor-pointer select-none flex-col items-center justify-center font-medium duration-100 active:scale-[0.955] lg:h-24 lg:w-24"
     :class="setClasses"
     @click="emitClickEvent()"
   >

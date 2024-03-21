@@ -1,8 +1,8 @@
 <template>
-  <main class="w-full min-h-screen flex flex-col justify-between bg-[#F2F2F2]">
+  <main class="flex min-h-screen w-full flex-col justify-between bg-[#F2F2F2]">
     <NavigationBar />
     <h1
-      class="font-bold text-navy text-3xl p-5 lg:text-center lg:mr-64 lg:text-5xl lg:py-7 2xl:mr-[500px]"
+      class="p-5 text-3xl font-bold text-navy lg:mr-64 lg:py-7 lg:text-center lg:text-5xl 2xl:mr-[500px]"
     >
       {{ t('homeView.title') }}
     </h1>

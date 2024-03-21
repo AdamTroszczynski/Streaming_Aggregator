@@ -1,8 +1,8 @@
 <template>
   <section
-    class="w-full h-16 bg-white shadow flex justify-center items-center lg:h-24 lg:gap-2"
+    class="flex h-16 w-full items-center justify-center bg-white shadow lg:h-24 lg:gap-2"
   >
-    <div class="w-16 h-16 flex justify-center items-center">
+    <div class="flex h-16 w-16 items-center justify-center">
       <ArrowButton :is-right="false" @click-action="loadPreviewDays">
       </ArrowButton>
     </div>
@@ -16,7 +16,7 @@
       >
       </DayCard>
     </div>
-    <div class="w-16 h-16 flex justify-center items-center">
+    <div class="flex h-16 w-16 items-center justify-center">
       <ArrowButton @click-action="loadNextDays"></ArrowButton>
     </div>
   </section>

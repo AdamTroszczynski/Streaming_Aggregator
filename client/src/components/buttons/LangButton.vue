@@ -1,9 +1,9 @@
 <template>
   <button
-    class="bg-none border-none flex gap-2 items-center justify-center"
+    class="flex items-center justify-center gap-2 border-none bg-none"
     @click="toggleLanguage"
   >
-    <p class="text-white font-normal lg:text-sm 2xl:text-base">
+    <p class="font-normal text-white lg:text-sm 2xl:text-base">
       {{ t(`navbar.lang`) }}
     </p>
     <LanguageIcon />

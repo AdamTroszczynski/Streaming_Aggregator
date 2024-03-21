@@ -1,7 +1,7 @@
 <template>
   <button
     v-if="isNavibar"
-    class="btn min-h-0 h-[38px] border-none bg-information font-normal text-white rounded border px-3 hover:text-white hover:bg-information"
+    class="btn h-[38px] min-h-0 rounded border border-none bg-information px-3 font-normal text-white hover:bg-information hover:text-white"
     @click="emitClickEvent()"
   >
     <slot></slot>
@@ -9,13 +9,13 @@
 
   <button
     v-else
-    class="btn btn-xs min-w-[31px] font-normal text-darkblue rounded-md border hover:text-darkblue lg:min-w-[42px] 2xl:btn-sm"
+    class="btn btn-xs min-w-[31px] rounded-md border font-normal text-darkblue 2xl:btn-sm hover:text-darkblue lg:min-w-[42px]"
     :class="[
       isGrey
         ? 'border-grey hover:border-grey'
         : 'border-darkblue hover:border-darkblue',
       isPink
-        ? 'bg-textDecorator border-none hover:bg-textDecorator'
+        ? 'border-none bg-textDecorator hover:bg-textDecorator'
         : 'bg-white hover:bg-white',
     ]"
     @click="emitClickEvent()"
