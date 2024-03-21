@@ -29,6 +29,8 @@ const en = {
     login: 'Login',
     registration: 'Registration',
     lang: 'EN',
+    addStream: 'Add stream',
+    myEvents: 'My events'
   },
   eventCard: {
     presentation: 'Presentation',
@@ -50,6 +52,9 @@ const en = {
     noOneEvent: 'No streaming is scheduled for this day.',
     goToNextDay: 'Click here to go to the next day >',
   },
+  homeView: {
+    title: 'Schedule of events'
+  }
 };
 
 export default en;
