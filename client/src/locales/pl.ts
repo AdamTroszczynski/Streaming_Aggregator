@@ -28,6 +28,8 @@ const pl = {
     login: 'Logowanie',
     registration: 'Rejestracja',
     lang: 'PL',
+    addStream: 'Dodaj streaming',
+    myEvents: 'Moje wydarzenia'
   },
   eventCard: {
     presentation: 'Prezentacja',
@@ -49,6 +51,9 @@ const pl = {
     noOneEvent: 'W tym dniu nie zaplanowano żadnych streamingów.',
     goToNextDay: 'Kliknij tutaj, aby przejść do kolejnego dnia >',
   },
+  homeView: {
+    title: 'Harmonogram wydarzeń'
+  }
 };
 
 export default pl;
