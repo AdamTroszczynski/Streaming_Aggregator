@@ -1,14 +1,16 @@
 <template>
   <main class="w-full min-h-screen flex flex-col justify-between bg-[#F2F2F2]">
-    <NavigationBar/>
-    <h1 class="font-bold text-navy text-3xl p-5 lg:text-center lg:mr-64 lg:text-5xl lg:py-7 2xl:mr-[500px]">
+    <NavigationBar />
+    <h1
+      class="font-bold text-navy text-3xl p-5 lg:text-center lg:mr-64 lg:text-5xl lg:py-7 2xl:mr-[500px]"
+    >
       {{ t('homeView.title') }}
     </h1>
     <div class="flex flex-col items-center">
-      <DaySelector class="relative z-[2] 2xl:pr-48"/>
-      <EventsList class="2xl:mr-48"/>
+      <DaySelector class="relative z-[2] 2xl:pr-48" />
+      <EventsList class="2xl:mr-48" />
     </div>
-    <MainFooter class="mt-5 lg:mt-[-14rem]"/>
+    <MainFooter class="mt-5 lg:mt-[-14rem]" />
   </main>
 </template>
 <script setup lang="ts">

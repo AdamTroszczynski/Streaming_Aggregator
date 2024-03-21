@@ -1,5 +1,7 @@
 <template>
-  <section class="w-full h-16 bg-white shadow flex justify-center items-center lg:h-24 lg:gap-2">
+  <section
+    class="w-full h-16 bg-white shadow flex justify-center items-center lg:h-24 lg:gap-2"
+  >
     <div class="w-16 h-16 flex justify-center items-center">
       <ArrowButton :is-right="false" @click-action="loadPreviewDays">
       </ArrowButton>
@@ -62,9 +64,11 @@ const loadPreviewDays = (): void => {
 };
 
 /** Load daysToDisplay next days based on today date*/
-const loadInitDays = (): void => {
+const loadInitDays = (isReload: boolean = false): void => {
   if (loadedDays.value.length !== 0) return;
-  const today = new Date();
+  let today: Date;
+  if (isReload) today = new Date(store.selectedDay);
+  else today = new Date();
 
   for (let i = 0; i < daysToDisplay.value; i++) {
     loadedDays.value.push(DateUtil.getNextDay(today, i));
@@ -93,10 +97,10 @@ const calcDaysToDisplay = (): number => {
 
 /** Set new daysToDisplay and reload component */
 const resizeLogic = (): void => {
-  if(calcDaysToDisplay() === daysToDisplay.value) return;
+  if (calcDaysToDisplay() === daysToDisplay.value) return;
   daysToDisplay.value = calcDaysToDisplay();
   loadedDays.value = [];
-  loadInitDays();
+  loadInitDays(true);
 };
 
 watch(
