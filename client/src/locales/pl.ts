@@ -29,7 +29,7 @@ const pl = {
     registration: 'Rejestracja',
     lang: 'PL',
     addStream: 'Dodaj streaming',
-    myEvents: 'Moje wydarzenia'
+    myEvents: 'Moje wydarzenia',
   },
   eventCard: {
     presentation: 'Prezentacja',
@@ -52,8 +52,8 @@ const pl = {
     goToNextDay: 'Kliknij tutaj, aby przejść do kolejnego dnia >',
   },
   homeView: {
-    title: 'Harmonogram wydarzeń'
-  }
+    title: 'Harmonogram wydarzeń',
+  },
 };
 
 export default pl;

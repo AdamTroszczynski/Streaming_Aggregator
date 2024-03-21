@@ -1,4 +1,3 @@
-
 const en = {
   days: {
     sun: 'SUN',
@@ -30,7 +29,7 @@ const en = {
     registration: 'Registration',
     lang: 'EN',
     addStream: 'Add stream',
-    myEvents: 'My events'
+    myEvents: 'My events',
   },
   eventCard: {
     presentation: 'Presentation',
@@ -53,8 +52,8 @@ const en = {
     goToNextDay: 'Click here to go to the next day >',
   },
   homeView: {
-    title: 'Schedule of events'
-  }
+    title: 'Schedule of events',
+  },
 };
 
 export default en;
