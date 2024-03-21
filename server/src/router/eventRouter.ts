@@ -4,7 +4,7 @@ import {
   getEventByIdAction,
   getAllEventsAction,
   updateEventAction,
-  deleteEventAction
+  deleteEventAction,
 } from '@/controller/eventController';
 
 const eventRouter = express.Router();

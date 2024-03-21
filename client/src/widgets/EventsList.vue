@@ -1,19 +1,19 @@
 <template>
-  <section class="w-full pl-5 pr-3.5 max-w-[792px] lg:p-0 lg:relative">
+  <section class="w-full max-w-[792px] pl-5 pr-3.5 lg:relative lg:p-0">
     <div
-      class="hidden 2xl:block 2xl:absolute 2xl:w-[235px] 2xl:h-[185px] 2xl:rounded-xl 2xl:bg-[#001737] 2xl:top-[20px] 2xl:left-[104%] 2xl:shadow-lg"
+      class="hidden 2xl:absolute 2xl:left-[104%] 2xl:top-[20px] 2xl:block 2xl:h-[185px] 2xl:w-[235px] 2xl:rounded-xl 2xl:bg-[#001737] 2xl:shadow-lg"
     >
       <slot name="shortAdv"></slot>
     </div>
 
     <div
-      class="hidden 2xl:block 2xl:absolute 2xl:w-[235px] 2xl:h-[591px] 2xl:rounded-xl 2xl:bg-white 2xl:top-[220px] 2xl:left-[104%] 2xl:shadow-xl"
+      class="hidden 2xl:absolute 2xl:left-[104%] 2xl:top-[220px] 2xl:block 2xl:h-[591px] 2xl:w-[235px] 2xl:rounded-xl 2xl:bg-white 2xl:shadow-xl"
     >
       <slot name="longAdv"></slot>
     </div>
 
     <div
-      class="w-full bg-white flex flex-col min-h-[400px] shadow justify-start items-center py-3 gap-1 lg:pr-4 lg:min-h-[1100px] lg:pb-[150px]"
+      class="flex min-h-[400px] w-full flex-col items-center justify-start gap-1 bg-white py-3 shadow lg:min-h-[1100px] lg:pb-[150px] lg:pr-4"
     >
       <template v-if="isLoaded">
         <EventGroupCard
@@ -36,9 +36,9 @@
           </EventCard>
         </EventGroupCard>
 
-        <div class="w-full flex flex-col justify-center lg:relative">
+        <div class="flex w-full flex-col justify-center lg:relative">
           <h3
-            class="text-semiGrey text-center font-medium text-xs mt-3 px-2 lg:text-sm lg:mt-8"
+            class="mt-3 px-2 text-center text-xs font-medium text-semiGrey lg:mt-8 lg:text-sm"
             :class="events.length === 0 ? 'lg:text-center' : 'lg:text-end'"
           >
             {{
@@ -51,7 +51,7 @@
             }}</span>
           </h3>
           <button
-            class="text-purple w-auto px-2 font-semibold text-xs underline lg:text-sm lg:absolute lg:z-[20] lg:top-[100%]"
+            class="w-auto px-2 text-xs font-semibold text-purple underline lg:absolute lg:top-[100%] lg:z-[20] lg:text-sm"
             :class="
               events.length === 0 && locale === 'pl'
                 ? 'lg:left-[29.1%]'
@@ -68,7 +68,7 @@
         </div>
       </template>
       <template v-else>
-        <div class="w-full flex justify-center items-center mt-5">
+        <div class="mt-5 flex w-full items-center justify-center">
           <span
             class="loading loading-spinner loading-lg text-textDecorator"
           ></span>
