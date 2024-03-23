@@ -6,7 +6,7 @@
       class="relative flex w-full items-center justify-between p-5 lg:px-5 lg:py-3.5 l:px-14"
     >
       <h2 class="text-2xl font-bold text-black lg:min-w-[191px]">
-        STREAM 'N GO
+        <button @click="toHomePage">STREAM 'N GO</button>
       </h2>
 
       <ActionButton
@@ -80,10 +80,12 @@ import ActionButton from '@/components/buttons/ActionButton.vue';
 import MenuIcon from '@/components/icons/navbar/MenuIcon.vue';
 import LinkButton from '@/components/buttons/LinkButton.vue';
 import LangButton from '@/components/buttons/LangButton.vue';
+import { useRouter } from 'vue-router';
 import { useI18n } from 'vue-i18n';
 import { ref, type Ref } from 'vue';
 
 const { t } = useI18n();
+const router = useRouter();
 const isLogin = ref(true);
 
 /** Side menu active status */
@@ -92,6 +94,11 @@ const isMenuActive: Ref<boolean> = ref(false);
 /** Toggle side menu active status */
 const toggleMenu = (): void => {
   isMenuActive.value = !isMenuActive.value;
+};
+
+/** Go to home page */
+const toHomePage = (): void => {
+  router.push('/');
 };
 
 /** Style classes for AvatarBtn */
