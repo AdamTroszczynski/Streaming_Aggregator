@@ -12,6 +12,7 @@
       <ActionButton
         :is-navibar="true"
         class="lg:hidden"
+        data-test="NavigationBarToggleBtn"
         @click-action="toggleMenu"
       >
         <MenuIcon />
@@ -43,6 +44,7 @@
       <div
         v-if="isMenuActive"
         class="absolute left-[25%] top-[95%] z-10 flex w-1/2 flex-col items-center gap-2 rounded-2xl bg-decorator p-4 shadow-lg lg:hidden"
+        data-test="NavigationBarMenu"
       >
         <LinkButton :is-select="true">{{ t('navbar.homePage') }}</LinkButton>
         <LinkButton v-if="isLogin">{{ t('navbar.addStream') }}</LinkButton>

@@ -1,29 +1,31 @@
 <template>
   <div
     class="relative flex w-full justify-between gap-3 px-3 pt-3.5 before:absolute before:left-[-5px] before:top-0 before:h-full before:w-[10px] before:bg-decorator before:content-[''] lg:pl-11"
-    :class="
-      props.isNow ? 'bg-whiteBlue before:block' : 'bg-white before:hidden'
-    "
+    :class="isNow ? 'bg-whiteBlue before:block' : 'bg-white before:hidden'"
+    data-test="EventGroupCardMainDiv"
   >
     <h2
       class="min-w-[60px] text-sm font-bold lg:min-w-[80px] lg:text-base"
-      :class="props.isFinished ? 'text-lightGrey' : 'text-semiBlack'"
+      :class="isFinished ? 'text-lightGrey' : 'text-semiBlack'"
+      data-test="EventGroupCardH2"
     >
       {{ showTime }}
       <h4
-        v-if="props.isNow"
+        v-if="isNow"
         class="mt-[-5px] text-[0.5rem] font-bold text-textDecorator lg:text-[0.625rem]"
+        data-test="EventGroupCardH4"
       >
         {{ t('eventGroupCard.now') }}
       </h4>
       <h4
-        v-else-if="!props.isFinished"
+        v-else-if="!isFinished"
         class="mt-[-5px] text-[0.5rem] font-bold text-textDecorator lg:text-[0.625rem]"
+        data-test="EventGroupCardIsFinished"
       >
         {{ `${t('eventGroupCard.in')} ${calcTime}` }}
       </h4>
     </h2>
-    <div class="flex w-full flex-col gap-3">
+    <div class="flex w-full flex-col gap-3" data-test="EventGroupCardSlot">
       <slot></slot>
     </div>
   </div>
@@ -65,7 +67,7 @@ const showTime = computed<String>(() => {
   return `${hours}:${minutes}`;
 });
 
-/** Calculate how long before the meeting starts
+/** Calculate how long before the event starts
  * @returns {String}
  */
 const calcTime = computed<String>(() => {
