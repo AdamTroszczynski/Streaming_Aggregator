@@ -2,6 +2,7 @@
   <button
     v-if="isNavibar"
     class="btn h-[38px] min-h-0 rounded border border-none bg-information px-3 font-normal text-white hover:bg-information hover:text-white"
+    data-test="ActionButtonNavibarBtn"
     @click="emitClickEvent()"
   >
     <slot></slot>
@@ -18,6 +19,7 @@
         ? 'border-none bg-textDecorator hover:bg-textDecorator'
         : 'bg-white hover:bg-white',
     ]"
+    data-test="ActionButtonBtn"
     @click="emitClickEvent()"
   >
     <slot></slot>

@@ -4,37 +4,48 @@
   >
     <h2
       class="max-w-[244px] text-sm font-bold uppercase lg:max-w-full lg:text-base"
-      :class="props.isFinished ? 'text-lightGrey' : 'text-semiBlack'"
+      :class="isFinished ? 'text-lightGrey' : 'text-semiBlack'"
+      data-test="EventCardH2"
     >
-      {{ props.title }}
+      {{ title }}
     </h2>
     <div
       class="flex flex-col gap-2 lg:mt-[-5px] lg:flex-row lg:justify-between"
     >
       <div
         class="mt-[2px] flex gap-2 text-[0.7rem] lg:gap-8 lg:text-sm"
-        :class="props.isFinished ? 'text-lighterGrey' : 'text-lightGrey'"
+        :class="isFinished ? 'text-lighterGrey' : 'text-lightGrey'"
+        data-test="EventCardFinishedDiv"
       >
         <div
           class="flex min-w-[66px] items-center gap-1 lg:min-w-[84px] lg:gap-2"
+          data-test="EventCardDurationDiv"
         >
           <ClockIcon class="h-[13px] w-[15px] lg:h-[17px] lg:w-[17px]" />
-          {{ props.duration }} min
+          {{ duration }} min
         </div>
         <div
           class="flex min-w-[89px] items-center gap-1 lg:min-w-[115px] lg:gap-2"
+          data-test="EventCardTagDiv"
         >
           <TagIcon class="h-[12px] w-[13px] lg:h-[17px] lg:w-[17px]" />
-          {{ t(`eventCard.${props.tag}`) }}
+          {{ t(`eventCard.${tag}`) }}
         </div>
-        <div class="flex items-center gap-1 lg:gap-2">
+        <div
+          class="flex items-center gap-1 lg:gap-2"
+          data-test="EventCardLangDiv"
+        >
           <EventLanguageIcon
             class="h-[13px] w-[14px] lg:h-[17px] lg:w-[17px]"
           />
-          {{ t(`eventCard.${props.lang}`) }}
+          {{ t(`eventCard.${lang}`) }}
         </div>
       </div>
-      <div v-if="!isFinished" class="flex items-center justify-end gap-3">
+      <div
+        v-if="!isFinished"
+        class="flex items-center justify-end gap-3"
+        data-test="EventCardBtnsDiv"
+      >
         <ActionButton class="lg:btn-sm" @click-action="goToStream">
           {{ t('eventCard.watch') }}
         </ActionButton>

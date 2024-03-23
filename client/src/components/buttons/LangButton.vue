@@ -1,6 +1,7 @@
 <template>
   <button
     class="flex items-center justify-center gap-2 border-none bg-none"
+    data-test="LangButtonBtn"
     @click="toggleLanguage"
   >
     <p class="font-normal text-white lg:text-sm 2xl:text-base">

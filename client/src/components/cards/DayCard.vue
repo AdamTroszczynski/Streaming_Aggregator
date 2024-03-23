@@ -2,10 +2,15 @@
   <div
     class="relative flex h-16 w-16 cursor-pointer select-none flex-col items-center justify-center font-medium duration-100 active:scale-[0.955] lg:h-24 lg:w-24"
     :class="setClasses"
+    data-test="DayCardDiv"
     @click="emitClickEvent()"
   >
-    <h2 class="text-xl text-black lg:text-2xl">{{ props.name }}</h2>
-    <h3 class="text-sm text-decorator lg:text-lg">{{ props.showingDate }}</h3>
+    <h2 class="text-xl text-black lg:text-2xl" data-test="DayCardH2">
+      {{ name }}
+    </h2>
+    <h3 class="text-sm text-decorator lg:text-lg" data-test="DayCardH3">
+      {{ showingDate }}
+    </h3>
   </div>
 </template>
 

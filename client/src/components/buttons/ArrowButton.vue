@@ -1,6 +1,7 @@
 <template>
   <button
     class="bg-white duration-75 active:scale-[0.955]"
+    data-test="ArrowButtonBtn"
     @click="emitClickEvent()"
   >
     <RightArrowIcon
