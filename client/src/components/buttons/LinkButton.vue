@@ -1,7 +1,7 @@
 <template>
   <a
     v-if="isLink"
-    class="text-sm font-medium text-white 2xl:text-base"
+    class="text-sm font-medium normal-case text-white 2xl:text-base"
     :href="goTo"
     data-test="LinkButtonLink"
   >
@@ -10,7 +10,7 @@
 
   <button
     v-else-if="isButton"
-    class="btn btn-xs rounded border-none bg-information font-semibold text-white lg:btn-sm hover:bg-information hover:text-white lg:px-2 2xl:text-lg"
+    class="btn btn-xs rounded border-none bg-information font-semibold normal-case text-white lg:btn-sm hover:bg-information hover:text-white lg:px-2 2xl:text-lg"
     data-test="LinkButtonBtn"
   >
     <slot></slot>
@@ -18,7 +18,7 @@
 
   <RouterLink
     v-else
-    class="text-white 2xl:text-lg"
+    class="normal-case text-white 2xl:text-lg"
     :class="isSelect ? 'font-bold underline' : 'font-normal no-underline'"
     :to="goTo"
     data-test="LinkButtonRouterLink"

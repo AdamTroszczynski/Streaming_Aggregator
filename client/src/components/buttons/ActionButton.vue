@@ -1,7 +1,7 @@
 <template>
   <button
     v-if="isNavibar"
-    class="btn h-[38px] min-h-0 rounded border border-none bg-information px-3 font-normal text-white hover:bg-information hover:text-white"
+    class="btn h-[38px] min-h-0 rounded border border-none bg-information px-3 font-normal normal-case text-white hover:bg-information hover:text-white"
     data-test="ActionButtonNavibarBtn"
     @click="emitClickEvent()"
   >
@@ -10,7 +10,7 @@
 
   <button
     v-else
-    class="btn btn-xs min-w-[31px] rounded-md border font-normal text-darkblue 2xl:btn-sm hover:text-darkblue lg:min-w-[42px]"
+    class="btn btn-xs min-w-[31px] rounded-md border font-normal normal-case text-darkblue 2xl:btn-sm hover:text-darkblue lg:min-w-[42px]"
     :class="[
       isGrey
         ? 'border-grey hover:border-grey'
