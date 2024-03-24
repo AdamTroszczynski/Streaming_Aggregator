@@ -9,7 +9,9 @@ export const getEventsPreview = async (
   timestamp: number,
 ): Promise<{ [key: string]: Event[] } | void> => {
   try {
-    const response = await axiosClient.get('/events', { data: timestamp });
+    const response = await axiosClient.get('/event/events', {
+      data: timestamp,
+    });
     const data = response.data;
     return data;
   } catch (err) {
