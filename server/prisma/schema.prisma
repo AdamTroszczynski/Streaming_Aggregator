@@ -13,7 +13,7 @@ model Message {
 }
 
 model Event {
-  eventId                 String @id @default(auto()) @map("_id") @db.ObjectId
+  eventId                 String    @id @default(auto()) @map("_id") @db.ObjectId
   eventName               String
   tag                     String
   language                String
@@ -29,5 +29,5 @@ model Event {
   phoneNumber             String
   email                   String
   websiteLink             String
-  photo                   Bytes
+  photo                   String
 }

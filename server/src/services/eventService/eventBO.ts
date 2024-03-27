@@ -3,9 +3,9 @@ import type Event from '@/types/Event';
 
 /**
  * Create new event BO
- * @param {event} content
+ * @param {Event} event
  * @returns {Event} created event
  */
-export const createEventBO = async (content: Event): Promise<Event> => {
-  return await createEventBO(content);
+export const createEventBO = async (event: Event): Promise<Event> => {
+  return await createEventBO(event);
 };
