@@ -15,7 +15,7 @@ type Event = {
   phoneNumber: string;
   email: string;
   websiteLink: string;
-  photo: Blob;
+  photo: string;
 }
 
 export default Event;
