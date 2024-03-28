@@ -1,3 +1,3 @@
 import type { Event } from '@/types/Event';
 
-export type EventsArrays = Promise<{ [key: string]: Event[] }>;
+export type EventsPrevArrays = Promise<{ [key: string]: Event[] }>;
