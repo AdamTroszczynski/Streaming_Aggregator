@@ -1,11 +1,11 @@
 type Event = {
-  eventId: number;
+  eventId: string;
   eventName: string;
   tag: string;
   language: string;
   streamingLink: string;
-  startDate: number;
-  endDate: number;
+  startDate: number | Date;
+  endDate: number | Date;
   organizationFormalName: string;
   organizationDisplayName: string;
   country: string;
@@ -16,6 +16,6 @@ type Event = {
   email: string;
   websiteLink: string;
   photo: string;
-}
+};
 
 export default Event;

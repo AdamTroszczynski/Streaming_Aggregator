@@ -11,3 +11,23 @@ model Message {
   id       String    @id @default(auto()) @map("_id") @db.ObjectId
   content  String
 }
+
+model Event {
+  eventId                 String    @id @default(auto()) @map("_id") @db.ObjectId
+  eventName               String
+  tag                     String
+  language                String
+  streamingLink           String
+  startDate               DateTime
+  endDate                 DateTime
+  organizationFormalName  String
+  organizationDisplayName String
+  country                 String
+  city                    String
+  postalCode              String
+  streetAddress           String
+  phoneNumber             String
+  email                   String
+  websiteLink             String
+  photo                   String
+}
