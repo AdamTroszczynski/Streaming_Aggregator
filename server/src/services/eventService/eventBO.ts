@@ -9,3 +9,12 @@ import type Event from '@/types/Event';
 export const createEventBO = async (event: Event): Promise<Event> => {
   return await createEventDAO(event);
 };
+
+/**
+ * Get event by id BO
+ * @param {string} id event id
+ * @returns {Event|null} event or null if event with `id` doesn't exists
+ */
+export const getEventByIdBO = async (id: string): Promise<Event | null> => {
+  return await getEventByIdDAO(id);
+};
