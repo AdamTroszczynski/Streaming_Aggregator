@@ -37,3 +37,16 @@ export const createEventDAO = async (event: Event): Promise<Event> => {
 export const getEventByIdDAO = async (id: string): Promise<Event | null> => {
   return await dbClient.event.findFirst({ where: { eventId: id } });
 };
+
+/**
+ * Delete event DAO
+ * @param {string} id event id
+ * @returns {Message} deleted Event
+ */
+export const deleteEventDAO = async (id: string): Promise<Event> => {
+  return await dbClient.event.delete({
+    where: {
+      eventId: id,
+    },
+  });
+};
