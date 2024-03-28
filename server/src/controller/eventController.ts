@@ -5,12 +5,9 @@ import { ErrorMessagesEnum } from '@/enums/ErrorMessagesEnum';
 import type Message from '@/types/Message';
 import {
   getAllMessagesBO,
-  getMessageByIdBO,
-  createMessageBO,
   updateMessageBO,
-  deleteMessageBO,
 } from '@/services/messageService/messageBO';
-import { createEventBO } from '@/services/eventService/eventBO';
+import { createEventBO, getEventByIdBO, deleteEventBO } from '@/services/eventService/eventBO';
 import Event from '@/types/Event';
 /**
  * Get all events action
@@ -37,8 +34,8 @@ export const getAllEventsAction = async (req: Request, res: Response): Promise<v
 export const getEventByIdAction = async (req: Request, res: Response): Promise<void> => {
   try {
     const { id } = req.params;
-    const message: Message | null = await getMessageByIdBO(id);
-    res.status(StatusCodesEnum.OK).json(message);
+    const receivedEvent: Event | null = await getEventByIdBO(id);
+    res.status(StatusCodesEnum.OK).json(receivedEvent);
   } catch (err) {
     console.error(err);
     res.status(StatusCodesEnum.ServerError).json({ msg: ErrorMessagesEnum.ServerError });
@@ -55,8 +52,8 @@ export const getEventByIdAction = async (req: Request, res: Response): Promise<v
 export const createEventAction = async (req: Request, res: Response): Promise<void> => {
   try {
     const { event } = req.body;
-    const message: Event = await createEventBO(event);
-    res.status(StatusCodesEnum.OK).json(message);
+    const createdEvent: Event = await createEventBO(event);
+    res.status(StatusCodesEnum.OK).json(createdEvent);
   } catch (err) {
     console.error(err);
     res.status(StatusCodesEnum.ServerError).json({ msg: ErrorMessagesEnum.ServerError });
@@ -92,8 +89,8 @@ export const updateEventAction = async (req: Request, res: Response): Promise<vo
 export const deleteEventAction = async (req: Request, res: Response): Promise<void> => {
   try {
     const { id } = req.params;
-    const message: Message = await deleteMessageBO(id);
-    res.status(StatusCodesEnum.OK).json(message);
+    const deletedEvent: Event = await deleteEventBO(id);
+    res.status(StatusCodesEnum.OK).json(deletedEvent);
   } catch (err) {
     console.error(err);
     res.status(StatusCodesEnum.ServerError).json({ msg: ErrorMessagesEnum.ServerError });

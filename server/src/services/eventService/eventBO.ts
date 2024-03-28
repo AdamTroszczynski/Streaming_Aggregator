@@ -1,4 +1,4 @@
-import { createEventDAO, getEventByIdDAO } from '@/services/eventService/eventDAO';
+import { createEventDAO, getEventByIdDAO, deleteEventDAO } from '@/services/eventService/eventDAO';
 import type Event from '@/types/Event';
 
 /**
@@ -17,4 +17,13 @@ export const createEventBO = async (event: Event): Promise<Event> => {
  */
 export const getEventByIdBO = async (id: string): Promise<Event | null> => {
   return await getEventByIdDAO(id);
+};
+
+/**
+ * Delete event BO
+ * @param {string} id event id
+ * @returns {Event} deleted event
+ */
+export const deleteEventBO = async (id: string): Promise<Event> => {
+  return await deleteEventDAO(id);
 };
