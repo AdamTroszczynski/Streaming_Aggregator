@@ -1,4 +1,4 @@
-import { createEventDAO } from '@/services/eventService/eventDAO';
+import { createEventDAO, getEventByIdDAO } from '@/services/eventService/eventDAO';
 import type Event from '@/types/Event';
 
 /**
