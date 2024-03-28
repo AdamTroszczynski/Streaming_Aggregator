@@ -7,5 +7,5 @@ import type Event from '@/types/Event';
  * @returns {Event} created event
  */
 export const createEventBO = async (event: Event): Promise<Event> => {
-  return await createEventBO(event);
+  return await createEventDAO(event);
 };
