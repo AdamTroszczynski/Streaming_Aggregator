@@ -28,3 +28,12 @@ export const createEventDAO = async (event: Event): Promise<Event> => {
     },
   });
 };
+
+/**
+ * Get event by id DAO
+ * @param {string} id event id
+ * @returns {Event|null} event or null if event with `id` doesn't exists
+ */
+export const getEventByIdDAO = async (id: string): Promise<Event | null> => {
+  return await dbClient.event.findFirst({ where: { eventId: id } });
+};
