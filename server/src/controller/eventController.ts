@@ -10,7 +10,8 @@ import {
   updateMessageBO,
   deleteMessageBO,
 } from '@/services/messageService/messageBO';
-
+import { createEventBO } from '@/services/eventService/eventBO';
+import Event from '@/types/Event';
 /**
  * Get all events action
  * @param {Request} req Request
@@ -53,8 +54,8 @@ export const getEventByIdAction = async (req: Request, res: Response): Promise<v
  */
 export const createEventAction = async (req: Request, res: Response): Promise<void> => {
   try {
-    const { content } = req.body;
-    const message: Message = await createMessageBO(content);
+    const { event } = req.body;
+    const message: Event = await createEventBO(event);
     res.status(StatusCodesEnum.OK).json(message);
   } catch (err) {
     console.error(err);
