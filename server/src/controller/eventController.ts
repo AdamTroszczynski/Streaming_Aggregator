@@ -2,16 +2,15 @@ import type { Request, Response } from 'express';
 import { StatusCodesEnum } from '@/enums/StatusCodesEnum';
 import dbClient from '@/services/dbClient';
 import { ErrorMessagesEnum } from '@/enums/ErrorMessagesEnum';
-import type Message from '@/types/Message';
 import type Event from '@/types/Event';
 import type { DateEvent } from '@/types/common';
-import { updateMessageBO } from '@/services/messageService/messageBO';
 import {
   getAllEventsBO,
   getEventsByDateBO,
   createEventBO,
   getEventByIdBO,
   deleteEventBO,
+  updateEventBO,
 } from '@/services/eventService/eventBO';
 
 /**
@@ -93,9 +92,9 @@ export const createEventAction = async (req: Request, res: Response): Promise<vo
 export const updateEventAction = async (req: Request, res: Response): Promise<void> => {
   try {
     const { id } = req.params;
-    const { content } = req.body;
-    const message: Message = await updateMessageBO(id, content);
-    res.status(StatusCodesEnum.OK).json(message);
+    const { event } = req.body;
+    const updatedEvent: Event = await updateEventBO(id, event);
+    res.status(StatusCodesEnum.OK).json(updatedEvent);
   } catch (err) {
     console.error(err);
     res.status(StatusCodesEnum.ServerError).json({ msg: ErrorMessagesEnum.ServerError });

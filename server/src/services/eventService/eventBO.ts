@@ -4,6 +4,7 @@ import {
   createEventDAO,
   getEventByIdDAO,
   deleteEventDAO,
+  updateEventDAO,
 } from '@/services/eventService/eventDAO';
 import type Event from '@/types/Event';
 import type { DateEvent } from '@/types/common';
@@ -63,6 +64,16 @@ export const getEventByIdBO = async (id: string): Promise<Event | null> => {
  */
 export const createEventBO = async (event: Event): Promise<Event> => {
   return await createEventDAO(event);
+};
+
+/**
+ * Update event BO
+ * @param {string} id event id
+ * @param {Event} event event content
+ * @returns {Event} updated event
+ */
+export const updateEventBO = async (id: string, event: Event): Promise<Event> => {
+  return await updateEventDAO(id, event);
 };
 
 /**
