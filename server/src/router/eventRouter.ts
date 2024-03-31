@@ -1,8 +1,9 @@
 import express from 'express';
 import {
-  createEventAction,
-  getEventByIdAction,
   getAllEventsAction,
+  getEventsByDateAction,
+  getEventByIdAction,
+  createEventAction,
   updateEventAction,
   deleteEventAction,
 } from '@/controller/eventController';
@@ -10,6 +11,8 @@ import {
 const eventRouter = express.Router();
 
 eventRouter.get('/events', getAllEventsAction);
+
+eventRouter.get('/events/date/:timestamp', getEventsByDateAction);
 
 eventRouter.get('/events/:id', getEventByIdAction);
 
