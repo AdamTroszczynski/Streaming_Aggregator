@@ -68,6 +68,38 @@ export const createEventDAO = async (event: Event): Promise<Event> => {
 };
 
 /**
+ * Update event DAO
+ * @param {string} id event id
+ * @param {Event} event event content
+ * @returns {Event} updated event
+ */
+export const updateEventDAO = async (id: string, event: Event): Promise<Event> => {
+  return await dbClient.event.update({
+    where: {
+      eventId: id,
+    },
+    data: {
+      eventName: event.eventName,
+      tag: event.tag,
+      language: event.language,
+      streamingLink: event.streamingLink,
+      startDate: new Date(Number(event.startDate)),
+      endDate: new Date(Number(event.endDate)),
+      organizationFormalName: event.organizationFormalName,
+      organizationDisplayName: event.organizationDisplayName,
+      country: event.country,
+      city: event.city,
+      postalCode: event.postalCode,
+      streetAddress: event.streetAddress,
+      phoneNumber: event.phoneNumber,
+      email: event.email,
+      websiteLink: event.websiteLink,
+      photo: event.photo,
+    },
+  });
+};
+
+/**
  * Delete event DAO
  * @param {string} id event id
  * @returns {Promise<Event>} deleted Event
