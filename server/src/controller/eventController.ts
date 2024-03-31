@@ -3,12 +3,17 @@ import { StatusCodesEnum } from '@/enums/StatusCodesEnum';
 import dbClient from '@/services/dbClient';
 import { ErrorMessagesEnum } from '@/enums/ErrorMessagesEnum';
 import type Message from '@/types/Message';
+import type Event from '@/types/Event';
+import type { DateEvent } from '@/types/common';
+import { updateMessageBO } from '@/services/messageService/messageBO';
 import {
-  getAllMessagesBO,
-  updateMessageBO,
-} from '@/services/messageService/messageBO';
-import { createEventBO, getEventByIdBO, deleteEventBO } from '@/services/eventService/eventBO';
-import Event from '@/types/Event';
+  getAllEventsBO,
+  getEventsByDateBO,
+  createEventBO,
+  getEventByIdBO,
+  deleteEventBO,
+} from '@/services/eventService/eventBO';
+
 /**
  * Get all events action
  * @param {Request} req Request
@@ -16,8 +21,26 @@ import Event from '@/types/Event';
  */
 export const getAllEventsAction = async (req: Request, res: Response): Promise<void> => {
   try {
-    const messages: Message[] = await getAllMessagesBO();
-    res.status(StatusCodesEnum.OK).json(messages);
+    const events: Event[] = await getAllEventsBO();
+    res.status(StatusCodesEnum.OK).json(events);
+  } catch (err) {
+    console.error(err);
+    res.status(StatusCodesEnum.ServerError).json({ msg: ErrorMessagesEnum.ServerError });
+  } finally {
+    await dbClient.$disconnect();
+  }
+};
+
+/**
+ * Get events by date action
+ * @param {Request} req Request
+ * @param {Response} res Response
+ */
+export const getEventsByDateAction = async (req: Request, res: Response): Promise<void> => {
+  try {
+    const { timestamp } = req.params;
+    const eventsByDate: DateEvent = await getEventsByDateBO(Number(timestamp));
+    res.status(StatusCodesEnum.OK).json(eventsByDate);
   } catch (err) {
     console.error(err);
     res.status(StatusCodesEnum.ServerError).json({ msg: ErrorMessagesEnum.ServerError });
