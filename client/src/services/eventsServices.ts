@@ -4,16 +4,20 @@ import type { EventsPrevArrays } from '@/types/commonTypes';
 import type { Event } from '@/types/Event';
 
 /** Get all day's events based on day's timestamp
- * @returns {Promise<{[key: string]: Event[]} | void>}
+ * @returns {Promise<EventsPrevArrays>}
  */
-export const getEventsPreview = async (timestamp: number): EventsPrevArrays => {
+export const getEventsPreview = async (
+  timestamp: number,
+): Promise<EventsPrevArrays> => {
   try {
     const response = await axiosClient.get('/event/events', {
       data: timestamp,
     });
     const data = response.data;
+    console.log(data);
     return data;
   } catch (err) {
+    console.log(err);
     throw new Error();
   }
 };

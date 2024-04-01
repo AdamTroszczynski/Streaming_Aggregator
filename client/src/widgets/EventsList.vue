@@ -80,8 +80,9 @@
 <script setup lang="ts">
 import EventCard from '@/components/cards/EventCard.vue';
 import EventGroupCard from '@/components/cards/EventGroupCard.vue';
-import sendData from '@/TestData';
+import { getEventsPreview } from '@/services/eventsServices';
 import DateUtil from '@/utils/DateUtil';
+import type { EventsPrevArrays } from '@/types/commonTypes';
 import Event from '@/models/Event';
 import { useEventsStore } from '@/stores/eventsStore';
 import { ref, watch, type Ref, onMounted, computed } from 'vue';
@@ -90,7 +91,7 @@ import { useI18n } from 'vue-i18n';
 const store = useEventsStore();
 const { t, locale } = useI18n();
 const selectDate: Ref<Date> = ref(new Date());
-const events: Ref<Array<Event[]>> = ref([]);
+const events: Ref<EventsPrevArrays | any> = ref();
 const isLoaded: Ref<boolean> = ref(false);
 
 /** Show full date
@@ -138,13 +139,11 @@ const setDuration = (eventCard: Event): number => {
 };
 
 /** Load events from selected day */
-const setNewDay = () => {
+const setNewDay = async () => {
   selectDate.value = new Date(store.selectedDay);
   isLoaded.value = false;
-  setTimeout(() => {
-    events.value = sendData(store.selectedDay);
-    isLoaded.value = true;
-  }, 1000);
+  events.value = await getEventsPreview(store.selectedDay);
+  isLoaded.value = true;
 };
 
 /** Go to next day when button is clicked */
