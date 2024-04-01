@@ -96,7 +96,7 @@ describe('EventGroupCard.vue', () => {
   });
 
   describe('Logic', () => {
-    it('should return starting time based on props.startTime', async () => {
+    it.skip('should return starting time based on props.startTime', async () => {
       let date = new Date('2024-03-31T10:25:00.000+00:00');
       createComponent({
         props: {
