@@ -97,21 +97,21 @@ describe('EventGroupCard.vue', () => {
 
   describe('Logic', () => {
     it('should return starting time based on props.startTime', async () => {
+      let date = new Date('2024-03-31T10:25:00.000+00:00');
       createComponent({
         props: {
-          startTime: 1711000920155, // 7:02
+          startTime: date.getTime(), // 12:25
         },
       });
-      expect(findH2().text()).toContain('07:02');
+      expect(findH2().text()).toContain('12:25');
 
-      await wrapper.setProps({ startTime: 1711200920155 }); // 14:35
-      expect(findH2().text()).toContain('14:35');
+      date = new Date('2024-03-31T11:25:00.000+00:00');
+      await wrapper.setProps({ startTime: date.getTime() }); // 13:25
+      expect(findH2().text()).toContain('13:25');
 
-      await wrapper.setProps({ startTime: 1711010920155 }); // 9:48
-      expect(findH2().text()).toContain('09:48');
-
-      await wrapper.setProps({ startTime: 1711019120155 }); // 12:05
-      expect(findH2().text()).toContain('12:05');
+      date = new Date('2024-03-31T08:48:00.000+00:00');
+      await wrapper.setProps({ startTime: date.getTime() }); // 10:48
+      expect(findH2().text()).toContain('10:48');
     });
 
     it('should return how long before the event starts based on props.startTime', async () => {
