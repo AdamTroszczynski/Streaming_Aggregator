@@ -39,23 +39,29 @@
         <div class="flex w-full flex-col justify-center lg:relative">
           <h3
             class="mt-3 px-2 text-center text-xs font-medium text-semiGrey lg:mt-8 lg:text-sm"
-            :class="events.length === 0 ? 'lg:text-center' : 'lg:text-end'"
+            :class="
+              Object.keys(events).length === 0
+                ? 'lg:text-center'
+                : 'lg:text-end'
+            "
           >
             {{
-              events.length === 0
+              Object.keys(events).length === 0
                 ? t('eventsList.noOneEvent')
                 : t('eventsList.allEvents')
             }}
-            <span v-if="events.length !== 0" class="font-semibold">{{
-              setFullDate
-            }}</span>
+            <span
+              v-if="Object.keys(events).length !== 0"
+              class="font-semibold"
+              >{{ setFullDate }}</span
+            >
           </h3>
           <button
             class="w-auto px-2 text-xs font-semibold text-purple underline lg:absolute lg:top-[100%] lg:z-[20] lg:text-sm"
             :class="
-              events.length === 0 && locale === 'pl'
+              Object.keys(events).length === 0 && locale === 'pl'
                 ? 'lg:left-[29.1%]'
-                : events.length === 0 && locale === 'en'
+                : Object.keys(events).length === 0 && locale === 'en'
                   ? 'lg:left-[34%]'
                   : locale === 'pl'
                     ? 'lg:left-[57%]'
@@ -91,7 +97,7 @@ import { useI18n } from 'vue-i18n';
 const store = useEventsStore();
 const { t, locale } = useI18n();
 const selectDate: Ref<Date> = ref(new Date());
-const events: Ref<EventsPrevArrays | any> = ref();
+const events: Ref<EventsPrevArrays | any> = ref(null);
 const isLoaded: Ref<boolean> = ref(false);
 
 /** Show full date
@@ -99,7 +105,8 @@ const isLoaded: Ref<boolean> = ref(false);
  */
 const setFullDate = computed<string>(() => {
   const date = selectDate.value;
-  const day = date.getDate();
+  const day =
+    date.getDate() < 10 ? '0' + date.getDate() : date.getDate().toString();
   const month =
     (date.getMonth() + 1).toString().length === 1
       ? '0' + (date.getMonth() + 1).toString()
@@ -145,6 +152,7 @@ const setNewDay = async () => {
   events.value = await getEventsPreview(
     DateUtil.getAtMidnight(store.selectedDay),
   );
+  console.log(Object.keys(events.value).length);
   isLoaded.value = true;
 };
 
