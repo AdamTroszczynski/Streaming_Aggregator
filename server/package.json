@@ -4,7 +4,7 @@
   "description": "",
   "main": "src/server.ts",
   "scripts": {
-    "test": "dotenv -e .env.test.local -- jest",
+    "test": "dotenv -e .env.test.local -- jest --runInBand",
     "test:cov": "dotenv -e .env.test.local -- jest --coverage",
     "start": "npm-run-all --parallel dev:server dev:build",
     "build:prod": "webpack build --progress --color",
