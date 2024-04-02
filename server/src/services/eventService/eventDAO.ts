@@ -79,3 +79,8 @@ export const deleteEventDAO = async (id: string): Promise<Event> => {
     },
   });
 };
+
+/** Delete all events in database */
+export const deleteAllEventsDAO = async (): Promise<void> => {
+  await dbClient.event.deleteMany();
+};

@@ -25,6 +25,12 @@ export const getEventsByDateBO = async (timestamp: number): Promise<DateEvent> =
   const events = await getEventsByDateDAO(timestamp);
   const eventsGroupedByStartDate: DateEvent = {};
 
+  // Convert Date to timestamp
+  events.forEach((event: Event) => {
+    event.startDate = (event.startDate as Date).getTime();
+    event.endDate = (event.endDate as Date).getTime();
+  });
+
   events.forEach((event: Event) => {
     const keyTimestamp: number = new Date(event.startDate).getTime();
     if (!eventsGroupedByStartDate.hasOwnProperty(keyTimestamp)) {
