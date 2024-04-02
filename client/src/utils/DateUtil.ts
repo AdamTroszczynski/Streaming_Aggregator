@@ -16,4 +16,17 @@ export default class DateUtil {
   public static getShowingDate(date: Date): string {
     return `${('0' + date.getDate()).slice(-2)}.${('0' + (date.getMonth() + 1)).slice(-2)}.`;
   }
+
+  public static getAtMidnight(timestamp: number): number {
+    const date = new Date(timestamp);
+    const newDate = new Date(
+      date.getFullYear(),
+      date.getMonth(),
+      date.getDate(),
+      0,
+      0,
+      0,
+    );
+    return newDate.getTime();
+  }
 }

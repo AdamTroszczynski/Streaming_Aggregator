@@ -8,13 +8,10 @@ import type { Event } from '@/types/Event';
  */
 export const getEventsPreview = async (
   timestamp: number,
-): Promise<EventsPrevArrays> => {
+): Promise<EventsPrevArrays | any> => {
   try {
-    const response = await axiosClient.get('/event/events', {
-      data: timestamp,
-    });
+    const response = await axiosClient.get(`/event/events/date/${timestamp}`);
     const data = response.data;
-    console.log(data);
     return data;
   } catch (err) {
     console.log(err);

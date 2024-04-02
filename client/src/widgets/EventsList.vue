@@ -142,7 +142,9 @@ const setDuration = (eventCard: Event): number => {
 const setNewDay = async () => {
   selectDate.value = new Date(store.selectedDay);
   isLoaded.value = false;
-  events.value = await getEventsPreview(store.selectedDay);
+  events.value = await getEventsPreview(
+    DateUtil.getAtMidnight(store.selectedDay),
+  );
   isLoaded.value = true;
 };
 
