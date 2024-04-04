@@ -97,7 +97,7 @@ import { useI18n } from 'vue-i18n';
 const store = useEventsStore();
 const { t, locale } = useI18n();
 const selectDate: Ref<Date> = ref(new Date());
-const events: Ref<EventsPrevArrays | any> = ref(null);
+const events: Ref<EventsPrevArrays> = ref({});
 const isLoaded: Ref<boolean> = ref(false);
 
 /** Show full date
