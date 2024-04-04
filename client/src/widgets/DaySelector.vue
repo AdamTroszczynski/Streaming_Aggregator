@@ -61,6 +61,7 @@ const loadPreviewDays = (): void => {
     loadedDays.value.unshift(DateUtil.getPrevDay(lastDay, i));
   }
   store.selectedDay = loadedDays.value[0].id;
+  store.lastShowDay = loadedDays.value[loadedDays.value.length - 1].id;
 };
 
 /** Load daysToDisplay next days based on today date*/
