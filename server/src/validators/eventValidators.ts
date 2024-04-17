@@ -37,14 +37,16 @@ export const paramNumberValid = (fieldName: string): ValidationChain =>
  * @param {string} fieldName Name of the field
  * @returns {ValidationChain} validation chain
  */
-export const bodyStringValid = (fieldName: string): ValidationChain => bodyBaseValid(fieldName).isString();
+export const bodyStringValid = (fieldName: string): ValidationChain =>
+  bodyBaseValid(fieldName).isString().withMessage('value must be a string');
 
 /**
  * Number validation for body field
  * @param {string} fieldName Name of the field
  * @returns {ValidationChain} validation chain
  */
-export const bodyNumberValid = (fieldName: string): ValidationChain => bodyBaseValid(fieldName).isNumeric();
+export const bodyNumberValid = (fieldName: string): ValidationChain =>
+  bodyBaseValid(fieldName).isNumeric().withMessage('value must be a number');
 
 /** Set of validators for event object */
 export const eventObjectValid: ValidationChain[] = [
