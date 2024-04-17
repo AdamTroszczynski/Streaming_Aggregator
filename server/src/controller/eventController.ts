@@ -12,6 +12,7 @@ import {
   deleteEventBO,
   updateEventBO,
 } from '@/services/eventService/eventBO';
+import { validationResult } from 'express-validator';
 
 /**
  * Get all events action
@@ -35,8 +36,13 @@ export const getAllEventsAction = async (req: Request, res: Response): Promise<v
  * @param {Request} req Request
  * @param {Response} res Response
  */
-export const getEventsByDateAction = async (req: Request, res: Response): Promise<void> => {
+export const getEventsByDateAction = async (req: Request, res: Response) => {
   try {
+    const validResult = validationResult(req);
+    if (!validResult.isEmpty()) {
+      return res.status(StatusCodesEnum.ValidationError).json({ errors: validResult.array() });
+    }
+
     const { timestamp } = req.params;
     const eventsByDate: DateEvent = await getEventsByDateBO(Number(timestamp));
     res.status(StatusCodesEnum.OK).json(eventsByDate);
