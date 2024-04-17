@@ -14,7 +14,7 @@ module.exports = {
         test: /\.tsx?$/,
         use: 'ts-loader',
         exclude: /node_modules/,
-      }
+      },
     ],
   },
   output: {
@@ -25,10 +25,7 @@ module.exports = {
     extensions: ['.tsx', '.ts', '.js'],
     alias: {
       '@': path.resolve(__dirname, './src/'),
-    }
+    },
   },
-  plugins: [
-    new CompressionPlugin(),
-    new CleanWebpackPlugin(),
-  ],
+  plugins: [new CompressionPlugin(), new CleanWebpackPlugin()],
 };
