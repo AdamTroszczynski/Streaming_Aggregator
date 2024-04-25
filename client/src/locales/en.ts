@@ -54,6 +54,58 @@ const en = {
   homeView: {
     title: 'Schedule of events',
   },
+  addEventForm: {
+    newEvent: 'New event',
+    company: {
+      companyData: `Organizer's details`,
+      companyName: 'Company name',
+      companyEmail: 'Contact email',
+      companyNip: 'NIP',
+      companyNumber: 'Phone number',
+      companyWeb: 'Website',
+      companyZipcode: 'Zip code',
+      companyCountry: 'Country',
+      companyProvince: 'Province',
+      companyCity: 'City',
+      companyStreet: 'Street',
+    },
+    event: {
+      eventData: `Event's details`,
+      eventName: 'Event name',
+      eventDescription: 'Event description',
+      eventCategory: 'Category',
+      eventLanguage: 'Language',
+      eventLink: 'Link to the event',
+      eventDate: 'Event date',
+      eventStart: 'Getting started',
+      eventEnd: 'End',
+      select: {
+        presentation: 'Presentation',
+        conference: 'Conference',
+        training: 'Training',
+        seminar: 'Seminar',
+        other: 'Other',
+        en: 'English',
+        pl: 'Polish',
+      },
+    },
+    rules: {
+      accept: 'I accept',
+      terms: 'Terms',
+      organizationTerms: `Organizer's regulations`,
+      privacyPolicy: 'Privacy Policy',
+      and: 'and',
+    },
+    addEventButton: 'ADD EVENT',
+    errors: {
+      requiredField: 'This field is required',
+      requiredFieldSmall: 'Required field',
+      invalidEmail: 'Must be a valid email',
+      invalidData: 'Invalid data',
+      invalidWeb: 'Must be a valid URL',
+      characterLimit: 'Must be at most 3000 characters',
+    },
+  },
 };
 
 export default en;

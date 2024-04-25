@@ -54,6 +54,58 @@ const pl = {
   homeView: {
     title: 'Harmonogram wydarzeń',
   },
+  addEventForm: {
+    newEvent: 'Nowe wydarzenie',
+    company: {
+      companyData: 'Dane organizatora',
+      companyName: 'Nazwa firmy',
+      companyEmail: 'Email kontaktowy',
+      companyNip: 'NIP',
+      companyNumber: 'Numer telefonu',
+      companyWeb: 'Strona internetowa',
+      companyZipcode: 'Kod pocztowy',
+      companyCountry: 'Kraj',
+      companyProvince: 'Województwo',
+      companyCity: 'Miasto',
+      companyStreet: 'Ulica',
+    },
+    event: {
+      eventData: 'Dane wydarzenia',
+      eventName: 'Nazwa wydarzenia',
+      eventDescription: 'Opis wydarzenia',
+      eventCategory: 'Kategoria',
+      eventLanguage: 'Język',
+      eventLink: 'Link do wydarzenia',
+      eventDate: 'Data wydarzenia',
+      eventStart: 'Rozpoczęcie',
+      eventEnd: 'Zakończenie',
+      select: {
+        presentation: 'Prezentacja',
+        conference: 'Konferencja',
+        training: 'Szkolenie',
+        seminar: 'Seminarium',
+        other: 'Inne',
+        en: 'Angielski',
+        pl: 'Polski',
+      },
+    },
+    rules: {
+      accept: 'Akceptuje',
+      terms: 'Regulamin',
+      organizationTerms: 'Regulamin Organizatora',
+      privacyPolicy: 'Politykę Prywatności',
+      and: 'oraz',
+    },
+    addEventButton: 'DODAJ WYDARZENIE',
+    errors: {
+      requiredField: 'To pole jest wymagane',
+      requiredFieldSmall: 'Pole wymagane',
+      invalidEmail: 'Nieprawidłowy adres email',
+      invalidData: 'Nieprawidłowe dane',
+      invalidWeb: 'Nieprawidłowy adres strony',
+      characterLimit: 'Limit znaków 3000',
+    },
+  },
 };
 
 export default pl;

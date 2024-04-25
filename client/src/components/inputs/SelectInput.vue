@@ -8,7 +8,7 @@
     <select
       v-model="value"
       :name="name"
-      class="select select-bordered select-sm w-full border-inputGrey bg-white py-1.5 text-sm text-black focus:border-inputGrey lg:h-9 lg:px-4 lg:text-base"
+      class="select select-bordered select-sm w-full border-inputGrey bg-white py-1.5 text-[0.8rem] text-sm text-black focus:border-inputGrey lg:h-9 lg:px-4 lg:text-base"
     >
       <option
         v-for="option in options"
@@ -28,9 +28,6 @@
 import { useField } from 'vee-validate';
 import { type SelectOptions } from '@/types/commonTypes';
 
-/** Catch value and errors from field (input component) */
-const { errorMessage, value } = useField<string>(() => props.name);
-
 const props = defineProps({
   name: {
     type: String,
@@ -49,4 +46,7 @@ const props = defineProps({
     default: false,
   },
 });
+
+/** Catch value and errors from field (input component) */
+const { errorMessage, value } = useField<string>(() => props.name);
 </script>

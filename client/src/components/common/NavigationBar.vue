@@ -20,8 +20,15 @@
       <div
         class="hidden lg:flex lg:w-full lg:justify-end lg:gap-5 lg:pr-8 2xl:pr-14"
       >
-        <LinkButton :is-select="true">{{ t('navbar.homePage') }}</LinkButton>
-        <LinkButton v-if="isLogin">{{ t('navbar.addStream') }}</LinkButton>
+        <LinkButton :goTo="'/'" :is-select="selected === 'home'">{{
+          t('navbar.homePage')
+        }}</LinkButton>
+        <LinkButton
+          :goTo="'/addEvent'"
+          :is-select="selected === 'addEvent'"
+          v-if="isLogin"
+          >{{ t('navbar.addStream') }}</LinkButton
+        >
         <LinkButton>{{ t('navbar.organizations') }}</LinkButton>
         <LinkButton>{{ t('navbar.contact') }}</LinkButton>
         <LinkButton v-if="isLogin">{{ t('navbar.myEvents') }}</LinkButton>
@@ -69,6 +76,7 @@
       class="flex h-[496px] w-full items-center justify-center px-5 lg:mt-5 lg:h-[300px]"
     >
       <div
+        v-if="isAdv"
         class="flex h-full w-[339px] items-center justify-center rounded-lg bg-[#FCF6F6] shadow-lg lg:w-[1113px]"
       ></div>
     </div>
@@ -89,6 +97,17 @@ const isLogin = ref(true);
 
 /** Side menu active status */
 const isMenuActive: Ref<boolean> = ref(false);
+
+defineProps({
+  isAdv: {
+    type: Boolean,
+    default: true,
+  },
+  selected: {
+    type: String,
+    default: 'home',
+  },
+});
 
 /** Toggle side menu active status */
 const toggleMenu = (): void => {
