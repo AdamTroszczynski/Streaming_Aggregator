@@ -1,11 +1,11 @@
 <template>
   <div
-    class="relative flex w-full justify-between gap-3 px-3 pt-3.5 before:absolute before:left-[-5px] before:top-0 before:h-full before:w-[10px] before:bg-decorator before:content-[''] lg:pl-11"
+    class="relative flex w-full justify-between gap-3 px-3 pt-3.5 before:absolute before:bottom-0 before:left-[-5px] before:h-[96px] before:w-[10px] before:bg-decorator before:content-[''] lg:pl-11 lg:before:h-[100%]"
     :class="isNow ? 'bg-whiteBlue before:block' : 'bg-white before:hidden'"
     data-test="EventGroupCardMainDiv"
   >
     <h2
-      class="min-w-[60px] text-sm font-bold lg:min-w-[80px] lg:text-base"
+      class="min-w-[60px] text-center text-sm font-bold lg:min-w-[80px] lg:text-base"
       :class="isFinished ? 'text-lightGrey' : 'text-semiBlack'"
       data-test="EventGroupCardH2"
     >

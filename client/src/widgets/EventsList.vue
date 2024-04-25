@@ -13,45 +13,80 @@
     </div>
 
     <div
-      class="flex min-h-[400px] w-full flex-col items-center justify-start gap-1 bg-white py-3 shadow lg:min-h-[1100px] lg:pb-[150px] lg:pr-4"
+      class="flex min-h-[400px] w-full flex-col items-center justify-start bg-white pb-3 shadow lg:min-h-[1100px] lg:py-0 lg:pb-[150px]"
     >
       <template v-if="isLoaded">
-        <EventGroupCard
-          v-for="eventGroup in events"
-          :key="eventGroup.toString"
-          :start-time="eventGroup[0].startDate"
-          :is-finished="setIsFinished(eventGroup)"
-          :is-now="setIsNow(eventGroup)"
+        <div
+          id="scroll"
+          class="w-full scroll-smooth"
+          :style="setClasses"
+          :class="[
+            events.length !== 0 || finishEvents.length !== 0
+              ? 'overflow-y-scroll'
+              : 'h-fit',
+          ]"
         >
-          <EventCard
-            v-for="eventCard in eventGroup"
-            :key="eventCard.eventId"
-            :title="eventCard.eventName"
-            :duration="setDuration(eventCard)"
-            :tag="eventCard.tag"
-            :lang="eventCard.language"
-            :streaming-link="eventCard.streamingLink"
-            :is-finished="new Date().getTime() > eventCard.endDate"
+          <EventGroupCard
+            v-for="eventGroup in finishEvents"
+            :key="eventGroup.toString"
+            :start-time="eventGroup[0].startDate"
+            :is-finished="setIsFinished(eventGroup)"
+            :is-now="setIsNow(eventGroup)"
           >
-          </EventCard>
-        </EventGroupCard>
+            <EventCard
+              v-for="eventCard in eventGroup"
+              :key="eventCard.eventId"
+              :title="eventCard.eventName"
+              :duration="setDuration(eventCard)"
+              :tag="eventCard.tag"
+              :lang="eventCard.language"
+              :streaming-link="eventCard.streamingLink"
+              :is-finished="new Date().getTime() > eventCard.endDate"
+            >
+            </EventCard>
+          </EventGroupCard>
+          <EventGroupCard
+            v-for="eventGroup in events"
+            :key="eventGroup.toString"
+            :start-time="eventGroup[0].startDate"
+            :is-finished="setIsFinished(eventGroup)"
+            :is-now="setIsNow(eventGroup)"
+          >
+            <EventCard
+              v-for="eventCard in eventGroup"
+              :key="eventCard.eventId"
+              :title="eventCard.eventName"
+              :duration="setDuration(eventCard)"
+              :tag="eventCard.tag"
+              :lang="eventCard.language"
+              :streaming-link="eventCard.streamingLink"
+              :is-finished="new Date().getTime() > eventCard.endDate"
+            >
+            </EventCard>
+          </EventGroupCard>
+        </div>
 
         <div class="flex w-full flex-col justify-center lg:relative">
           <h3
             class="mt-3 px-2 text-center text-xs font-medium text-semiGrey lg:mt-8 lg:text-sm"
             :class="
-              Object.keys(events).length === 0
+              Object.keys(events).length === 0 &&
+              Object.keys(finishEvents).length === 0
                 ? 'lg:text-center'
                 : 'lg:text-end'
             "
           >
             {{
-              Object.keys(events).length === 0
+              Object.keys(events).length === 0 &&
+              Object.keys(finishEvents).length === 0
                 ? t('eventsList.noOneEvent')
                 : t('eventsList.allEvents')
             }}
             <span
-              v-if="Object.keys(events).length !== 0"
+              v-if="
+                Object.keys(events).length !== 0 ||
+                Object.keys(finishEvents).length !== 0
+              "
               class="font-semibold"
               >{{ setFullDate }}</span
             >
@@ -59,9 +94,13 @@
           <button
             class="w-auto px-2 text-xs font-semibold text-purple underline lg:absolute lg:top-[100%] lg:z-[20] lg:text-sm"
             :class="
-              Object.keys(events).length === 0 && locale === 'pl'
+              Object.keys(events).length === 0 &&
+              Object.keys(finishEvents).length === 0 &&
+              locale === 'pl'
                 ? 'lg:left-[29.1%]'
-                : Object.keys(events).length === 0 && locale === 'en'
+                : Object.keys(events).length === 0 &&
+                    Object.keys(finishEvents).length === 0 &&
+                    locale === 'en'
                   ? 'lg:left-[34%]'
                   : locale === 'pl'
                     ? 'lg:left-[57%]'
@@ -86,18 +125,20 @@
 <script setup lang="ts">
 import EventCard from '@/components/cards/EventCard.vue';
 import EventGroupCard from '@/components/cards/EventGroupCard.vue';
-import { getEventsPreview } from '@/services/eventsServices';
+import { getEventsPreview, testServices } from '@/services/eventsServices';
 import DateUtil from '@/utils/DateUtil';
 import type { EventsPrevArrays } from '@/types/commonTypes';
 import Event from '@/models/Event';
 import { useEventsStore } from '@/stores/eventsStore';
-import { ref, watch, type Ref, onMounted, computed } from 'vue';
+import { ref, watch, type Ref, onMounted, computed, onUpdated } from 'vue';
 import { useI18n } from 'vue-i18n';
 
 const store = useEventsStore();
 const { t, locale } = useI18n();
+
 const selectDate: Ref<Date> = ref(new Date());
-const events: Ref<EventsPrevArrays> = ref({});
+const events: Ref<EventsPrevArrays> | any = ref({});
+const finishEvents: Ref<EventsPrevArrays> | any = ref({});
 const isLoaded: Ref<boolean> = ref(false);
 
 /** Show full date
@@ -113,6 +154,19 @@ const setFullDate = computed<string>(() => {
       : date.getMonth() + 1;
   const year = date.getFullYear();
   return `${day}.${month}.${year}`;
+});
+
+/** Set classes to div
+ * @returns {string}
+ */
+const setClasses = computed<string>(() => {
+  let sum = 0;
+  events.value.forEach((el: any) => {
+    sum += el.length;
+  });
+  const isMobile = window.innerWidth < 1040;
+  const height = isMobile ? sum * 98 : sum * 77;
+  return `height: ${height}px;`;
 });
 
 /** Find longestEvent and check if is finished
@@ -149,10 +203,11 @@ const setDuration = (eventCard: Event): number => {
 const setNewDay = async () => {
   selectDate.value = new Date(store.selectedDay);
   isLoaded.value = false;
-  events.value = await getEventsPreview(
+  events.value = testServices(DateUtil.getAtMidnight(store.selectedDay)).now;
+  finishEvents.value = testServices(
     DateUtil.getAtMidnight(store.selectedDay),
-  );
-  console.log(Object.keys(events.value).length);
+  ).finish;
+
   isLoaded.value = true;
 };
 
@@ -165,7 +220,6 @@ const goToNextDay = (): void => {
   if (store.lastShowDay === selectDate.value.getTime())
     store.reload = !store.reload;
   store.selectedDay = nextDay;
-  // TODO ...
 };
 
 /** Watch when day is switched */
@@ -174,5 +228,11 @@ watch(() => store.selectedDay, setNewDay);
 /** Load init day */
 onMounted(() => {
   setNewDay();
+});
+onUpdated(() => {
+  const element = document.getElementById('scroll');
+  if (element !== null) {
+    element.scrollTo(0, element.scrollHeight);
+  }
 });
 </script>
