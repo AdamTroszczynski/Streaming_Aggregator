@@ -13,7 +13,7 @@
       class="input input-bordered input-sm w-full border-inputGrey bg-white text-black lg:input-md focus:border-inputGrey lg:h-9 lg:px-4 lg:text-base"
     />
     <div v-if="errorMessage" class="mt-[-3px]">
-      <span class="text-xs text-red"> - {{ errorMessage }} </span>
+      <span class="text-xs text-red lg:text-sm"> - {{ errorMessage }} </span>
     </div>
   </label>
 </template>

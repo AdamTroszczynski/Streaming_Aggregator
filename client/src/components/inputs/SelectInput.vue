@@ -10,16 +10,23 @@
       :name="name"
       class="select select-bordered select-sm w-full border-inputGrey bg-white py-1.5 text-sm text-black focus:border-inputGrey lg:h-9 lg:px-4 lg:text-base"
     >
-      <slot></slot>
+      <option
+        v-for="option in options"
+        :key="option.value"
+        :value="option.value"
+      >
+        {{ option.label }}
+      </option>
     </select>
     <div v-if="errorMessage" class="mt-[-3px]">
-      <span class="text-xs text-red"> - {{ errorMessage }} </span>
+      <span class="text-xs text-red lg:text-sm"> - {{ errorMessage }} </span>
     </div>
   </label>
 </template>
 
 <script setup lang="ts">
 import { useField } from 'vee-validate';
+import { type SelectOptions } from '@/types/commonTypes';
 
 /** Catch value and errors from field (input component) */
 const { errorMessage, value } = useField<string>(() => props.name);
@@ -32,6 +39,10 @@ const props = defineProps({
   label: {
     type: String,
     required: false,
+  },
+  options: {
+    type: Array<SelectOptions>,
+    required: true,
   },
   isRequired: {
     type: Boolean,
