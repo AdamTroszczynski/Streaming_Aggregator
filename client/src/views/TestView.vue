@@ -3,11 +3,10 @@
     <NavigationBar />
 
     <div class="flex w-full flex-col items-center px-6">
-      <SelectInput
-        :name="'select'"
-        :label="'Category'"
-        :isRequired="true"
-      ></SelectInput>
+      <SelectInput :name="'select'" :label="'Category'" :isRequired="true">
+        <option>Halo</option>
+        <option>Halo2</option>
+      </SelectInput>
       <MainInput
         :name="'text'"
         :type="'text'"

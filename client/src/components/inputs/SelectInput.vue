@@ -5,14 +5,15 @@
         >{{ label }} <span v-if="isRequired" class="text-red">*</span></span
       >
     </div>
-    <select class="select select-bordered select-sm w-full py-1.5 text-sm">
-      <option disabled selected>Choose One</option>
-      <option>Small Apple</option>
-      <option>Small Orange</option>
-      <option>Small Tomato</option>
+    <select
+      v-model="value"
+      :name="name"
+      class="select select-bordered select-sm w-full border-inputGrey bg-white py-1.5 text-sm text-black focus:border-inputGrey lg:h-9 lg:px-4 lg:text-base"
+    >
+      <slot></slot>
     </select>
-    <div v-if="errorMessage">
-      <span class=""> - {{ errorMessage }} </span>
+    <div v-if="errorMessage" class="mt-[-3px]">
+      <span class="text-xs text-red"> - {{ errorMessage }} </span>
     </div>
   </label>
 </template>
