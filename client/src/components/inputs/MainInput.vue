@@ -1,7 +1,7 @@
 <template>
   <label class="form-control w-full">
     <div v-if="label" class="label pb-1">
-      <span class="label-text text-sm font-medium text-navy"
+      <span class="label-text text-sm font-medium text-navy lg:text-base"
         >{{ label }} <span v-if="isRequired" class="text-red">*</span></span
       >
     </div>
@@ -10,7 +10,7 @@
       :name="name"
       :type="type"
       :placeholder="placeholder"
-      class="input input-bordered input-sm w-full border-inputGrey bg-white text-black focus:border-inputGrey"
+      class="input input-bordered input-sm w-full border-inputGrey bg-white text-black lg:input-md focus:border-inputGrey lg:h-9 lg:px-4 lg:text-base"
     />
     <div v-if="errorMessage">
       <span class=""> - {{ errorMessage }} </span>
