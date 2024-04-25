@@ -6,11 +6,11 @@
         :name="name"
         id="link-checkbox"
         type="checkbox"
-        class="h-5 w-5 rounded-md border-inputGrey bg-white"
+        class="checkbox-primary checkbox checkbox-sm h-5 w-5 rounded-md border-inputGrey bg-white ring-0"
       />
       <label
         for="link-checkbox"
-        class="text-sm font-medium text-black lg:text-base"
+        class="text-start text-[0.8rem] font-medium text-black lg:text-base"
       >
         <slot></slot>
       </label>
@@ -24,17 +24,13 @@
 <script setup lang="ts">
 import { useField } from 'vee-validate';
 
-/** Catch value and errors from field (input component) */
-const { errorMessage, value } = useField<string>(() => props.name);
-
 const props = defineProps({
   name: {
     type: String,
     required: true,
   },
-  label: {
-    type: String,
-    required: false,
-  },
 });
+
+/** Catch value and errors from field (input component) */
+const { errorMessage, value } = useField<boolean>(() => props.name);
 </script>

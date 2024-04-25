@@ -19,9 +19,6 @@
 <script setup lang="ts">
 import { useField } from 'vee-validate';
 
-/** Catch value and errors from field (input component) */
-const { errorMessage, value } = useField<string>(() => props.name);
-
 const props = defineProps({
   name: {
     type: String,
@@ -40,4 +37,7 @@ const props = defineProps({
     default: false,
   },
 });
+
+/** Catch value and errors from field (input component) */
+const { errorMessage, value } = useField<string>(() => props.name);
 </script>
