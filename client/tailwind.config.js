@@ -1,9 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [
-    './index.html',
-    './src/**/*.{ts,vue,js,jsx,tsx}',
-  ],
+  content: ['./index.html', './src/**/*.{ts,vue,js,jsx,tsx}'],
   darkMode: 'class',
   theme: {
     colors: {
@@ -27,14 +24,16 @@ module.exports = {
       purple: '#BD89CA',
       borderGrey: '#E3E3E3',
       semiGrey: '#ADADAD',
+      inputGrey: '#AEBAC6',
       black: '#000000',
       white: '#ffffff',
+      red: '#FF0000',
       gradients: {
         peranoPurple: 'rgb(172, 158, 255, 0.75)',
         peranoBlue: 'rgb(157, 185, 255, 1)',
         orchid: 'rgb(219, 134, 221, 0.75)',
-        bilobaFlower: 'rgb(179, 143, 255, 1)'
-      }
+        bilobaFlower: 'rgb(179, 143, 255, 1)',
+      },
     },
     screens: {
       sm: '640px',
@@ -47,17 +46,14 @@ module.exports = {
       '4xl': '1800px',
     },
     fontFamily: {
-      'mont': ['Montserrat', 'sans-serif']
-    }
+      mont: ['Montserrat', 'sans-serif'],
+    },
   },
-  plugins: [
-    require('daisyui'),
-    require('@tailwindcss/forms'),
-  ],
+  plugins: [require('daisyui'), require('@tailwindcss/forms')],
   daisyui: {
     themes: false,
     darkTheme: 'dark',
     base: false,
     logs: false,
   },
-}
+};
