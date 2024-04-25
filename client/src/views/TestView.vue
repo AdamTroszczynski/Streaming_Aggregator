@@ -3,11 +3,16 @@
     <NavigationBar />
 
     <div class="flex w-full flex-col items-center px-6">
-      <MainInput
-        :name="'companyName'"
-        :type="'text'"
+      <SelectInput
+        :name="'select'"
+        :label="'Category'"
         :isRequired="true"
-        :label="'Nazwa Firmy'"
+      ></SelectInput>
+      <MainInput
+        :name="'text'"
+        :type="'text'"
+        :label="'Nazwa organizacji'"
+        :isRequired="true"
       ></MainInput>
     </div>
   </main>
@@ -18,6 +23,7 @@ import DaySelector from '@/widgets/DaySelector.vue';
 import EventsList from '@/widgets/EventsList.vue';
 import MainFooter from '@/components/common/MainFooter.vue';
 import MainInput from '@/components/inputs/MainInput.vue';
+import SelectInput from '@/components/inputs/SelectInput.vue';
 import { useI18n } from 'vue-i18n';
 
 const { t } = useI18n();
