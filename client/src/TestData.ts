@@ -85,7 +85,7 @@ const finish5end = new Date(
   today.getMonth(),
   today.getDate(),
   12,
-  15,
+  0,
   0,
 );
 

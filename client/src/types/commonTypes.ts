@@ -15,6 +15,7 @@ export type AddEvent = {
   companyProvince: string;
   companyCity: string;
   companyStreet: string;
+
   eventName: string;
   eventDescription: string;
   eventCategory: string;
@@ -23,5 +24,6 @@ export type AddEvent = {
   eventDate: string;
   eventStart: string;
   eventEnd: string;
+
   accept: boolean;
 };
