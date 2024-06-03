@@ -31,6 +31,7 @@ module.exports = {
       inputLink: '#7D63BC',
       black: '#000000',
       white: '#ffffff',
+      purpleForm: '#7848AA',
       red: '#FF0000',
       gradients: {
         peranoPurple: 'rgb(172, 158, 255, 0.75)',

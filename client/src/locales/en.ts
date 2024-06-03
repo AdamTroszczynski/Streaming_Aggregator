@@ -106,6 +106,22 @@ const en = {
       characterLimit: 'Must be at most 3000 characters',
     },
   },
+  loginForm: {
+    password: 'Password',
+    policy: 'Privacy Policy',
+    login: 'Login',
+    loginBtn: 'SIGN IN',
+    rememberMe: 'Remember me',
+    forgetPass: 'Forgot your password?',
+    notHaveAc: 'Do not have an account? Register!',
+    haveAc: 'Already have an account? Log in!',
+    register: 'Register',
+    registerBtn: 'SIGN UP',
+    nick: 'User Name',
+    passwordRepeat: 'Password repeat',
+    minPassword: 'The field must be at least 6 characters long',
+    samePassword: 'Passwords must be the same',
+  },
 };
 
 export default en;

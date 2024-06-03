@@ -1,7 +1,6 @@
 <template>
   <main class="flex min-h-screen w-full flex-col bg-white">
     <NavigationBar :is-adv="false" :selected="'addEvent'" />
-
     <div
       class="mb-[100px] mt-[-500px] flex w-full flex-col items-center px-4 lg:mt-[-300px]"
     >

@@ -106,6 +106,22 @@ const pl = {
       characterLimit: 'Limit znaków 3000',
     },
   },
+  loginForm: {
+    password: 'Hasło',
+    policy: 'Polityka prywatnosci',
+    login: 'Zaloguj się',
+    loginBtn: 'ZALOGUJ',
+    rememberMe: 'Zapamiętaj mnie',
+    forgetPass: 'Zapomniałaś/eś hasła?',
+    notHaveAc: 'Nie masz konta? Zarejestruj się!',
+    haveAc: 'Masz już konto? Zaloguj się!',
+    register: 'Zarejestruj się',
+    registerBtn: 'ZAREJESTRUJ SIĘ',
+    nick: 'Nazwa użytkownika',
+    passwordRepeat: 'Powtórz hasło',
+    minPassword: 'Pole musi posiadać minimum 6 znaków',
+    samePassword: 'Hasła muszą być takie same',
+  },
 };
 
 export default pl;

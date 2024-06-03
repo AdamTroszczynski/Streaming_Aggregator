@@ -27,3 +27,16 @@ export type AddEvent = {
 
   accept: boolean;
 };
+
+export type LoginForm = {
+  email: string;
+  password: string;
+  isRemember: boolean;
+};
+
+export type RegisterForm = {
+  nick: string;
+  email: string;
+  password: string;
+  passwordRepeat: string;
+};

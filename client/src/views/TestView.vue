@@ -1,9 +1,12 @@
 <template>
   <main class="flex min-h-screen w-full flex-col bg-[#F2F2F2]">
     <NavigationBar />
-
-    <div class="flex w-full flex-col items-center px-6">
-      <SubmitButton>DODAJ WYDARZENIE</SubmitButton>
+    <div class="p-6">
+      <LoginForm
+        :title="t('loginForm.login')"
+        :button-title="t('loginForm.loginBtn')"
+        :is-options="true"
+      />
     </div>
   </main>
 </template>
@@ -16,7 +19,7 @@ import CheckboxInput from '@/components/inputs/CheckboxInput.vue';
 import TextArea from '@/components/inputs/TextArea.vue';
 import MainInput from '@/components/inputs/MainInput.vue';
 import SelectInput from '@/components/inputs/SelectInput.vue';
-import SubmitButton from '@/components/buttons/SubmitButton.vue';
+import LoginForm from '@/components/layout/LoginForm.vue';
 import { useI18n } from 'vue-i18n';
 
 const { t } = useI18n();
