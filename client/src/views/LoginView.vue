@@ -1,6 +1,10 @@
 <template>
   <main class="flex min-h-screen w-full flex-col bg-white">
-    <NavigationBar :is-adv="false" :selected="''" />
+    <NavigationBar
+      :is-adv="false"
+      :selected="''"
+      :is-login="userStore.isUserLoggedIn"
+    />
     <div class="mt-[-500px] flex flex-col items-center p-6 lg:mt-[-300px]">
       <LoginForm
         :title="t('loginForm.login')"
@@ -49,6 +53,7 @@ import { useI18n } from 'vue-i18n';
 import { useForm } from 'vee-validate';
 import { boolean, object, string } from 'yup';
 import { type LoginForm as LoginType } from '@/types/commonTypes';
+import { useUserStore } from '@/stores/userStore';
 
 import NavigationBar from '@/components/common/NavigationBar.vue';
 import MainFooter from '@/components/common/MainFooter.vue';
@@ -57,6 +62,7 @@ import MainInput from '@/components/inputs/MainInput.vue';
 import CheckboxInput from '@/components/inputs/CheckboxInput.vue';
 
 const { t } = useI18n();
+const userStore = useUserStore();
 
 const loginSchema = object({
   email: string()

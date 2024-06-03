@@ -1,6 +1,10 @@
 <template>
   <main class="flex min-h-screen w-full flex-col bg-white">
-    <NavigationBar :is-adv="false" :selected="'addEvent'" />
+    <NavigationBar
+      :is-adv="false"
+      :selected="'addEvent'"
+      :is-login="userStore.isUserLoggedIn"
+    />
     <div
       class="mb-[100px] mt-[-500px] flex w-full flex-col items-center px-4 lg:mt-[-300px]"
     >
@@ -16,8 +20,9 @@
 <script setup lang="ts">
 import { useForm } from 'vee-validate';
 import { boolean, number, object, string } from 'yup';
-import { type AddEvent } from '@/types/Event';
+import { type AddEvent } from '@/types/commonTypes';
 import { type EventTime } from '@/types/commonTypes';
+import { useUserStore } from '@/stores/userStore';
 import { useI18n } from 'vue-i18n';
 
 import NavigationBar from '@/components/common/NavigationBar.vue';
@@ -25,6 +30,7 @@ import MainFooter from '@/components/common/MainFooter.vue';
 import NewEventForm from '@/components/layout/NewEventForm.vue';
 
 const { t } = useI18n();
+const userStore = useUserStore();
 
 /** Login schema with all validation rules */
 const addEventSchema = object({
@@ -70,7 +76,8 @@ const addEvent = async (): Promise<void> => {
       const { eventStart, eventEnd } = setTimeStamp(addEvent);
       addEvent.eventStart = eventStart;
       addEvent.eventEnd = eventEnd;
-      const { accept, eventDate, ...event } = addEvent;
+      const { accept, eventDate, ...eventPrev } = addEvent;
+      const event = { eventId: -1, ...eventPrev };
     }
   } catch (error) {
     console.log(values);

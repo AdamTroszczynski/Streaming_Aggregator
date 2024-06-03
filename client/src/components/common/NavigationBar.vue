@@ -35,13 +35,13 @@
       </div>
       <div class="hidden lg:flex lg:items-center lg:gap-4">
         <template v-if="!isLogin">
-          <LinkButton>{{ t('navbar.login') }}</LinkButton>
-          <LinkButton :is-button="true">{{
+          <LinkButton :go-to="'/login'">{{ t('navbar.login') }}</LinkButton>
+          <LinkButton :go-to="'/register'" :is-button="true">{{
             t('navbar.registration')
           }}</LinkButton>
         </template>
         <template v-else>
-          <button :class="avatarBtnStyles">
+          <button :class="avatarBtnStyles" onclick="my_modal_2.showModal()">
             <img src="/avatar.png" />
           </button>
         </template>
@@ -59,13 +59,13 @@
         <LinkButton>{{ t('navbar.contact') }}</LinkButton>
         <LinkButton v-if="isLogin">{{ t('navbar.myEvents') }}</LinkButton>
         <template v-if="!isLogin">
-          <LinkButton>{{ t('navbar.login') }}</LinkButton>
-          <LinkButton :is-button="true">{{
+          <LinkButton :go-to="'/login'">{{ t('navbar.login') }}</LinkButton>
+          <LinkButton :go-to="'/register'" :is-button="true">{{
             t('navbar.registration')
           }}</LinkButton>
         </template>
         <template v-else>
-          <button :class="avatarBtnStyles">
+          <button :class="avatarBtnStyles" onclick="my_modal_2.showModal()">
             <img src="/avatar.png" />
           </button>
         </template>
@@ -80,6 +80,29 @@
         class="flex h-full w-[339px] items-center justify-center rounded-lg bg-[#FCF6F6] shadow-lg lg:w-[1113px]"
       ></div>
     </div>
+    <dialog id="my_modal_2" class="modal">
+      <div class="modal-box">
+        <h3 class="text-center text-lg font-bold">Potwierdź wylogowywanie</h3>
+        <div class="mt-5 flex justify-around">
+          <button
+            class="btn btn-success btn-outline btn-sm"
+            @click="setLogout"
+            onclick="my_modal_2.close()"
+          >
+            Potwierdź
+          </button>
+          <button
+            class="btn btn-error btn-outline btn-sm"
+            onclick="my_modal_2.close()"
+          >
+            Odrzuć
+          </button>
+        </div>
+      </div>
+      <form method="dialog" class="modal-backdrop">
+        <button>close</button>
+      </form>
+    </dialog>
   </nav>
 </template>
 
@@ -88,12 +111,15 @@ import ActionButton from '@/components/buttons/ActionButton.vue';
 import MenuIcon from '@/components/icons/navbar/MenuIcon.vue';
 import LinkButton from '@/components/buttons/LinkButton.vue';
 import LangButton from '@/components/buttons/LangButton.vue';
+import { useUserStore } from '@/stores/userStore';
+import { useRouter } from 'vue-router';
 import { RouterLink } from 'vue-router';
 import { useI18n } from 'vue-i18n';
 import { ref, type Ref } from 'vue';
 
 const { t } = useI18n();
-const isLogin = ref(true);
+const userStore = useUserStore();
+const router = useRouter();
 
 /** Side menu active status */
 const isMenuActive: Ref<boolean> = ref(false);
@@ -107,6 +133,10 @@ defineProps({
     type: String,
     default: 'home',
   },
+  isLogin: {
+    type: Boolean,
+    required: true,
+  },
 });
 
 /** Toggle side menu active status */
@@ -116,4 +146,10 @@ const toggleMenu = (): void => {
 
 /** Style classes for AvatarBtn */
 const avatarBtnStyles = `btn btn-circle h-[37px] w-[37px] min-h-0 p-0 border-none bg-information rounded-full flex justify-center items-center hover:bg-information`;
+
+/** Logout user and redirect to home page */
+const setLogout = () => {
+  userStore.logout();
+  router.push('/');
+};
 </script>

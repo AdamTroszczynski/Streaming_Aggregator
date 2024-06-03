@@ -10,6 +10,7 @@
 
   <button
     v-else-if="isButton"
+    @click="router.push(goTo)"
     class="btn btn-xs rounded border-none bg-information font-semibold normal-case text-white lg:btn-sm hover:bg-information hover:text-white lg:px-2 2xl:text-lg"
     data-test="LinkButtonBtn"
   >
@@ -29,6 +30,9 @@
 
 <script setup lang="ts">
 import { RouterLink } from 'vue-router';
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
 
 defineProps({
   goTo: {

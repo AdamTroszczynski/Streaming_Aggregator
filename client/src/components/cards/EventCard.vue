@@ -50,6 +50,7 @@
           {{ t('eventCard.watch') }}
         </ActionButton>
         <ActionButton
+          v-if="isLogged"
           class="lg:btn-sm"
           :is-grey="!isFavorite"
           :is-pink="isFavorite"
@@ -112,6 +113,10 @@ const props = defineProps({
   isFinished: {
     type: Boolean,
     default: false,
+  },
+  isLogged: {
+    type: Boolean,
+    required: true,
   },
 });
 

@@ -1,6 +1,10 @@
 <template>
   <main class="flex min-h-screen w-full flex-col bg-white">
-    <NavigationBar :is-adv="false" :selected="''" />
+    <NavigationBar
+      :is-adv="false"
+      :selected="''"
+      :is-login="userStore.isUserLoggedIn"
+    />
     <div class="mt-[-500px] flex flex-col items-center p-6 lg:mt-[-300px]">
       <LoginForm
         :title="t('loginForm.register')"
@@ -50,6 +54,7 @@ import { useI18n } from 'vue-i18n';
 import { useForm } from 'vee-validate';
 import { object, string, ref as yupRef } from 'yup';
 import { type RegisterForm } from '@/types/commonTypes';
+import { useUserStore } from '@/stores/userStore';
 
 import NavigationBar from '@/components/common/NavigationBar.vue';
 import MainFooter from '@/components/common/MainFooter.vue';
@@ -57,6 +62,7 @@ import LoginForm from '@/components/layout/LoginForm.vue';
 import MainInput from '@/components/inputs/MainInput.vue';
 
 const { t } = useI18n();
+const userStore = useUserStore();
 
 const createRegisterSchema = () =>
   object({

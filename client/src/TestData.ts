@@ -1,5 +1,4 @@
 import DateUtil from './utils/DateUtil';
-import { type Event } from './types/Event';
 
 const today = new Date();
 const tomorrow = DateUtil.getNextDay(today, 1).fullDate;
@@ -157,7 +156,7 @@ const event5 = new Date(
   today.getFullYear(),
   today.getMonth(),
   today.getDate(),
-  23,
+  20,
   30,
   0,
 );
@@ -173,7 +172,7 @@ const event6 = new Date(
   today.getFullYear(),
   today.getMonth(),
   today.getDate(),
-  23,
+  20,
   30,
   0,
 );
@@ -189,8 +188,8 @@ const event7 = new Date(
   today.getFullYear(),
   today.getMonth(),
   today.getDate(),
-  22,
-  0,
+  20,
+  30,
   0,
 );
 const event7end = new Date(
@@ -228,8 +227,8 @@ const data = {
         eventLanguage: 'pl',
         eventLink: 'xxx',
         eventStart: finish1.getTime(),
-        eventEnd: finish1end.getTime()
-      }
+        eventEnd: finish1end.getTime(),
+      },
     ],
     [
       {
@@ -239,7 +238,7 @@ const data = {
         eventLanguage: 'pl',
         eventLink: 'xxx',
         eventStart: finish2.getTime(),
-        eventEnd: finish2end.getTime()
+        eventEnd: finish2end.getTime(),
       },
 
       {
@@ -249,7 +248,7 @@ const data = {
         eventLanguage: 'pl',
         eventLink: 'xxx',
         eventStart: finish3.getTime(),
-        eventEnd: finish3end.getTime()
+        eventEnd: finish3end.getTime(),
       },
     ],
     [
@@ -260,7 +259,7 @@ const data = {
         eventLanguage: 'pl',
         eventLink: 'xxx',
         eventStart: finish4.getTime(),
-        eventEnd: finish4end.getTime()
+        eventEnd: finish4end.getTime(),
       },
     ],
     [
@@ -271,7 +270,7 @@ const data = {
         eventLanguage: 'pl',
         eventLink: 'xxx',
         eventStart: finish5.getTime(),
-        eventEnd: finish5end.getTime()
+        eventEnd: finish5end.getTime(),
       },
     ],
   ],
@@ -285,7 +284,7 @@ const data = {
         eventLanguage: 'pl',
         eventLink: 'xxx',
         eventStart: event1.getTime(),
-        eventEnd: event1end.getTime()
+        eventEnd: event1end.getTime(),
       },
     ],
     [
@@ -296,7 +295,7 @@ const data = {
         eventLanguage: 'pl',
         eventLink: 'xxx',
         eventStart: event2.getTime(),
-        eventEnd: event2end.getTime()
+        eventEnd: event2end.getTime(),
       },
       {
         eventId: 8,
@@ -305,7 +304,7 @@ const data = {
         eventLanguage: 'pl',
         eventLink: 'xxx',
         eventStart: event3.getTime(),
-        eventEnd: event3end.getTime()
+        eventEnd: event3end.getTime(),
       },
       {
         eventId: 9,
@@ -314,7 +313,7 @@ const data = {
         eventLanguage: 'pl',
         eventLink: 'xxx',
         eventStart: event4.getTime(),
-        eventEnd: event4end.getTime()
+        eventEnd: event4end.getTime(),
       },
     ],
     [
@@ -325,7 +324,7 @@ const data = {
         eventLanguage: 'en',
         eventLink: 'xxx',
         eventStart: event5.getTime(),
-        eventEnd: event5end.getTime()
+        eventEnd: event5end.getTime(),
       },
       {
         eventId: 11,
@@ -334,7 +333,7 @@ const data = {
         eventLanguage: 'en',
         eventLink: 'xxx',
         eventStart: event6.getTime(),
-        eventEnd: event6end.getTime()
+        eventEnd: event6end.getTime(),
       },
       {
         eventId: 12,
@@ -343,7 +342,7 @@ const data = {
         eventLanguage: 'pl',
         eventLink: 'xxx',
         eventStart: event7.getTime(),
-        eventEnd: event7end.getTime()
+        eventEnd: event7end.getTime(),
       },
     ],
     [
@@ -354,7 +353,7 @@ const data = {
         eventLanguage: 'en',
         eventLink: 'xxx',
         eventStart: event8.getTime(),
-        eventEnd: event8end.getTime()
+        eventEnd: event8end.getTime(),
       },
     ],
   ],

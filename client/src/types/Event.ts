@@ -1,4 +1,4 @@
-export type Event = {
+type Event = {
   eventId: number;
   eventName: string;
   eventDescription?: string;
@@ -19,24 +19,4 @@ export type Event = {
   companyStreet?: string;
 };
 
-export type AddEvent = {
-  eventName: string;
-  eventDescription: string;
-  eventCategory: string;
-  eventLanguage: string;
-  eventLink: string;
-  eventStart: string | number;
-  eventEnd: string | number;
-  eventDate: string;
-  companyName: string;
-  companyEmail: string;
-  companyNip?: string;
-  companyNumber?: string;
-  companyWeb?: string;
-  companyZipcode?: string;
-  companyCountry?: string;
-  companyProvince?: string;
-  companyCity?: string;
-  companyStreet?: string;
-  accept: string;
-};
+export default Event;

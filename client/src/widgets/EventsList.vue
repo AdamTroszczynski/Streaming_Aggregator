@@ -42,6 +42,7 @@
               :lang="eventCard.eventLanguage"
               :streaming-link="eventCard.eventLink"
               :is-finished="new Date().getTime() > eventCard.eventEnd"
+              :is-logged="userStore.isUserLoggedIn"
             >
             </EventCard>
           </EventGroupCard>
@@ -61,6 +62,7 @@
               :lang="eventCard.eventLanguage"
               :streaming-link="eventCard.eventLink"
               :is-finished="new Date().getTime() > eventCard.eventEnd"
+              :is-logged="userStore.isUserLoggedIn"
             >
             </EventCard>
           </EventGroupCard>
@@ -128,17 +130,19 @@ import EventGroupCard from '@/components/cards/EventGroupCard.vue';
 import { getEventsPreview, testServices } from '@/services/eventsServices';
 import DateUtil from '@/utils/DateUtil';
 import type { EventsPrevArrays } from '@/types/commonTypes';
-import Event from '@/models/Event';
 import { useEventsStore } from '@/stores/eventsStore';
+import type Event from '@/types/Event';
+import { useUserStore } from '@/stores/userStore';
 import { ref, watch, type Ref, onMounted, computed, onUpdated } from 'vue';
 import { useI18n } from 'vue-i18n';
 
 const store = useEventsStore();
 const { t, locale } = useI18n();
+const userStore = useUserStore();
 
 const selectDate: Ref<Date> = ref(new Date());
-const events: Ref<EventsPrevArrays> = ref({});
-const finishEvents: Ref<EventsPrevArrays> = ref({});
+const events: Ref<EventsPrevArrays> | any = ref({});
+const finishEvents: Ref<EventsPrevArrays> | any = ref({});
 const isLoaded: Ref<boolean> = ref(false);
 
 /** Show full date

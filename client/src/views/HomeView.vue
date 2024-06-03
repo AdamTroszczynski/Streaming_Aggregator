@@ -1,6 +1,6 @@
 <template>
   <main class="flex min-h-screen w-full flex-col justify-between bg-[#F2F2F2]">
-    <NavigationBar />
+    <NavigationBar :is-login="userStore.isUserLoggedIn" />
     <h1
       class="p-5 text-3xl font-bold text-navy lg:mr-64 lg:py-7 lg:text-center lg:text-5xl 2xl:mr-[500px]"
     >
@@ -19,6 +19,8 @@ import DaySelector from '@/widgets/DaySelector.vue';
 import EventsList from '@/widgets/EventsList.vue';
 import MainFooter from '@/components/common/MainFooter.vue';
 import { useI18n } from 'vue-i18n';
+import { useUserStore } from '@/stores/userStore';
 
 const { t } = useI18n();
+const userStore = useUserStore();
 </script>
