@@ -16,7 +16,8 @@
 <script setup lang="ts">
 import { useForm } from 'vee-validate';
 import { boolean, number, object, string } from 'yup';
-import { type AddEvent } from '@/types/commonTypes';
+import { type AddEvent } from '@/types/Event';
+import { type EventTime } from '@/types/commonTypes';
 import { useI18n } from 'vue-i18n';
 
 import NavigationBar from '@/components/common/NavigationBar.vue';
@@ -65,10 +66,27 @@ const addEvent = async (): Promise<void> => {
   try {
     await validate();
     if (meta.value.valid) {
-      console.log(values);
+      const addEvent: AddEvent = { ...values };
+      const { eventStart, eventEnd } = setTimeStamp(addEvent);
+      addEvent.eventStart = eventStart;
+      addEvent.eventEnd = eventEnd;
+      const { accept, eventDate, ...event } = addEvent;
     }
   } catch (error) {
     console.log(values);
   }
+};
+
+/** Calculate timeStamp based on day and hours
+ * @param {AddEvent} addEvent addEvent form object
+ * @returns {EventTime} object with eventStart and eventEnd timestamps
+ */
+const setTimeStamp = (addEvent: AddEvent): EventTime => {
+  const startDate = new Date(`${addEvent.eventDate}T${addEvent.eventStart}:00`);
+  const endDate = new Date(`${addEvent.eventDate}T${addEvent.eventEnd}:00`);
+  return {
+    eventStart: startDate.getTime(),
+    eventEnd: endDate.getTime(),
+  };
 };
 </script>

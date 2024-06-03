@@ -1,5 +1,5 @@
 import DateUtil from './utils/DateUtil';
-import Event from './models/Event';
+import { type Event } from './types/Event';
 
 const today = new Date();
 const tomorrow = DateUtil.getNextDay(today, 1).fullDate;
@@ -221,139 +221,141 @@ const event8end = new Date(
 const data = {
   finish: [
     [
-      new Event(
-        11,
-        'OTWARCIE KONFERENCJI',
-        'presentation',
-        'en',
-        'xxx',
-        finish1.getTime(),
-        finish1end.getTime(),
-      ),
+      {
+        eventId: 1,
+        eventName: 'PREZENTACJE PROJEKTÓW',
+        eventCategory: 'conference',
+        eventLanguage: 'pl',
+        eventLink: 'xxx',
+        eventStart: finish1.getTime(),
+        eventEnd: finish1end.getTime()
+      }
     ],
     [
-      new Event(
-        12,
-        'PREZENTACJE PROJEKTÓW',
-        'conference',
-        'pl',
-        'xxx',
-        finish2.getTime(),
-        finish2end.getTime(),
-      ),
-      new Event(
-        13,
-        'WYSTAWA ORGANIZACJI',
-        'presentation',
-        'pl',
-        'xxx',
-        finish3.getTime(),
-        finish3end.getTime(),
-      ),
+      {
+        eventId: 2,
+        eventName: 'PREZENTACJE PROJEKTÓW',
+        eventCategory: 'conference',
+        eventLanguage: 'pl',
+        eventLink: 'xxx',
+        eventStart: finish2.getTime(),
+        eventEnd: finish2end.getTime()
+      },
+
+      {
+        eventId: 3,
+        eventName: 'WYSTAWA ORGANIZACJI',
+        eventCategory: 'presentation',
+        eventLanguage: 'pl',
+        eventLink: 'xxx',
+        eventStart: finish3.getTime(),
+        eventEnd: finish3end.getTime()
+      },
     ],
     [
-      new Event(
-        14,
-        'ROZMOWY Z REKRUTERAMI',
-        'conference',
-        'pl',
-        'xxx',
-        finish4.getTime(),
-        finish4end.getTime(),
-      ),
+      {
+        eventId: 4,
+        eventName: 'ROZMOWY Z REKRUTERAMI',
+        eventCategory: 'conference',
+        eventLanguage: 'pl',
+        eventLink: 'xxx',
+        eventStart: finish4.getTime(),
+        eventEnd: finish4end.getTime()
+      },
     ],
     [
-      new Event(
-        14,
-        'ROZMOWY Z REKRUTERAMI',
-        'conference',
-        'pl',
-        'xxx',
-        finish5.getTime(),
-        finish5end.getTime(),
-      ),
+      {
+        eventId: 5,
+        eventName: 'ROZMOWY Z REKRUTERAMI',
+        eventCategory: 'conference',
+        eventLanguage: 'pl',
+        eventLink: 'xxx',
+        eventStart: finish5.getTime(),
+        eventEnd: finish5end.getTime()
+      },
     ],
   ],
+
   now: [
     [
-      new Event(
-        1,
-        'OTWARCIE KONFERENCJI',
-        'presentation',
-        'pl',
-        'xxx',
-        event1.getTime(),
-        event1end.getTime(),
-      ),
+      {
+        eventId: 6,
+        eventName: 'OTWARCIE KONFERENCJI',
+        eventCategory: 'presentation',
+        eventLanguage: 'pl',
+        eventLink: 'xxx',
+        eventStart: event1.getTime(),
+        eventEnd: event1end.getTime()
+      },
     ],
     [
-      new Event(
-        2,
-        'PREZENTACJE PROJEKTÓW',
-        'conference',
-        'pl',
-        'xxx',
-        event2.getTime(),
-        event2end.getTime(),
-      ),
-      new Event(
-        3,
-        'WYSTAWA ORGANIZACJI',
-        'presentation',
-        'pl',
-        'xxx',
-        event3.getTime(),
-        event3end.getTime(),
-      ),
-      new Event(
-        4,
-        'ROZMOWY Z REKRUTERAMI',
-        'conference',
-        'pl',
-        'xxx',
-        event4.getTime(),
-        event4end.getTime(),
-      ),
+      {
+        eventId: 7,
+        eventName: 'PREZENTACJE PROJEKTÓW',
+        eventCategory: 'conference',
+        eventLanguage: 'pl',
+        eventLink: 'xxx',
+        eventStart: event2.getTime(),
+        eventEnd: event2end.getTime()
+      },
+      {
+        eventId: 8,
+        eventName: 'WYSTAWA ORGANIZACJI',
+        eventCategory: 'presentation',
+        eventLanguage: 'pl',
+        eventLink: 'xxx',
+        eventStart: event3.getTime(),
+        eventEnd: event3end.getTime()
+      },
+      {
+        eventId: 9,
+        eventName: 'ROZMOWY Z REKRUTERAMI',
+        eventCategory: 'conference',
+        eventLanguage: 'pl',
+        eventLink: 'xxx',
+        eventStart: event4.getTime(),
+        eventEnd: event4end.getTime()
+      },
     ],
     [
-      new Event(
-        5,
-        'OGŁOSZENIE WYNIKOW',
-        'training',
-        'en',
-        'xxx',
-        event5.getTime(),
-        event5end.getTime(),
-      ),
-      new Event(
-        6,
-        'UROCZYSTE PODSUMOWANIE KONFERENCJI',
-        'conference',
-        'en',
-        'xxx',
-        event6.getTime(),
-        event6end.getTime(),
-      ),
-      new Event(
-        7,
-        'AKTREN MICHAŁ TARAN',
-        'training',
-        'pl',
-        'xxx',
-        event7.getTime(),
-        event7end.getTime(),
-      ),
+      {
+        eventId: 10,
+        eventName: 'OGŁOSZENIE WYNIKOW',
+        eventCategory: 'training',
+        eventLanguage: 'en',
+        eventLink: 'xxx',
+        eventStart: event5.getTime(),
+        eventEnd: event5end.getTime()
+      },
+      {
+        eventId: 11,
+        eventName: 'UROCZYSTE PODSUMOWANIE KONFERENCJI',
+        eventCategory: 'conference',
+        eventLanguage: 'en',
+        eventLink: 'xxx',
+        eventStart: event6.getTime(),
+        eventEnd: event6end.getTime()
+      },
+      {
+        eventId: 12,
+        eventName: 'AKTREN MICHAŁ TARAN',
+        eventCategory: 'training',
+        eventLanguage: 'pl',
+        eventLink: 'xxx',
+        eventStart: event7.getTime(),
+        eventEnd: event7end.getTime()
+      },
     ],
     [
-      new Event(
-        8,
-        'PROIDEA SP Z O. O.',
-        'presentation',
-        'en',
-        'xxx',
-        event8.getTime(),
-        event8end.getTime(),
-      ),
+      {
+        eventId: 13,
+        eventName: 'PROIDEA SP Z O. O.',
+        eventCategory: 'presentation',
+        eventLanguage: 'en',
+        eventLink: 'xxx',
+        eventStart: event8.getTime(),
+        eventEnd: event8end.getTime()
+      },
     ],
   ],
 };

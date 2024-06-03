@@ -29,7 +29,7 @@
           <EventGroupCard
             v-for="eventGroup in finishEvents"
             :key="eventGroup.toString"
-            :start-time="eventGroup[0].startDate"
+            :start-time="eventGroup[0].eventStart"
             :is-finished="setIsFinished(eventGroup)"
             :is-now="setIsNow(eventGroup)"
           >
@@ -38,17 +38,17 @@
               :key="eventCard.eventId"
               :title="eventCard.eventName"
               :duration="setDuration(eventCard)"
-              :tag="eventCard.tag"
-              :lang="eventCard.language"
-              :streaming-link="eventCard.streamingLink"
-              :is-finished="new Date().getTime() > eventCard.endDate"
+              :tag="eventCard.eventCategory"
+              :lang="eventCard.eventLanguage"
+              :streaming-link="eventCard.eventLink"
+              :is-finished="new Date().getTime() > eventCard.eventEnd"
             >
             </EventCard>
           </EventGroupCard>
           <EventGroupCard
             v-for="eventGroup in events"
             :key="eventGroup.toString"
-            :start-time="eventGroup[0].startDate"
+            :start-time="eventGroup[0].eventStart"
             :is-finished="setIsFinished(eventGroup)"
             :is-now="setIsNow(eventGroup)"
           >
@@ -57,10 +57,10 @@
               :key="eventCard.eventId"
               :title="eventCard.eventName"
               :duration="setDuration(eventCard)"
-              :tag="eventCard.tag"
-              :lang="eventCard.language"
-              :streaming-link="eventCard.streamingLink"
-              :is-finished="new Date().getTime() > eventCard.endDate"
+              :tag="eventCard.eventCategory"
+              :lang="eventCard.eventLanguage"
+              :streaming-link="eventCard.eventLink"
+              :is-finished="new Date().getTime() > eventCard.eventEnd"
             >
             </EventCard>
           </EventGroupCard>
@@ -137,8 +137,8 @@ const store = useEventsStore();
 const { t, locale } = useI18n();
 
 const selectDate: Ref<Date> = ref(new Date());
-const events: Ref<EventsPrevArrays> | any = ref({});
-const finishEvents: Ref<EventsPrevArrays> | any = ref({});
+const events: Ref<EventsPrevArrays> = ref({});
+const finishEvents: Ref<EventsPrevArrays> = ref({});
 const isLoaded: Ref<boolean> = ref(false);
 
 /** Show full date
@@ -176,7 +176,7 @@ const setClasses = computed<string>(() => {
 const setIsFinished = (eventGroup: Array<Event>): boolean => {
   let longestEvent = 0;
   eventGroup.forEach((el: Event) => {
-    if (el.endDate > longestEvent) longestEvent = el.endDate;
+    if (el.eventEnd > longestEvent) longestEvent = el.eventEnd;
   });
   return new Date().getTime() > longestEvent;
 };
@@ -187,8 +187,8 @@ const setIsFinished = (eventGroup: Array<Event>): boolean => {
 const setIsNow = (eventGroup: Array<Event>): boolean => {
   const lastIndex = eventGroup.length - 1;
   return (
-    new Date().getTime() > eventGroup[lastIndex].startDate &&
-    new Date().getTime() < eventGroup[lastIndex].endDate
+    new Date().getTime() > eventGroup[lastIndex].eventStart &&
+    new Date().getTime() < eventGroup[lastIndex].eventEnd
   );
 };
 
@@ -196,7 +196,7 @@ const setIsNow = (eventGroup: Array<Event>): boolean => {
  * @returns {number} - duration in minutes
  */
 const setDuration = (eventCard: Event): number => {
-  return (eventCard.endDate - eventCard.startDate) / 60000;
+  return (eventCard.eventEnd - eventCard.eventStart) / 60000;
 };
 
 /** Load events from selected day */
