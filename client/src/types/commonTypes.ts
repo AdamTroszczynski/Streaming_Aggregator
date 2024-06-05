@@ -5,7 +5,7 @@ export type EventsPrevArrays = { [key: string]: Event[] };
 
 export type SelectOptions = { value: string; label: string };
 
-export type EventTime = { eventStart: number; eventEnd: number };
+export type EventTime = { eventStartNum: number; eventEndNum: number };
 
 export type UserToken = {
   user: User;
@@ -19,7 +19,7 @@ export type LoginForm = {
 };
 
 export type RegisterForm = {
-  nick: string;
+  username: string;
   email: string;
   password: string;
   passwordRepeat: string;
@@ -31,8 +31,8 @@ export type AddEvent = {
   eventCategory: string;
   eventLanguage: string;
   eventLink: string;
-  eventStart: string | number;
-  eventEnd: string | number;
+  eventStart: string;
+  eventEnd: string;
   eventDate: string;
   companyName: string;
   companyEmail: string;

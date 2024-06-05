@@ -1,5 +1,6 @@
 import { expect, describe, it, vi } from 'vitest';
 import { VueWrapper, mount } from '@vue/test-utils';
+import { createTestingPinia } from '@pinia/testing';
 import NavigationBar from '@/components/common/NavigationBar.vue';
 
 vi.mock('vue-i18n', () => ({
@@ -13,6 +14,7 @@ describe('NavigationBar.vue', () => {
   const createComponent = (config = {}) =>
     (wrapper = mount(NavigationBar, {
       global: {
+        plugins: [createTestingPinia({ createSpy: vi.fn })],
         stubs: ['RouterLink'],
       },
       ...config,

@@ -9,14 +9,13 @@ import type User from '@/types/User';
  * @returns {Promise<UserToken>} UserToken object
  */
 export const login = async (
-  username: string,
+  email: string,
   password: string,
 ): Promise<UserToken> => {
   const response: AxiosResponse = await axiosClient.post('/auth/login', {
-    username,
+    email,
     password,
   });
-
   const data = response.data;
   return { user: data.user, token: data.token };
 };
@@ -52,6 +51,16 @@ export const checkToken = async (token: string): Promise<User> => {
   const response: AxiosResponse = await axiosClient.get('/auth/check', {
     headers: { 'x-access-token': token },
   });
+  const data = response.data;
+  return data;
+};
+
+/** Verify account action
+ * @param {string} token Account token
+ * @returns {Promise<string>} User object
+ */
+export const verifyAccount = async (token: string): Promise<void> => {
+  const response: AxiosResponse = await axiosClient.post('/auth/verify', token);
   const data = response.data;
   return data;
 };

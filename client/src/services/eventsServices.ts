@@ -1,6 +1,7 @@
 import axios from 'axios';
 import axiosClient from '@/utils/axiosClient';
 import type { EventsPrevArrays } from '@/types/commonTypes';
+import type Event from '@/types/Event';
 import sendData from '@/TestData';
 
 /** Get all day's events based on day's timestamp
@@ -21,7 +22,7 @@ export const getEventsPreview = async (
  */
 export const addEvent = async (event: Event, token: string): Promise<Event> => {
   const response = await axiosClient.post(
-    '/event/...',
+    '/event/events',
     { event },
     {
       headers: { 'x-access-token': token },

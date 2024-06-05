@@ -1,5 +1,5 @@
 type Event = {
-  eventId: number;
+  eventId: string;
   eventName: string;
   eventDescription?: string;
   eventCategory: string;

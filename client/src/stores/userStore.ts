@@ -1,16 +1,11 @@
 import { computed, ref, type Ref } from 'vue';
 import { defineStore } from 'pinia';
 import type User from '@/types/User';
-import type { UserToken } from '@/types/commonTypes';
 
 export const useUserStore = defineStore('userStore', () => {
-  const user: Ref<User | null> = ref({
-    id: 1,
-    username: 'test',
-    email: 'test',
-  });
-  const token: Ref<string> = ref('123');
-  const isLogged: Ref<boolean> = ref(true);
+  const user: Ref<User | null> = ref(null);
+  const token: Ref<string> = ref('');
+  const isLogged: Ref<boolean> = ref(false);
 
   /**
    * Check if user is logged in

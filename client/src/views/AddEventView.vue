@@ -20,8 +20,10 @@
 <script setup lang="ts">
 import { useForm } from 'vee-validate';
 import { boolean, number, object, string } from 'yup';
+import type Event from '@/types/Event';
 import { type AddEvent } from '@/types/commonTypes';
 import { type EventTime } from '@/types/commonTypes';
+import { addEvent as addEventAction } from '@/services/eventsServices';
 import { useUserStore } from '@/stores/userStore';
 import { useI18n } from 'vue-i18n';
 
@@ -73,14 +75,21 @@ const addEvent = async (): Promise<void> => {
     await validate();
     if (meta.value.valid) {
       const addEvent: AddEvent = { ...values };
-      const { eventStart, eventEnd } = setTimeStamp(addEvent);
-      addEvent.eventStart = eventStart;
-      addEvent.eventEnd = eventEnd;
-      const { accept, eventDate, ...eventPrev } = addEvent;
-      const event = { eventId: -1, ...eventPrev };
+      const { eventStartNum, eventEndNum } = setTimeStamp(addEvent);
+      const { accept, eventDate, eventStart, eventEnd, ...eventPrev } =
+        addEvent;
+      const event: Event = {
+        eventId: '-1',
+        eventStart: eventStartNum,
+        eventEnd: eventEndNum,
+        ...eventPrev,
+      };
+      console.log(event);
+      const response = await addEventAction(event, userStore.token);
+      console.log(response);
     }
   } catch (error) {
-    console.log(values);
+    console.log(error);
   }
 };
 
@@ -91,9 +100,10 @@ const addEvent = async (): Promise<void> => {
 const setTimeStamp = (addEvent: AddEvent): EventTime => {
   const startDate = new Date(`${addEvent.eventDate}T${addEvent.eventStart}:00`);
   const endDate = new Date(`${addEvent.eventDate}T${addEvent.eventEnd}:00`);
+  console.log(startDate);
   return {
-    eventStart: startDate.getTime(),
-    eventEnd: endDate.getTime(),
+    eventStartNum: startDate.getTime(),
+    eventEndNum: endDate.getTime(),
   };
 };
 </script>

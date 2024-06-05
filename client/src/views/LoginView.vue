@@ -53,16 +53,20 @@ import { useI18n } from 'vue-i18n';
 import { useForm } from 'vee-validate';
 import { boolean, object, string } from 'yup';
 import { type LoginForm as LoginType } from '@/types/commonTypes';
+import { useRouter } from 'vue-router';
 import { useUserStore } from '@/stores/userStore';
+import { login as loginAction } from '@/services/userServices';
 
 import NavigationBar from '@/components/common/NavigationBar.vue';
 import MainFooter from '@/components/common/MainFooter.vue';
 import LoginForm from '@/components/layout/LoginForm.vue';
 import MainInput from '@/components/inputs/MainInput.vue';
 import CheckboxInput from '@/components/inputs/CheckboxInput.vue';
+import { AxiosError } from 'axios';
 
 const { t } = useI18n();
 const userStore = useUserStore();
+const router = useRouter();
 
 const loginSchema = object({
   email: string()
@@ -80,10 +84,18 @@ const login = async (): Promise<void> => {
   try {
     await validate();
     if (meta.value.valid) {
-      console.log(values);
+      const { email, password } = values;
+      const response = await loginAction(email, password);
+      const { user, token } = response;
+      userStore.login(user, token);
+      router.push('/');
     }
   } catch (error) {
     console.log(error);
+    if (error instanceof AxiosError) {
+      switch (error.response?.status) {
+      }
+    }
   }
 };
 </script>

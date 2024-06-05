@@ -3,6 +3,8 @@ import HomeView from '@/views/HomeView.vue';
 import AddEventView from '@/views/AddEventView.vue';
 import LoginView from '@/views/LoginView.vue';
 import RegisterView from '@/views/RegisterView.vue';
+import VerifyView from '@/views/VerifyView.vue';
+import { checkToken } from '@/services/userServices';
 
 import TestView from '@/views/TestView.vue';
 import { useUserStore } from '@/stores/userStore';
@@ -35,6 +37,11 @@ const router = createRouter({
       meta: { requiresAuth: false, onlyWhenLogout: true },
     },
     {
+      path: '/verify',
+      name: 'verify',
+      component: VerifyView,
+    },
+    {
       path: '/test',
       name: 'test',
       component: TestView,
@@ -50,17 +57,23 @@ const router = createRouter({
 router.beforeEach(async (to, from, next) => {
   const userStore = useUserStore();
 
-  if (!userStore.isLogged) {
+  if (!userStore.isUserLoggedIn) {
     const token = localStorage.getItem('token');
 
     if (token !== null) {
       try {
-        //const reponse = await ;
-        //userStore.login(response, token);
+        const response = await checkToken(token);
+        userStore.login(response, token);
       } catch (error) {
-        //userStore.logout();
+        userStore.logout();
       }
     }
+  }
+
+  // Sprawdzenie trasy /verify na obecność tokena
+  if (to.name === 'verify' && !to.query.token) {
+    next({ name: 'home' });
+    return;
   }
 
   if (!to.meta.requiresAuth && !userStore.isUserLoggedIn) {
