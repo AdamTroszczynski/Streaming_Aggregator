@@ -4,8 +4,17 @@ import type ITokenRequest from '@/interfaces/ITokenRequest';
 import { ErrorMessagesEnum } from '@/enums/ErrorMessagesEnum';
 import { StatusCodesEnum } from '@/enums/StatusCodesEnum';
 import bcrypt from 'bcrypt';
-import { getUserByUsernameBO, getUserByIdBO, createUserBO, getUserByEmailBO } from '@/services/userService/userBO';
-import { createToken } from '@/utils/helpers/tokenHelpers';
+import {
+  getUserByUsernameBO,
+  getUserByIdBO,
+  createUserBO,
+  getUserByEmailBO,
+  verifyUserBO,
+} from '@/services/userService/userBO';
+import { createToken, createVerificationToken } from '@/utils/helpers/tokenHelpers';
+import { sendMail } from '@/utils/helpers/emailHelpers';
+import { BASE_CLIENT_URL } from '@/const/commonConst';
+import jwt from 'jsonwebtoken';
 
 /**
  * Login action
@@ -14,9 +23,9 @@ import { createToken } from '@/utils/helpers/tokenHelpers';
  */
 export const loginAction = async (req: Request, res: Response): Promise<void> => {
   try {
-    const { username, password } = req.body;
+    const { email, password } = req.body;
 
-    if (!(username && password)) {
+    if (!(email && password)) {
       res
         .status(StatusCodesEnum.BadRequest)
         .json({ name: ErrorMessagesEnum.ValidationError, errorMsg: 'All inputs are required !' } as RequestError);
@@ -24,8 +33,16 @@ export const loginAction = async (req: Request, res: Response): Promise<void> =>
       return;
     }
 
-    const user = await getUserByUsernameBO(username);
+    const user = await getUserByEmailBO(email);
     if (user && (await bcrypt.compare(password, user?.passwordHash!))) {
+      if (!user.isVerified) {
+        res.status(StatusCodesEnum.ResourceForbidden).json({
+          name: ErrorMessagesEnum.ValidationError,
+          errorMsg: 'Access only for verified users !',
+        } as RequestError);
+        return;
+      }
+
       const token = createToken(user);
       user.passwordHash = undefined;
       const resResult: UserToken = { user, token };
@@ -35,7 +52,7 @@ export const loginAction = async (req: Request, res: Response): Promise<void> =>
 
     res
       .status(StatusCodesEnum.BadRequest)
-      .json({ name: ErrorMessagesEnum.ValidationError, errorMsg: 'Wrong username or password !' } as RequestError);
+      .json({ name: ErrorMessagesEnum.ValidationError, errorMsg: 'Wrong email or password !' } as RequestError);
   } catch (err) {
     res
       .status(StatusCodesEnum.ServerError)
@@ -86,6 +103,23 @@ export const registerAction = async (req: Request, res: Response): Promise<void>
     const token = createToken(user);
     user.passwordHash = undefined;
     const resResult: UserToken = { user, token };
+
+    // Send verification mail
+    try {
+      const verificationToken = createVerificationToken(user);
+      const info = await sendMail(
+        'fela55555@wp.pl',
+        user.email,
+        'test',
+        'Verification',
+        `<a href="${BASE_CLIENT_URL}/verify?token=${verificationToken}">Click here to verify email</a>`,
+      );
+
+      console.log(`Email sent: ${info.response}`);
+    } catch (err) {
+      console.log(err);
+    }
+
     res.status(StatusCodesEnum.NewResources).json(resResult);
   } catch (err) {
     res
@@ -108,5 +142,33 @@ export const getValidUserAction = async (req: ITokenRequest, res: Response): Pro
     res
       .status(StatusCodesEnum.ServerError)
       .json({ name: ErrorMessagesEnum.ServerError, errorMsg: err } as RequestError);
+  }
+};
+
+/**
+ * Email verification action
+ * @param {Request} req Request
+ * @param {Response} res Response
+ */
+export const emailVerificationAction = async (req: Request, res: Response): Promise<void> => {
+  try {
+    const { token } = req.body;
+    const { email } = jwt.verify(token, process.env.TOKEN_KEY ?? 'abcd1234') as { id: string; email: string };
+
+    const user = await getUserByEmailBO(email);
+
+    if (user) {
+      const verifiedUserId = await verifyUserBO(user.id);
+      res.status(StatusCodesEnum.OK).json(verifiedUserId);
+    } else {
+      res
+        .status(StatusCodesEnum.Unauthorized)
+        .json({ name: ErrorMessagesEnum.ValidationError, errorMsg: 'Wrong email address !' } as RequestError);
+    }
+  } catch (err) {
+    res.status(StatusCodesEnum.Unauthorized).json({
+      name: ErrorMessagesEnum.ResourceError,
+      errorMsg: 'Invalid Token',
+    } as RequestError);
   }
 };

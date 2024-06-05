@@ -1,5 +1,11 @@
 import User from '@/types/User';
-import { getUserByUsernameDAO, getUserByIdDAO, getUserByEmailDAO, createUserDAO } from '@/services/userService/userDAO';
+import {
+  getUserByUsernameDAO,
+  getUserByIdDAO,
+  getUserByEmailDAO,
+  createUserDAO,
+  verifyUserDAO,
+} from '@/services/userService/userDAO';
 
 /**
  * Get user by username BO
@@ -37,4 +43,14 @@ export const getUserByEmailBO = async (email: string): Promise<User | null> => {
  */
 export const createUserBO = async (username: string, email: string, passwordHash: string): Promise<User> => {
   return await createUserDAO(username, email, passwordHash);
+};
+
+/**
+ * Verify user BO
+ * @param {string} id user id
+ * @returns {Promise<string>} verified user id
+ */
+export const verifyUserBO = async (id: string): Promise<string> => {
+  const user = await verifyUserDAO(id);
+  return user.id;
 };

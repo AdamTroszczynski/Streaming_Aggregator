@@ -28,10 +28,7 @@ export const getUserByIdDAO = async (id: string): Promise<User | null> => {
  * @returns {Promise<User | null>} user object or null if user is not found
  */
 export const getUserByEmailDAO = async (email: string): Promise<User | null> => {
-  return (await dbClient.user.findFirst({
-    where: { email: email },
-    select: { id: true, username: true, email: true, isAdmin: true, isVerified: true },
-  })) as User | null;
+  return (await dbClient.user.findFirst({ where: { email: email } })) as User | null;
 };
 
 /**
@@ -44,5 +41,17 @@ export const getUserByEmailDAO = async (email: string): Promise<User | null> => 
 export const createUserDAO = async (username: string, email: string, passwordHash: string): Promise<User> => {
   return await dbClient.user.create({
     data: { username: username, email: email, passwordHash: passwordHash, isAdmin: false, isVerified: false },
+  });
+};
+
+/**
+ * Verify user DAO
+ * @param {string} id user id
+ * @returns {Promise<User>} verified user
+ */
+export const verifyUserDAO = async (id: string): Promise<User> => {
+  return await dbClient.user.update({
+    where: { id: id },
+    data: { isVerified: true },
   });
 };
