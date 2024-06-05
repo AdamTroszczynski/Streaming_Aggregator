@@ -5,26 +5,28 @@ import { createEventDAO, deleteAllEventsDAO } from '@/services/eventService/even
 export const createTestData = async (): Promise<void> => {
   await deleteAllEventsDAO();
   const date = new Date();
+  let counter = 1;
 
   for (let i = 0; i < 7; i++) {
     for (let j = 0; j < 5; j++) {
       const event: Event = {
-        eventName: `Test ${j}`,
-        tag: 'test',
-        language: 'test',
-        streamingLink: 'test',
-        startDate: date.getTime(),
-        endDate: date.getTime(),
-        organizationFormalName: 'test',
-        organizationDisplayName: 'test',
-        country: 'test',
-        city: 'test',
-        postalCode: 'test',
-        streetAddress: 'test',
-        phoneNumber: 'test',
-        email: 'test',
-        websiteLink: 'test',
-        photo: 'test',
+        eventName: `test ${counter++}`,
+        eventDescription: 'test',
+        eventCategory: 'test',
+        eventLanguage: 'test',
+        eventLink: 'test',
+        eventStart: date,
+        eventEnd: date,
+        companyName: 'test',
+        companyEmail: 'test',
+        companyNip: 'test',
+        companyNumber: 'test',
+        companyWeb: 'test',
+        companyZipcode: 'test',
+        companyCountry: 'test',
+        companyProvince: 'test',
+        companyCity: 'test',
+        companyStreet: 'test',
       };
 
       await createEventDAO(event);

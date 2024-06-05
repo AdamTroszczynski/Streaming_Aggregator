@@ -49,8 +49,8 @@ describe('eventDAO.ts', (): void => {
       // THEN
       expect(events.length).toBe(5);
       events.forEach((event) => {
-        expect(new Date(event.startDate).getTime()).toBeGreaterThanOrEqual(date.getTime());
-        expect(new Date(event.startDate).getTime()).toBeLessThan(getEndOfDay(timestamp).getTime());
+        expect(new Date(event.eventStart).getTime()).toBeGreaterThanOrEqual(date.getTime());
+        expect(new Date(event.eventStart).getTime()).toBeLessThan(getEndOfDay(timestamp).getTime());
       });
     });
   });
@@ -65,7 +65,7 @@ describe('eventDAO.ts', (): void => {
       const event = await getEventByIdDAO(id);
 
       // THEN
-      expect(event?.eventName).toBe('Test 1');
+      expect(event?.eventName).toBe('test 2');
     });
   });
 
@@ -74,21 +74,22 @@ describe('eventDAO.ts', (): void => {
       // GIVEN
       const event: Event = {
         eventName: 'Test 999',
-        tag: 'test',
-        language: 'test',
-        streamingLink: 'test',
-        startDate: new Date().getTime(),
-        endDate: new Date().getTime(),
-        organizationFormalName: 'test',
-        organizationDisplayName: 'test',
-        country: 'test',
-        city: 'test',
-        postalCode: 'test',
-        streetAddress: 'test',
-        phoneNumber: 'test',
-        email: 'test',
-        websiteLink: 'test',
-        photo: 'test',
+        eventDescription: 'test',
+        eventCategory: 'test',
+        eventLanguage: 'test',
+        eventLink: 'test',
+        eventStart: new Date().getTime(),
+        eventEnd: new Date().getTime(),
+        companyName: 'test',
+        companyEmail: 'test',
+        companyNip: 'test',
+        companyNumber: 'test',
+        companyWeb: 'test',
+        companyZipcode: 'test',
+        companyCountry: 'test',
+        companyProvince: 'test',
+        companyCity: 'test',
+        companyStreet: 'test',
       };
 
       // WHEN

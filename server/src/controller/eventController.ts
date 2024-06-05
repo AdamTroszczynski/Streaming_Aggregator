@@ -1,9 +1,10 @@
 import type { Request, Response } from 'express';
+import type Event from '@/types/Event';
+import type { DateEvent } from '@/types/common';
+import type ITokenRequest from '@/interfaces/ITokenRequest';
 import { StatusCodesEnum } from '@/enums/StatusCodesEnum';
 import dbClient from '@/services/dbClient';
 import { ErrorMessagesEnum } from '@/enums/ErrorMessagesEnum';
-import type Event from '@/types/Event';
-import type { DateEvent } from '@/types/common';
 import {
   getAllEventsBO,
   getEventsByDateBO,
@@ -71,7 +72,7 @@ export const getEventByIdAction = async (req: Request, res: Response): Promise<v
  * @param {Request} req Request
  * @param {Response} res Response
  */
-export const createEventAction = async (req: Request, res: Response): Promise<void> => {
+export const createEventAction = async (req: ITokenRequest, res: Response): Promise<void> => {
   try {
     const { event } = req.body;
     const createdEvent: Event = await createEventBO(event);
@@ -89,7 +90,7 @@ export const createEventAction = async (req: Request, res: Response): Promise<vo
  * @param {Request} req Request
  * @param {Response} res Response
  */
-export const updateEventAction = async (req: Request, res: Response): Promise<void> => {
+export const updateEventAction = async (req: ITokenRequest, res: Response): Promise<void> => {
   try {
     const { id } = req.params;
     const { event } = req.body;
@@ -108,7 +109,7 @@ export const updateEventAction = async (req: Request, res: Response): Promise<vo
  * @param {Request} req Request
  * @param {Response} res Response
  */
-export const deleteEventAction = async (req: Request, res: Response): Promise<void> => {
+export const deleteEventAction = async (req: ITokenRequest, res: Response): Promise<void> => {
   try {
     const { id } = req.params;
     const deletedEvent: Event = await deleteEventBO(id);

@@ -28,12 +28,12 @@ export const getEventsByDateBO = async (timestamp: number): Promise<DateEvent> =
 
   // Convert Date to timestamp
   events.forEach((event: Event) => {
-    event.startDate = (event.startDate as Date).getTime();
-    event.endDate = (event.endDate as Date).getTime();
+    event.eventStart = (event.eventStart as Date).getTime();
+    event.eventEnd = (event.eventEnd as Date).getTime();
   });
 
   events.forEach((event: Event) => {
-    const keyTimestamp: number = new Date(event.startDate).getTime();
+    const keyTimestamp: number = new Date(event.eventStart).getTime();
     if (!eventsGroupedByStartDate.hasOwnProperty(keyTimestamp)) {
       eventsGroupedByStartDate[keyTimestamp] = [event];
     } else {
@@ -42,8 +42,8 @@ export const getEventsByDateBO = async (timestamp: number): Promise<DateEvent> =
   });
 
   const compareDuration = (a: Event, b: Event): number => {
-    const durationA = (a.endDate as number) - (a.startDate as number);
-    const durationB = (b.endDate as number) - (b.startDate as number);
+    const durationA = (a.eventEnd as number) - (a.eventStart as number);
+    const durationB = (b.eventEnd as number) - (b.eventStart as number);
     return durationA - durationB;
   };
 
