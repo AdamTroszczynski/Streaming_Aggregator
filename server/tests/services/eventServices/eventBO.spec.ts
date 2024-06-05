@@ -7,15 +7,15 @@ import type { DateEvent } from '@/types/common';
 describe('eventBO.ts', (): void => {
   beforeAll(async (): Promise<void> => {
     await createTestData();
-  });
+  }, 10000);
 
   afterAll(async (): Promise<void> => {
     await deleteAllEventsDAO();
-  });
+  }, 10000);
 
   afterEach(async (): Promise<void> => {
     await dbClient.$disconnect();
-  });
+  }, 10000);
 
   describe('getEventsByDateBO', (): void => {
     it('Should fetch all events from database', async (): Promise<void> => {
