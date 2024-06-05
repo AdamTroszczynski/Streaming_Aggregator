@@ -32,3 +32,44 @@ jobs:
       run: |
           cd client
           npm run test:unit
+
+  backend-tests:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install Dependencies
+        run: |
+            cd server
+            npm install -s
+
+      - name: Prepare .env.test.local
+        run: |
+            cd server
+            touch .env.test.local
+            echo PORT=8080 >> .env.test.local
+            echo DATABASE_URL="mongodb+srv://mikolajszymczukdev:lovekamil@cluster0.ssksqmu.mongodb.net/stramingAggregatorTest" >> .env.test.local
+
+      - name: Start backend service (API)
+        run: |
+            cd server
+            (npm run start&)
+
+      - name: Wait for Backend to Start
+        run: sleep 10
+
+      - name: Run Tests
+        run: |
+            cd server
+            npm test
