@@ -5,6 +5,7 @@ import {
   getEventByIdDAO,
   deleteEventDAO,
   updateEventDAO,
+  deleteAllEventsDAO,
 } from '@/services/eventService/eventDAO';
 import type Event from '@/types/Event';
 import type { DateEvent } from '@/types/common';
@@ -24,7 +25,7 @@ export const getAllEventsBO = async (): Promise<Event[]> => {
  */
 export const getEventsByDateBO = async (timestamp: number): Promise<DateEvent> => {
   const events = await getEventsByDateDAO(timestamp);
-  const eventsGroupedByStartDate: DateEvent = {};
+  const eventsGroupedByStartDate: DateEvent = { finish: [], now: [] };
 
   // Convert Date to timestamp
   events.forEach((event: Event) => {
@@ -41,19 +42,10 @@ export const getEventsByDateBO = async (timestamp: number): Promise<DateEvent> =
     const keyTimestamp: number = new Date(event.eventStart).getTime();
     const endTimestamp: number = new Date(event.eventEnd).getTime();
 
-    if (!eventsGroupedByStartDate.hasOwnProperty(keyTimestamp)) {
-      if (keyTimestamp >= currentTimestamp || (keyTimestamp < currentTimestamp && endTimestamp >= currentTimestamp)) {
-        eventsGroupedByStartDate[keyTimestamp] = { finish: [], now: [event] };
-      } else {
-        eventsGroupedByStartDate[keyTimestamp] = { finish: [event], now: [] };
-      }
-    } else if (
-      keyTimestamp >= currentTimestamp ||
-      (keyTimestamp < currentTimestamp && endTimestamp >= currentTimestamp)
-    ) {
-      eventsGroupedByStartDate[keyTimestamp].now.push(event);
+    if (keyTimestamp >= currentTimestamp || (keyTimestamp < currentTimestamp && endTimestamp >= currentTimestamp)) {
+      eventsGroupedByStartDate.now.push(event);
     } else {
-      eventsGroupedByStartDate[keyTimestamp].finish.push(event);
+      eventsGroupedByStartDate.finish.push(event);
     }
   });
 
@@ -63,10 +55,8 @@ export const getEventsByDateBO = async (timestamp: number): Promise<DateEvent> =
     return durationA - durationB;
   };
 
-  for (const key in eventsGroupedByStartDate) {
-    eventsGroupedByStartDate[key].finish.sort(compareDuration);
-    eventsGroupedByStartDate[key].now.sort(compareDuration);
-  }
+  eventsGroupedByStartDate.finish.sort(compareDuration);
+  eventsGroupedByStartDate.now.sort(compareDuration);
 
   return eventsGroupedByStartDate;
 };
@@ -106,4 +96,40 @@ export const updateEventBO = async (id: string, event: Event): Promise<Event> =>
  */
 export const deleteEventBO = async (id: string): Promise<Event> => {
   return await deleteEventDAO(id);
+};
+
+/** Regenerate event data BO */
+export const regenerateEventDataBO = async (): Promise<void> => {
+  await deleteAllEventsDAO();
+  const date = new Date();
+  let counter = 1;
+
+  for (let i = 0; i < 7; i++) {
+    for (let j = 0; j < 8; j++) {
+      const event: Event = {
+        eventName: `Event ${counter++}`,
+        eventDescription: 'test',
+        eventCategory: 'test',
+        eventLanguage: 'test',
+        eventLink: 'test',
+        eventStart: date,
+        eventEnd: date,
+        companyName: 'test',
+        companyEmail: 'test',
+        companyNip: 'test',
+        companyNumber: 'test',
+        companyWeb: 'test',
+        companyZipcode: 'test',
+        companyCountry: 'test',
+        companyProvince: 'test',
+        companyCity: 'test',
+        companyStreet: 'test',
+      };
+
+      await createEventDAO(event);
+      date.setHours(date.getHours() + 2);
+    }
+
+    date.setDate(date.getDate() + 1);
+  }
 };
