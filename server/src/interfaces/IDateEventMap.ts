@@ -1,7 +1,7 @@
 import type Event from '@/types/Event';
 
 interface IDateEventMap {
-  [key: number]: Event[];
+  [key: number]: { finish: Event[]; now: Event[] };
 }
 
 export default IDateEventMap;

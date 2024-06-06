@@ -32,12 +32,28 @@ export const getEventsByDateBO = async (timestamp: number): Promise<DateEvent> =
     event.eventEnd = (event.eventEnd as Date).getTime();
   });
 
+  const realTime = new Date();
+  const currentDate = new Date(timestamp);
+  currentDate.setHours(realTime.getHours(), realTime.getMinutes(), realTime.getSeconds(), realTime.getMilliseconds());
+  const currentTimestamp = currentDate.getTime();
+
   events.forEach((event: Event) => {
     const keyTimestamp: number = new Date(event.eventStart).getTime();
+    const endTimestamp: number = new Date(event.eventEnd).getTime();
+
     if (!eventsGroupedByStartDate.hasOwnProperty(keyTimestamp)) {
-      eventsGroupedByStartDate[keyTimestamp] = [event];
+      if (keyTimestamp >= currentTimestamp || (keyTimestamp < currentTimestamp && endTimestamp >= currentTimestamp)) {
+        eventsGroupedByStartDate[keyTimestamp] = { finish: [], now: [event] };
+      } else {
+        eventsGroupedByStartDate[keyTimestamp] = { finish: [event], now: [] };
+      }
+    } else if (
+      keyTimestamp >= currentTimestamp ||
+      (keyTimestamp < currentTimestamp && endTimestamp >= currentTimestamp)
+    ) {
+      eventsGroupedByStartDate[keyTimestamp].now.push(event);
     } else {
-      eventsGroupedByStartDate[keyTimestamp].push(event);
+      eventsGroupedByStartDate[keyTimestamp].finish.push(event);
     }
   });
 
@@ -48,7 +64,8 @@ export const getEventsByDateBO = async (timestamp: number): Promise<DateEvent> =
   };
 
   for (const key in eventsGroupedByStartDate) {
-    eventsGroupedByStartDate[key].sort(compareDuration);
+    eventsGroupedByStartDate[key].finish.sort(compareDuration);
+    eventsGroupedByStartDate[key].now.sort(compareDuration);
   }
 
   return eventsGroupedByStartDate;
